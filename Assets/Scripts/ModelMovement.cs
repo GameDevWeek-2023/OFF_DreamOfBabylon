@@ -12,41 +12,27 @@ public class ModelMovement : MonoBehaviour
     private float movementDirection;
 
     private Rigidbody2D RB;
+    private BoxCollider2D bC;
 
     [SerializeField] private float jumpForce;
     private bool justJumped = false;
 
-    private bool onGround;
+    private bool onGround = false;
 
     private void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
+        bC = GetComponent<BoxCollider2D>();
     }
 
     void Start()
     {
     }
 
-    private bool isGrounded()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 0.2f, 3);
-        if (hit.collider != null)
-        {
-            onGround = true;
-        }
-        else
-        {
-            onGround = false;
-        }
-
-        return onGround;
-    }
-
     private void FixedUpdate()
     {
         Run();
-        Debug.DrawRay(gameObject.transform.position, Vector2.down, Color.blue);
-        
+
     }
 
     void OnMovement(InputValue value)
@@ -64,9 +50,19 @@ public class ModelMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (isGrounded())
+        if (onGround && (value.Get<float>() > 0))
         {
             RB.AddForce(Vector2.up*jumpForce,ForceMode2D.Impulse);
+            onGround = false;
+        }
+    }
+    
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ground")
+        {
+            onGround = true;
+            //kyoteTimer = 0;
         }
     }
 }
