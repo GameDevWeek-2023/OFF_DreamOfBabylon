@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnMovementPerformed(InputAction.CallbackContext value)
     {
         //horizontal = value.ReadValue<>();
-        //rb.AddForce()
+        //rb.AddForce();
     } 
     public void OnMovementCancelled(InputAction.CallbackContext value)
     {

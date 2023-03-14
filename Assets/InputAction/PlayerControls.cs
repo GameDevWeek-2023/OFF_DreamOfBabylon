@@ -62,6 +62,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EscButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c831c4b-2e2d-4bc0-9a16-054917d63f30"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Action2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94341a5a-34b3-4fe5-bed3-9cb097dd13e4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +184,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Input_Jump = m_Input.FindAction("Jump", throwIfNotFound: true);
         m_Input_Action1 = m_Input.FindAction("Action1", throwIfNotFound: true);
         m_Input_Action2 = m_Input.FindAction("Action2", throwIfNotFound: true);
+        m_Input_EscButton = m_Input.FindAction("EscButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +250,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Input_Jump;
     private readonly InputAction m_Input_Action1;
     private readonly InputAction m_Input_Action2;
+    private readonly InputAction m_Input_EscButton;
     public struct InputActions
     {
         private @PlayerControls m_Wrapper;
@@ -237,6 +259,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Input_Jump;
         public InputAction @Action1 => m_Wrapper.m_Input_Action1;
         public InputAction @Action2 => m_Wrapper.m_Input_Action2;
+        public InputAction @EscButton => m_Wrapper.m_Input_EscButton;
         public InputActionMap Get() { return m_Wrapper.m_Input; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +281,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Action2.started += instance.OnAction2;
             @Action2.performed += instance.OnAction2;
             @Action2.canceled += instance.OnAction2;
+            @EscButton.started += instance.OnEscButton;
+            @EscButton.performed += instance.OnEscButton;
+            @EscButton.canceled += instance.OnEscButton;
         }
 
         private void UnregisterCallbacks(IInputActions instance)
@@ -274,6 +300,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Action2.started -= instance.OnAction2;
             @Action2.performed -= instance.OnAction2;
             @Action2.canceled -= instance.OnAction2;
+            @EscButton.started -= instance.OnEscButton;
+            @EscButton.performed -= instance.OnEscButton;
+            @EscButton.canceled -= instance.OnEscButton;
         }
 
         public void RemoveCallbacks(IInputActions instance)
@@ -297,5 +326,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAction1(InputAction.CallbackContext context);
         void OnAction2(InputAction.CallbackContext context);
+        void OnEscButton(InputAction.CallbackContext context);
     }
 }
