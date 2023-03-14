@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7005377014519037562}
   - component: {fileID: 5765604187683654739}
+  - component: {fileID: 5512509124056385924}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -61,6 +62,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5512509124056385924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727404295936870336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb23dbdaa4470c42947214b8c986051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBreakable: 0
+  isAffectedByGravity: 0
 --- !u!1 &4981427082567139422
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,8 +255,8 @@ GameObject:
   - component: {fileID: 4207233599610659271}
   - component: {fileID: 3729858957867932641}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: FloorCollider
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5984144409764174030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.45, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
