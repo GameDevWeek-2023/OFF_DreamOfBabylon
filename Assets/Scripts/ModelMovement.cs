@@ -19,10 +19,10 @@ public class ModelMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 0.5f;
     private float dashTimer;
     private float timeSinceDash;
-    public bool dashing=false;
+    private bool dashing=false;
 
     [SerializeField] private float jumpForce;
-    [SerializeField]private float jumpForceDown = -15f;
+    [SerializeField] private float jumpForceDown = -15f;
     [SerializeField] private float maxYVelocity;
     private bool onGround = false;
 
@@ -41,24 +41,18 @@ public class ModelMovement : MonoBehaviour
     {
         if (!dashing)
         {
-            Run();   
+            Run();
         }
         else
         {
             dashTimer -= Time.fixedDeltaTime;
             if (dashTimer <= 0)
             {
-                RB
                 dashing = false;
                 RB.gravityScale = gravity;
                 dashTimer = dashDuration;
             }
         }
-    }
-
-    private void Update()
-    {
-        
 
     }
 
@@ -110,18 +104,13 @@ public class ModelMovement : MonoBehaviour
         }
     }
 
-    void OnDash(InputValue value)
+    void OnDash()
     {
-        float inout = value.Get<float>();
-        
-        if (!dashing && inout > 0)
-        {
-            print("dashing");
-            dashing = true;
-            RB.velocity = new Vector2(lookDirection * dashSpeed, 0);
-            RB.gravityScale = 0;
-            dashTimer = dashDuration;
-        }
+        if (dashing)
+            return;
+        dashing = true;
+        RB.velocity = new Vector2(lookDirection * dashSpeed, 0);
+        RB.gravityScale = 0;
     }
 
     void OnGravity()
