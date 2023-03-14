@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class ModelMovement : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ModelMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 0.5f;
     private float dashTimer;
     private float movementDirection;
+    [SerializeField]private float jumpForceDown = -15f;
 
     private Rigidbody2D RB;
     private float gravity; 
@@ -24,6 +26,8 @@ public class ModelMovement : MonoBehaviour
     private bool onGround = false;
     private bool dashing=false;
     private float lookDirection = 1f;
+    [SerializeField] private float maxYVelocity;
+
     private void Awake()
     {
         
@@ -33,6 +37,7 @@ public class ModelMovement : MonoBehaviour
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
+        
         gravity = RB.gravityScale;
     }
 
@@ -45,7 +50,6 @@ public class ModelMovement : MonoBehaviour
         else
         {
             dashTimer -= Time.fixedDeltaTime;
-            Debug.Log(dashTimer);
             if (dashTimer <= 0)
             {
                 dashing = false;
@@ -69,6 +73,19 @@ public class ModelMovement : MonoBehaviour
     {
         RB.velocity = new Vector2(movementDirection * runSpeed, RB.velocity.y);
         //RB.AddForce(new Vector2(movementDirection, 0) * runMaxSpeed);
+        if ((RB.velocity.y < 0 && RB.gravityScale>0) || (RB.velocity.y > 0 && RB.gravityScale < 0))
+        {
+            if (RB.velocity.y < 0)
+            {
+                RB.AddForce(new Vector2(0, jumpForceDown));
+            }
+            else
+            {
+                RB.AddForce(new Vector2(0, jumpForceDown*(-1)));
+            }
+        }
+
+        RB.velocity = new Vector2(RB.velocity.x, Mathf.Clamp(RB.velocity.y, -maxYVelocity, maxYVelocity));
     }
     
 
@@ -98,5 +115,12 @@ public class ModelMovement : MonoBehaviour
         dashing = true;
         RB.velocity = new Vector2(lookDirection * dashSpeed, 0);
         RB.gravityScale = 0;
+    }
+
+    void OnGravity()
+    {
+        gameObject.transform.Rotate(Vector3.forward, 180);
+        //gameObject.transform.SetPositionAndRotation(gameObject.transform.position,Quaternion.Euler(0,0,180));
+        RB.gravityScale *= -1;
     }
 }

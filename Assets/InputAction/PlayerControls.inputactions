@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action2",
+                    "name": "Gravity",
                     "type": "Button",
                     "id": "508c5473-46c7-4f82-a936-ade47771dbff",
                     "expectedControlType": "Button",
@@ -110,7 +110,7 @@
                 {
                     "name": "",
                     "id": "a35801b1-56fa-4b36-8a9b-91a9dad60de9",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -132,11 +132,11 @@
                 {
                     "name": "",
                     "id": "b3eec941-5662-429f-9632-5768610e621f",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action2",
+                    "action": "Gravity",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
