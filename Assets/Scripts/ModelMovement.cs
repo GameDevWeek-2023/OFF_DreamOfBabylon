@@ -9,35 +9,31 @@ using UnityEngine.InputSystem.Controls;
 public class ModelMovement : MonoBehaviour
 {
     
-    [SerializeField]private float runSpeed; //Target speed we want the player to reach.
+    [SerializeField]private float runSpeed;
+    private Rigidbody2D RB;
+    private float gravity; 
+    private float movementDirection;
+    private float lookDirection = 1f;
+    
     [SerializeField] private float dashSpeed = 25f;
     [SerializeField] private float dashDuration = 0.5f;
     private float dashTimer;
-    private float movementDirection;
-    [SerializeField]private float jumpForceDown = -15f;
-
-    private Rigidbody2D RB;
-    private float gravity; 
-
+    private float timeSinceDash;
+    public bool dashing=false;
 
     [SerializeField] private float jumpForce;
-    //private bool justJumped = false;
-    private float timeSinceDash;
-    private bool onGround = false;
-    private bool dashing=false;
-    private float lookDirection = 1f;
+    [SerializeField]private float jumpForceDown = -15f;
     [SerializeField] private float maxYVelocity;
+    private bool onGround = false;
 
     private void Awake()
     {
-        
         dashTimer = dashDuration;
     }
 
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
-        
         gravity = RB.gravityScale;
     }
 
@@ -52,11 +48,17 @@ public class ModelMovement : MonoBehaviour
             dashTimer -= Time.fixedDeltaTime;
             if (dashTimer <= 0)
             {
+                RB
                 dashing = false;
                 RB.gravityScale = gravity;
                 dashTimer = dashDuration;
             }
         }
+    }
+
+    private void Update()
+    {
+        
 
     }
 
@@ -108,13 +110,18 @@ public class ModelMovement : MonoBehaviour
         }
     }
 
-    void OnDash()
+    void OnDash(InputValue value)
     {
-        if (dashing)
-            return;
-        dashing = true;
-        RB.velocity = new Vector2(lookDirection * dashSpeed, 0);
-        RB.gravityScale = 0;
+        float inout = value.Get<float>();
+        
+        if (!dashing && inout > 0)
+        {
+            print("dashing");
+            dashing = true;
+            RB.velocity = new Vector2(lookDirection * dashSpeed, 0);
+            RB.gravityScale = 0;
+            dashTimer = dashDuration;
+        }
     }
 
     void OnGravity()
