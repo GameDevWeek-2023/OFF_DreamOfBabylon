@@ -47,9 +47,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Dash"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""6e5c50e3-f278-442e-82f0-d6a866340b5b"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
