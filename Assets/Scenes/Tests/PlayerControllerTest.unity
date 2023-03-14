@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: eea734dac3a26d64b87e11347d3bbde9, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f41ebc1b8364f11a08b1e41ed0e17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runMaxSpeed: 2
+  runMaxSpeed: 14.09
 --- !u!1 &2028370989
 GameObject:
   m_ObjectHideFlags: 0

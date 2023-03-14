@@ -17,8 +17,8 @@ public class ModelMovementTest : MonoBehaviour
     private float runDeccelAmount;
 
     private float movementDirection;
-    
-    private Rigidbody2D RB { get; set; }
+
+    private Rigidbody2D RB;
 
     private void Awake()
     {
@@ -52,18 +52,13 @@ public class ModelMovementTest : MonoBehaviour
         Run();
     }
 
-    private void OnMovement(InputAction.CallbackContext context)
+    private void OnMovement(InputValue value)
     {
-        movementDirection = context.ReadValue<Vector2>().x;
+        movementDirection = value.Get<Vector2>().x;
     }
 
     private void Run()
     {
-        float targetSpeed = movementDirection * runMaxSpeed;
-        float accelRate;
-        accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? runAccelAmount : runDeccelAmount;
-        float speedDif = targetSpeed - RB.velocity.x;
-        float movement = speedDif * accelRate;
-        RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
+        RB.AddForce(new Vector2(movementDirection, 0) * runMaxSpeed);
     }
 }
