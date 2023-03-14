@@ -17,4 +17,9 @@ public class Sound
 
     [HideInInspector]
     public AudioSource source;
+
+    public AudioClip GetAudioClip()
+    {
+        return clip;
+    }
 }
