@@ -40,28 +40,33 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Play("DreamTheme");
+        Sound dreamIntro = FindMusic("DreamThemeIntro");
+        Sound dream = FindMusic("DreamTheme");
+        dreamIntro.source.Play();
+        dream.source.PlayScheduled(AudioSettings.dspTime + dreamIntro.GetAudioClip().length);
+    }
+
+    public Sound FindMusic(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning($"Sound: {name} not found.");
+            return null;
+        }
+        return s;
     }
 
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning($"Sound: {name} not found.");
-            return;
-        }
+        Sound s = FindMusic(name);
         s.source.Play();
+        
     }
 
     public void Stop(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning($"Sound: {name} not found.");
-            return;
-        }
+        Sound s = FindMusic(name);
         s.source.Stop();
     }
 
