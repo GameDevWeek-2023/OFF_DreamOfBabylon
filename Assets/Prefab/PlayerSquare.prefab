@@ -196,6 +196,6 @@ MonoBehaviour:
   runSpeed: 12
   dashSpeed: 30
   dashDuration: 0.1
-  jumpForceDown: -40
   jumpForce: 13
+  jumpForceDown: -46
   maxYVelocity: 24
