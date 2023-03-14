@@ -46,7 +46,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Action1"",
+                    ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""6e5c50e3-f278-442e-82f0-d6a866340b5b"",
                     ""expectedControlType"": ""Button"",
@@ -143,11 +143,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a8f6f392-e7b9-4344-9e84-3c0a053bf3f7"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action1"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -182,7 +182,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Input = asset.FindActionMap("Input", throwIfNotFound: true);
         m_Input_Movement = m_Input.FindAction("Movement", throwIfNotFound: true);
         m_Input_Jump = m_Input.FindAction("Jump", throwIfNotFound: true);
-        m_Input_Action1 = m_Input.FindAction("Action1", throwIfNotFound: true);
+        m_Input_Dash = m_Input.FindAction("Dash", throwIfNotFound: true);
         m_Input_Action2 = m_Input.FindAction("Action2", throwIfNotFound: true);
         m_Input_EscButton = m_Input.FindAction("EscButton", throwIfNotFound: true);
     }
@@ -248,7 +248,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IInputActions> m_InputActionsCallbackInterfaces = new List<IInputActions>();
     private readonly InputAction m_Input_Movement;
     private readonly InputAction m_Input_Jump;
-    private readonly InputAction m_Input_Action1;
+    private readonly InputAction m_Input_Dash;
     private readonly InputAction m_Input_Action2;
     private readonly InputAction m_Input_EscButton;
     public struct InputActions
@@ -257,7 +257,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Input_Movement;
         public InputAction @Jump => m_Wrapper.m_Input_Jump;
-        public InputAction @Action1 => m_Wrapper.m_Input_Action1;
+        public InputAction @Dash => m_Wrapper.m_Input_Dash;
         public InputAction @Action2 => m_Wrapper.m_Input_Action2;
         public InputAction @EscButton => m_Wrapper.m_Input_EscButton;
         public InputActionMap Get() { return m_Wrapper.m_Input; }
@@ -275,9 +275,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Action1.started += instance.OnAction1;
-            @Action1.performed += instance.OnAction1;
-            @Action1.canceled += instance.OnAction1;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
             @Action2.started += instance.OnAction2;
             @Action2.performed += instance.OnAction2;
             @Action2.canceled += instance.OnAction2;
@@ -294,9 +294,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Action1.started -= instance.OnAction1;
-            @Action1.performed -= instance.OnAction1;
-            @Action1.canceled -= instance.OnAction1;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
             @Action2.started -= instance.OnAction2;
             @Action2.performed -= instance.OnAction2;
             @Action2.canceled -= instance.OnAction2;
@@ -324,7 +324,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnAction1(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
         void OnAction2(InputAction.CallbackContext context);
         void OnEscButton(InputAction.CallbackContext context);
     }

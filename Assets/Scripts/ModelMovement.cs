@@ -8,41 +8,66 @@ using UnityEngine.InputSystem;
 public class ModelMovement : MonoBehaviour
 {
     
-    [SerializeField]private float runMaxSpeed; //Target speed we want the player to reach.
+    [SerializeField]private float runSpeed; //Target speed we want the player to reach.
+    [SerializeField] private float dashSpeed = 25f;
+    [SerializeField] private float dashDuration = 0.5f;
+    private float dashTimer;
     private float movementDirection;
 
     private Rigidbody2D RB;
-    private BoxCollider2D bC;
+    private float gravity; 
+
 
     [SerializeField] private float jumpForce;
-    private bool justJumped = false;
-
+    //private bool justJumped = false;
+    private float timeSinceDash;
     private bool onGround = false;
-
+    private bool dashing=false;
+    private float lookDirection = 1f;
     private void Awake()
     {
-        RB = GetComponent<Rigidbody2D>();
-        bC = GetComponent<BoxCollider2D>();
+        
+        dashTimer = dashDuration;
     }
 
     void Start()
     {
+        RB = GetComponent<Rigidbody2D>();
+        gravity = RB.gravityScale;
     }
 
     private void FixedUpdate()
     {
-        Run();
+        if (!dashing)
+        {
+            Run();   
+        }
+        else
+        {
+            dashTimer -= Time.fixedDeltaTime;
+            Debug.Log(dashTimer);
+            if (dashTimer <= 0)
+            {
+                dashing = false;
+                RB.gravityScale = gravity;
+                dashTimer = dashDuration;
+            }
+        }
 
     }
 
     void OnMovement(InputValue value)
     {
         movementDirection = value.Get<Vector2>().x;
+        if (movementDirection != 0)
+        {
+            lookDirection = movementDirection;
+        }
     }
 
     private void Run()
     {
-        RB.velocity = new Vector2(movementDirection * runMaxSpeed, RB.velocity.y);
+        RB.velocity = new Vector2(movementDirection * runSpeed, RB.velocity.y);
         //RB.AddForce(new Vector2(movementDirection, 0) * runMaxSpeed);
     }
     
@@ -64,5 +89,14 @@ public class ModelMovement : MonoBehaviour
             onGround = true;
             //kyoteTimer = 0;
         }
+    }
+
+    void OnDash()
+    {
+        if (dashing)
+            return;
+        dashing = true;
+        RB.velocity = new Vector2(lookDirection * dashSpeed, 0);
+        RB.gravityScale = 0;
     }
 }

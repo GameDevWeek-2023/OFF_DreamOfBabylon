@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action1",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "6e5c50e3-f278-442e-82f0-d6a866340b5b",
                     "expectedControlType": "Button",
@@ -121,11 +121,11 @@
                 {
                     "name": "",
                     "id": "a8f6f392-e7b9-4344-9e84-3c0a053bf3f7",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action1",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
