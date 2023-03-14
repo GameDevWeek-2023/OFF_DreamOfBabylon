@@ -46,13 +46,34 @@ public class ModelMovement : MonoBehaviour
         else
         {
             dashTimer -= Time.fixedDeltaTime;
+            if (dashTimer > 0)
+            {
+                RB.velocity = new Vector2(lookDirection * dashSpeed, 0);
+                RB.gravityScale = 0;
+            }
+            else
+            {
+                dashing = false;
+                RB.gravityScale = gravity;
+                dashTimer = dashDuration;
+            }
+
+
+        }
+        /*if (!dashing)
+        {
+            Run();
+        }
+        else
+        {
+            dashTimer -= Time.fixedDeltaTime;
             if (dashTimer <= 0)
             {
                 dashing = false;
                 RB.gravityScale = gravity;
                 dashTimer = dashDuration;
             }
-        }
+        }*/
 
     }
 
@@ -106,11 +127,14 @@ public class ModelMovement : MonoBehaviour
 
     void OnDash()
     {
-        if (dashing)
+        if(!dashing)
+            dashing = true;
+        /*if (dashing)
             return;
         dashing = true;
         RB.velocity = new Vector2(lookDirection * dashSpeed, 0);
         RB.gravityScale = 0;
+        */
     }
 
     void OnGravity()
