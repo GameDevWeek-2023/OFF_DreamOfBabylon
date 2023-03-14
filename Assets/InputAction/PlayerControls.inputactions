@@ -1,5 +1,5 @@
 {
-    "name": "PlayerControllsControls",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "Input",
@@ -36,6 +36,15 @@
                     "name": "Action2",
                     "type": "Button",
                     "id": "508c5473-46c7-4f82-a936-ade47771dbff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EscButton",
+                    "type": "Button",
+                    "id": "8c831c4b-2e2d-4bc0-9a16-054917d63f30",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Action2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "94341a5a-34b3-4fe5-bed3-9cb097dd13e4",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EscButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
