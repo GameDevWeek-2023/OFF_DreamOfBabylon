@@ -44,26 +44,37 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "525aa835-cfc3-4a90-9053-25471b6b24f7",
+                    "name": "1D Axis",
+                    "id": "5055cf9b-7e08-4ea9-a2a3-9c90ca16bb60",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "12e6f40a-aa59-4d71-9946-2e14b62d66bd",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "fa1744cd-fd56-4f46-bc2b-580049d0a319",
+                    "name": "positive",
+                    "id": "f3f1b1fd-3f04-49d6-86a4-c62fa4090e21",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",

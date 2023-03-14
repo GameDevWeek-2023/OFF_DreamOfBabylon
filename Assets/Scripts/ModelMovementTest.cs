@@ -38,6 +38,6 @@ public class ModelMovementTest : MonoBehaviour
 
     private void OnMovement(InputAction.CallbackContext context)
     {
-        movementDirection = context;
+        //movementDirection = context;
     }
 }
