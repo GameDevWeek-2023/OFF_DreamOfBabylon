@@ -42,8 +42,10 @@ public class AudioManager : MonoBehaviour
     {
         Sound dreamIntro = FindMusic("DreamThemeIntro");
         Sound dream = FindMusic("DreamTheme");
+        Sound nightmare = FindMusic("NightmareTheme");
         dreamIntro.source.Play();
         dream.source.PlayScheduled(AudioSettings.dspTime + dreamIntro.GetAudioClip().length);
+        nightmare.source.PlayScheduled(AudioSettings.dspTime + dreamIntro.GetAudioClip().length);
     }
 
     public Sound FindMusic(string name)
@@ -84,7 +86,6 @@ public class AudioManager : MonoBehaviour
         Sound s2 = Array.Find(sounds, sound => sound.name == "NightmareTheme");
         if (nightmare == false)
         {
-            Play("NightmareTheme");
             while(timeElapsed < timeToFade)
             {
                 s2.source.volume = Mathf.Lerp(0, 1, timeElapsed/timeToFade);
@@ -92,12 +93,10 @@ public class AudioManager : MonoBehaviour
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
-            Stop("DreamTheme");
             nightmare = true;
         }
         else
         {
-            Play("DreamTheme");
             while (timeElapsed < timeToFade)
             {
                 s1.source.volume = Mathf.Lerp(0, 1, timeElapsed / timeToFade);
@@ -105,7 +104,6 @@ public class AudioManager : MonoBehaviour
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
-            Stop("NightmareTheme");
             nightmare = false;
         }
     }
