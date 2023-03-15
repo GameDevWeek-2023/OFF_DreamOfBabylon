@@ -8,9 +8,9 @@ public class CubeMovementTest : MonoBehaviour
 {
     private float horizontal;
 
-    private float speed = 8f;
+    [SerializeField]private float speed = 8f;
     
-    private float jumpPower = 16f;
+    [SerializeField]private float jumpPower = 16f;
 
     private bool isFacingRight = true;
 
@@ -21,11 +21,13 @@ public class CubeMovementTest : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TrailRenderer tr;
 
+    [SerializeField]private float canceledJumpMultiplier = 0.5f;
+
     private bool canDash = true;
     private bool isDashing;
-    private float dashingPower = 24f;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
+    [SerializeField]private float dashingPower = 24f;
+    [SerializeField]private float dashingTime = 0.2f;
+    [SerializeField]private float dashingCooldown = 1f;
     List<Collider2D> inColliders = new List<Collider2D>();
 
         // Start is called before the first frame update
@@ -92,7 +94,7 @@ public class CubeMovementTest : MonoBehaviour
 
         if (context.canceled && rb.velocity.y > 0f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * canceledJumpMultiplier);
         }
     }
 
