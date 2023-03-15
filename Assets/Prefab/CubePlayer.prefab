@@ -120,7 +120,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0.764151, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 7284766669145925042}
   - component: {fileID: 7284766669145925043}
   - component: {fileID: 7284766669145925053}
+  - component: {fileID: 3585649690355158095}
   m_Layer: 0
   m_Name: CubePlayer
   m_TagString: Untagged
@@ -321,6 +322,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8c831c4b-2e2d-4bc0-9a16-054917d63f30
     m_ActionName: Input/EscButton[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3585649690355158095}
+        m_TargetAssemblyTypeName: Character_Action_Nightmare, Assembly-CSharp
+        m_MethodName: Nightmare
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d51a98d1-04e4-4528-a356-a051b28c7ef9
+    m_ActionName: Input/Nightmare[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Input
@@ -434,3 +451,16 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 0
+--- !u!114 &3585649690355158095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284766669145925044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ae4f3e30e733640add313a749c1c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inNightmare: 0

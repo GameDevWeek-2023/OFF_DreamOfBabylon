@@ -73,9 +73,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""Nightmare"",
                     ""type"": ""Value"",
-                    ""id"": ""8243f294-9620-40ac-abb6-b6940907cd1f"",
+                    ""id"": ""d51a98d1-04e4-4528-a356-a051b28c7ef9"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -184,12 +184,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5899a37b-0f2f-4f4f-8656-6bb15478dd9a"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""id"": ""a6cdbb33-d277-4722-b512-5bd48e74c44d"",
+                    ""path"": ""<Keyboard>/#(E)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""Nightmare"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -205,7 +205,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Input_Dashing = m_Input.FindAction("Dashing", throwIfNotFound: true);
         m_Input_Gravity = m_Input.FindAction("Gravity", throwIfNotFound: true);
         m_Input_EscButton = m_Input.FindAction("EscButton", throwIfNotFound: true);
-        m_Input_Interact = m_Input.FindAction("Interact", throwIfNotFound: true);
+        m_Input_Nightmare = m_Input.FindAction("Nightmare", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -272,7 +272,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Input_Dashing;
     private readonly InputAction m_Input_Gravity;
     private readonly InputAction m_Input_EscButton;
-    private readonly InputAction m_Input_Interact;
+    private readonly InputAction m_Input_Nightmare;
     public struct InputActions
     {
         private @PlayerControls m_Wrapper;
@@ -282,7 +282,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Dashing => m_Wrapper.m_Input_Dashing;
         public InputAction @Gravity => m_Wrapper.m_Input_Gravity;
         public InputAction @EscButton => m_Wrapper.m_Input_EscButton;
-        public InputAction @Interact => m_Wrapper.m_Input_Interact;
+        public InputAction @Nightmare => m_Wrapper.m_Input_Nightmare;
         public InputActionMap Get() { return m_Wrapper.m_Input; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -307,9 +307,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @EscButton.started += instance.OnEscButton;
             @EscButton.performed += instance.OnEscButton;
             @EscButton.canceled += instance.OnEscButton;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
+            @Nightmare.started += instance.OnNightmare;
+            @Nightmare.performed += instance.OnNightmare;
+            @Nightmare.canceled += instance.OnNightmare;
         }
 
         private void UnregisterCallbacks(IInputActions instance)
@@ -329,9 +329,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @EscButton.started -= instance.OnEscButton;
             @EscButton.performed -= instance.OnEscButton;
             @EscButton.canceled -= instance.OnEscButton;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
+            @Nightmare.started -= instance.OnNightmare;
+            @Nightmare.performed -= instance.OnNightmare;
+            @Nightmare.canceled -= instance.OnNightmare;
         }
 
         public void RemoveCallbacks(IInputActions instance)
@@ -356,6 +356,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnDashing(InputAction.CallbackContext context);
         void OnGravity(InputAction.CallbackContext context);
         void OnEscButton(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
+        void OnNightmare(InputAction.CallbackContext context);
     }
 }

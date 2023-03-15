@@ -51,9 +51,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "Nightmare",
                     "type": "Value",
-                    "id": "8243f294-9620-40ac-abb6-b6940907cd1f",
+                    "id": "d51a98d1-04e4-4528-a356-a051b28c7ef9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -162,12 +162,12 @@
                 },
                 {
                     "name": "",
-                    "id": "5899a37b-0f2f-4f4f-8656-6bb15478dd9a",
-                    "path": "<Keyboard>/f",
+                    "id": "a6cdbb33-d277-4722-b512-5bd48e74c44d",
+                    "path": "<Keyboard>/#(E)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "Nightmare",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
