@@ -405,8 +405,52 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 588a56fa23b1e7749acefe64419ff13d, type: 3}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c1432796d142ae04898ded31b65f2f37, type: 3}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 00ea034ca997d01439a690b456add54e, type: 3}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
       propertyPath: sounds.Array.data[2].loop
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: DreamThemeIntro
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e95cde1829216f6408c92de64bfbcd89, type: 3}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[3].name
+      value: NightmareThemeIntro
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: cbabb733795b48840b0827638abed810, type: 3}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[4].name
+      value: WindUpMusicBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[3].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[4].pitch
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
       propertyPath: sounds.Array.data[0].volume
@@ -414,6 +458,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
       propertyPath: sounds.Array.data[1].volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[3].volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[4].volume
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2254222437076607001, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
