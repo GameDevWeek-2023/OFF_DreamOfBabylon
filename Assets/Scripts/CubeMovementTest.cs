@@ -35,22 +35,47 @@ public class CubeMovementTest : MonoBehaviour
     private float ladderSpeed;
     private bool isLadder;
     private bool isClimbing;
+    private bool pauseInputs = false;
     private float gravity;
+    private DragonBones.UnityArmatureComponent armatureComponent;
+
+    [SerializeField]private float coyoteTime = 0.05f;
+    private float coyoteTimeCounter;
 
         // Start is called before the first frame update
     void Start()
     {
+        pauseInputs = false;
         gravity = rb.gravityScale;
+        armatureComponent = GetComponentInChildren<DragonBones.UnityArmatureComponent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isDashing)
+        if (IsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        
+        if (isDashing || pauseInputs)
         {
             return;
         }
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if(rb.velocity.x == 0f && IsGrounded()&& armatureComponent.animation.lastAnimationName != "Idle")
+        {
+            armatureComponent.animation.Play("Idle");
+            armatureComponent.animation.timeScale = 1;
+        }else if(rb.velocity.x != 0f && IsGrounded() && armatureComponent.animation.lastAnimationName != "Run")
+        {
+            armatureComponent.animation.Play("Run");
+            armatureComponent.animation.timeScale = 1.5f;
+        }
         if (!isFacingRight && horizontal > 0f)
         {
             Flip();
@@ -58,7 +83,7 @@ public class CubeMovementTest : MonoBehaviour
         {
             Flip();
         }
-        if (isLadder && Mathf.Abs(vertical) > 0f)
+        if (isLadder && Mathf.Abs(vertical) >= 0f)
         {
             isClimbing = true;
         }
@@ -66,7 +91,7 @@ public class CubeMovementTest : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDashing)
+        if (isDashing || pauseInputs)
         {
             return;
         }
@@ -85,11 +110,19 @@ public class CubeMovementTest : MonoBehaviour
 
     void OnLadderUpDown(InputValue value)
     {
+        if(pauseInputs)
+        {
+            return;
+        }
         vertical = value.Get<float>();
     }
 
     void OnMovement(InputValue value)
     {
+        if(pauseInputs)
+        {
+            return;
+        }
         horizontal = value.Get<Vector2>().x;
     }
 
@@ -105,6 +138,10 @@ public class CubeMovementTest : MonoBehaviour
 
     private void Flip()
     {
+        if(pauseInputs)
+        {
+            return;
+        }
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
             isFacingRight = !isFacingRight;
@@ -116,11 +153,11 @@ public class CubeMovementTest : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (isDashing)
+        if (isDashing || pauseInputs)
         {
             return;
         }
-        if (value.Get<float>() > 0 && IsGrounded())
+        if (value.Get<float>() > 0 && coyoteTimeCounter>0)//IsGrounded()
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
@@ -128,7 +165,15 @@ public class CubeMovementTest : MonoBehaviour
         if (value.Get<float>() <= 0 && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * canceledJumpMultiplier);
+            coyoteTimeCounter = 0f;
         }
+        armatureComponent.animation.Play("Jump", 1);
+        armatureComponent.animation.timeScale = 2;
+    }
+    
+    public void PauseInputs(bool pause)
+    {
+        pauseInputs = pause;
     }
 
     /*public void Jump(InputAction.CallbackContext context)
@@ -151,7 +196,7 @@ public class CubeMovementTest : MonoBehaviour
 
     void OnDashing(InputValue value)
     {
-        if (canDash)
+        if (canDash && !pauseInputs)
         {
             StartCoroutine(Dash());
         }
@@ -176,6 +221,7 @@ public class CubeMovementTest : MonoBehaviour
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
         tr.emitting = true;
+        armatureComponent.animation.Play("Dash", 1);
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;
