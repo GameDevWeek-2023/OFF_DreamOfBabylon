@@ -7,9 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 115848939565430111, guid: edf928699796c59449f127d037ba712a, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 727404295936870336, guid: edf928699796c59449f127d037ba712a, type: 3}
       propertyPath: m_Name
       value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 727404295936870336, guid: edf928699796c59449f127d037ba712a, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5984144409764174030, guid: edf928699796c59449f127d037ba712a, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7005377014519037562, guid: edf928699796c59449f127d037ba712a, type: 3}
       propertyPath: m_RootOrder

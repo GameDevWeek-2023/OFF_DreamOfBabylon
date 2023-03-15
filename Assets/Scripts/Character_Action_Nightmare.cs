@@ -20,28 +20,40 @@ public class Character_Action_Nightmare : MonoBehaviour
         floor = GameObject.Find("Floortiles");
         floorNM = GameObject.Find("Floortiles_NM");
 
+        SetToNightmare();
+        SetToDream();
     }
+
+    private void SetToNightmare()
+    {
+        background.SetActive(false);
+        backgroundNM.SetActive(true);
+        floor.SetActive(false);
+        floorNM.SetActive(true);
+    }
+
+    private void SetToDream()
+    {
+        inNightmare = false;
+        background.SetActive(true);
+        backgroundNM.SetActive(false);
+        floor.SetActive(true);
+        floorNM.SetActive(false);
+    }
+
 
     void OnNightmare(InputValue value)
     {
         if (inNightmare) 
             {
                 // The player changes to normal dream
-                inNightmare = false;
-                background.SetActive(true);
-                backgroundNM.SetActive(false);
-                floor.SetActive(true);
-                floorNM.SetActive(false);
-
+                SetToDream();
             } 
             else 
             {
                 // The player changes to nightmare
                 inNightmare = true;
-                background.SetActive(false);
-                backgroundNM.SetActive(true);
-                floor.SetActive(false);
-                floorNM.SetActive(true);
+                SetToNightmare();
             }
 
     }    
