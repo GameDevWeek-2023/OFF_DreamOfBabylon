@@ -196,7 +196,7 @@ public class CubeMovementTest : MonoBehaviour
 
     void OnDashing(InputValue value)
     {
-        if (canDash)
+        if (canDash && !pauseInputs)
         {
             StartCoroutine(Dash());
         }
