@@ -6,8 +6,10 @@ public class Door : MonoBehaviour
 {
 
     [SerializeField] private bool isOpen;
+    [SerializeField] private int knocksToOpen = 1;
     private Collider2D collider;
     private Animator animator;
+    private int knocks = 0;
 
 
 
@@ -21,16 +23,22 @@ public class Door : MonoBehaviour
 
     public void Open()
     {
-        if (!isOpen)
+        knocks++;
+        if (!isOpen && knocks >= knocksToOpen)
             SetState(true);
     }
 
     public void Close()
     {
-        if(isOpen)
+        Debug.Log("trying to Close");
+        knocks--;
+        if(isOpen && knocks < knocksToOpen)
         {
             SetState(false);
+            Debug.Log("success");
+            return;
         }
+        Debug.Log("failed");
     }
 
     public void Toggle()
