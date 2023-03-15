@@ -30,11 +30,15 @@ public class Door : MonoBehaviour
 
     public void Close()
     {
+        Debug.Log("trying to Close");
         knocks--;
         if(isOpen && knocks < knocksToOpen)
         {
             SetState(false);
+            Debug.Log("success");
+            return;
         }
+        Debug.Log("failed");
     }
 
     public void Toggle()

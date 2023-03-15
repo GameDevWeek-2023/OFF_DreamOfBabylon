@@ -89,6 +89,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LadderUpDown"",
+                    ""type"": ""Value"",
+                    ""id"": ""be12894f-c055-45af-8747-a427af0ea435"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""867c3441-6825-459e-9a76-170ce2faeaad"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LadderUpDown"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""4ffafafa-7e1e-4d41-a8ff-e04428f6a9c8"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LadderUpDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""efec3743-4c28-4708-bfaa-d55ad106e3ba"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LadderUpDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -227,6 +269,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Input_EscButton = m_Input.FindAction("EscButton", throwIfNotFound: true);
         m_Input_Nightmare = m_Input.FindAction("Nightmare", throwIfNotFound: true);
         m_Input_Interact = m_Input.FindAction("Interact", throwIfNotFound: true);
+        m_Input_LadderUpDown = m_Input.FindAction("LadderUpDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +338,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Input_EscButton;
     private readonly InputAction m_Input_Nightmare;
     private readonly InputAction m_Input_Interact;
+    private readonly InputAction m_Input_LadderUpDown;
     public struct InputActions
     {
         private @PlayerControls m_Wrapper;
@@ -306,6 +350,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @EscButton => m_Wrapper.m_Input_EscButton;
         public InputAction @Nightmare => m_Wrapper.m_Input_Nightmare;
         public InputAction @Interact => m_Wrapper.m_Input_Interact;
+        public InputAction @LadderUpDown => m_Wrapper.m_Input_LadderUpDown;
         public InputActionMap Get() { return m_Wrapper.m_Input; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -336,6 +381,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @LadderUpDown.started += instance.OnLadderUpDown;
+            @LadderUpDown.performed += instance.OnLadderUpDown;
+            @LadderUpDown.canceled += instance.OnLadderUpDown;
         }
 
         private void UnregisterCallbacks(IInputActions instance)
@@ -361,6 +409,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @LadderUpDown.started -= instance.OnLadderUpDown;
+            @LadderUpDown.performed -= instance.OnLadderUpDown;
+            @LadderUpDown.canceled -= instance.OnLadderUpDown;
         }
 
         public void RemoveCallbacks(IInputActions instance)
@@ -387,5 +438,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnEscButton(InputAction.CallbackContext context);
         void OnNightmare(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnLadderUpDown(InputAction.CallbackContext context);
     }
 }
