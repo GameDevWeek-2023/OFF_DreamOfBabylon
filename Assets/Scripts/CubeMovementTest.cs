@@ -59,10 +59,15 @@ public class CubeMovementTest : MonoBehaviour
         
     }
 
-    public void Movement(InputAction.CallbackContext context)
+    void OnMovement(InputValue value)
+    {
+        horizontal = value.Get<Vector2>().x;
+    }
+
+    /*public void Movement(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
-    }
+    }*/
 
     private bool IsGrounded()
     {
@@ -80,7 +85,24 @@ public class CubeMovementTest : MonoBehaviour
         }
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    void OnJump(InputValue value)
+    {
+        if (isDashing)
+        {
+            return;
+        }
+        if (value.Get<float>() > 0 && IsGrounded())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        }
+
+        if (value.Get<float>() <= 0 && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * canceledJumpMultiplier);
+        }
+    }
+
+    /*public void Jump(InputAction.CallbackContext context)
     {
         if (isDashing)
         {
@@ -96,9 +118,17 @@ public class CubeMovementTest : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * canceledJumpMultiplier);
         }
+    }*/
+
+    void OnDashing(InputValue value)
+    {
+        if (canDash)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
-    public void Dashing(InputAction.CallbackContext context)
+    /*public void Dashing(InputAction.CallbackContext context)
     {
         if (context.performed && canDash)
         {
@@ -107,7 +137,7 @@ public class CubeMovementTest : MonoBehaviour
         }
 
         
-    }
+    }*/
 
     private IEnumerator Dash()
     {
@@ -125,13 +155,18 @@ public class CubeMovementTest : MonoBehaviour
         canDash = true;
     }
 
-    public void Interact(InputAction.CallbackContext context)
+    void OnInteract(InputValue value)
+    {
+        inColliders.ForEach(n => n.SendMessage("Use", SendMessageOptions.DontRequireReceiver));
+    }
+
+    /*public void Interact(InputAction.CallbackContext context)
     {
         if(context.performed)
         {
             inColliders.ForEach(n => n.SendMessage("Use", SendMessageOptions.DontRequireReceiver));
         }
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
