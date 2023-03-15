@@ -81,7 +81,7 @@ public class CubeMovementTest : MonoBehaviour
         {
             Flip();
         }
-        if (isLadder && Mathf.Abs(vertical) > 0f)
+        if (isLadder && Mathf.Abs(vertical) >= 0f)
         {
             isClimbing = true;
         }
