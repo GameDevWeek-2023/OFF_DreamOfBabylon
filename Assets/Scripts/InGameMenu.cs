@@ -26,15 +26,18 @@ public class InGameMenu : MonoBehaviour
 
             ingameUI.SetActive(true);
             Debug.Log("Menu aufgerufen");
+            Time.timeScale = 0;
         }
         else
         {
             ingameUI.SetActive(false);
+            Time.timeScale = 1;
         }
     }
 
     public void BackToMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
