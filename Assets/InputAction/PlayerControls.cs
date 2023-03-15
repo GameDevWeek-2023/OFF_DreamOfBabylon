@@ -46,10 +46,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Dash"",
-                    ""type"": ""Button"",
+                    ""name"": ""Dashing"",
+                    ""type"": ""Value"",
                     ""id"": ""6e5c50e3-f278-442e-82f0-d6a866340b5b"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -147,7 +147,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Dash"",
+                    ""action"": ""Dashing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -182,7 +182,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Input = asset.FindActionMap("Input", throwIfNotFound: true);
         m_Input_Movement = m_Input.FindAction("Movement", throwIfNotFound: true);
         m_Input_Jump = m_Input.FindAction("Jump", throwIfNotFound: true);
-        m_Input_Dash = m_Input.FindAction("Dash", throwIfNotFound: true);
+        m_Input_Dashing = m_Input.FindAction("Dashing", throwIfNotFound: true);
         m_Input_Gravity = m_Input.FindAction("Gravity", throwIfNotFound: true);
         m_Input_EscButton = m_Input.FindAction("EscButton", throwIfNotFound: true);
     }
@@ -248,7 +248,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IInputActions> m_InputActionsCallbackInterfaces = new List<IInputActions>();
     private readonly InputAction m_Input_Movement;
     private readonly InputAction m_Input_Jump;
-    private readonly InputAction m_Input_Dash;
+    private readonly InputAction m_Input_Dashing;
     private readonly InputAction m_Input_Gravity;
     private readonly InputAction m_Input_EscButton;
     public struct InputActions
@@ -257,7 +257,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Input_Movement;
         public InputAction @Jump => m_Wrapper.m_Input_Jump;
-        public InputAction @Dash => m_Wrapper.m_Input_Dash;
+        public InputAction @Dashing => m_Wrapper.m_Input_Dashing;
         public InputAction @Gravity => m_Wrapper.m_Input_Gravity;
         public InputAction @EscButton => m_Wrapper.m_Input_EscButton;
         public InputActionMap Get() { return m_Wrapper.m_Input; }
@@ -275,9 +275,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Dash.started += instance.OnDash;
-            @Dash.performed += instance.OnDash;
-            @Dash.canceled += instance.OnDash;
+            @Dashing.started += instance.OnDashing;
+            @Dashing.performed += instance.OnDashing;
+            @Dashing.canceled += instance.OnDashing;
             @Gravity.started += instance.OnGravity;
             @Gravity.performed += instance.OnGravity;
             @Gravity.canceled += instance.OnGravity;
@@ -294,9 +294,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Dash.started -= instance.OnDash;
-            @Dash.performed -= instance.OnDash;
-            @Dash.canceled -= instance.OnDash;
+            @Dashing.started -= instance.OnDashing;
+            @Dashing.performed -= instance.OnDashing;
+            @Dashing.canceled -= instance.OnDashing;
             @Gravity.started -= instance.OnGravity;
             @Gravity.performed -= instance.OnGravity;
             @Gravity.canceled -= instance.OnGravity;
@@ -324,7 +324,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
+        void OnDashing(InputAction.CallbackContext context);
         void OnGravity(InputAction.CallbackContext context);
         void OnEscButton(InputAction.CallbackContext context);
     }

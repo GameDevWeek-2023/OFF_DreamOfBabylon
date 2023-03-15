@@ -19,6 +19,13 @@ public class CubeMovementTest : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private TrailRenderer tr;
+
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 24f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
 
         // Start is called before the first frame update
     void Start()
@@ -29,6 +36,10 @@ public class CubeMovementTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDashing)
+        {
+            return;
+        }
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         if (!isFacingRight && horizontal > 0f)
         {
@@ -37,8 +48,6 @@ public class CubeMovementTest : MonoBehaviour
         {
             Flip();
         }
-
-        
     }
 
     private void FixedUpdate()
@@ -70,6 +79,11 @@ public class CubeMovementTest : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
+        if (isDashing)
+        {
+            return;
+        }
+
         if (context.performed && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
@@ -79,5 +93,32 @@ public class CubeMovementTest : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
+    }
+
+    public void Dashing(InputAction.CallbackContext context)
+    {
+        if (context.performed && canDash)
+        {
+            Debug.Log(context.performed);
+            StartCoroutine(Dash());
+        }
+
+        
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
     }
 }
