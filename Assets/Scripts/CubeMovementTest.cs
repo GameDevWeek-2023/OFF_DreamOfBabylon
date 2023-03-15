@@ -38,6 +38,9 @@ public class CubeMovementTest : MonoBehaviour
     private float gravity;
     private DragonBones.UnityArmatureComponent armatureComponent;
 
+    private float coyoteTime = 0.05f;
+    private float coyoteTimeCounter;
+
         // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +51,15 @@ public class CubeMovementTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        
         if (isDashing)
         {
             return;
@@ -131,7 +143,7 @@ public class CubeMovementTest : MonoBehaviour
         {
             return;
         }
-        if (value.Get<float>() > 0 && IsGrounded())
+        if (value.Get<float>() > 0 && coyoteTimeCounter>0)//IsGrounded()
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
@@ -139,6 +151,7 @@ public class CubeMovementTest : MonoBehaviour
         if (value.Get<float>() <= 0 && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * canceledJumpMultiplier);
+            coyoteTimeCounter = 0f;
         }
         armatureComponent.animation.Play("Jump", 1);
         armatureComponent.animation.timeScale = 2;
