@@ -235,12 +235,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8548131f04546b1beab4c9192e9872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 8
+  jumpPower: 16
   rb: {fileID: 7284766669145925040}
   groundCheck: {fileID: 7284766668501196803}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   tr: {fileID: 7284766669145925053}
+  canceledJumpMultiplier: 0.5
+  dashingPower: 24
+  dashingTime: 0.2
+  dashingCooldown: 1
 --- !u!114 &7284766669145925043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: eea734dac3a26d64b87e11347d3bbde9, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
