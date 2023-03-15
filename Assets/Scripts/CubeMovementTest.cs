@@ -38,7 +38,7 @@ public class CubeMovementTest : MonoBehaviour
     private float gravity;
     private DragonBones.UnityArmatureComponent armatureComponent;
 
-    private float coyoteTime = 0.05f;
+    [SerializeField]private float coyoteTime = 0.05f;
     private float coyoteTimeCounter;
 
         // Start is called before the first frame update
