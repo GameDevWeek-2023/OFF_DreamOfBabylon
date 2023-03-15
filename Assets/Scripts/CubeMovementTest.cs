@@ -26,6 +26,7 @@ public class CubeMovementTest : MonoBehaviour
     private float dashingPower = 24f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
+    List<Collider2D> inColliders = new List<Collider2D>();
 
         // Start is called before the first frame update
     void Start()
