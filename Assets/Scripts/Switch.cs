@@ -12,7 +12,8 @@ public class Switch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        TryGetComponent<Animator>(out animator);
+        //animator = GetComponent<Animator>();
     }
 
     public void TurnOn()
@@ -44,7 +45,7 @@ public class Switch : MonoBehaviour
     void SetState(bool on)
     {
         isOn = on;
-        animator.SetBool("On", on);
+        animator?.SetBool("On", on);
         if(on)
         {
             if(Target != null && !string.IsNullOrEmpty(OnMessage))

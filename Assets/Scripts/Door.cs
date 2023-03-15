@@ -15,7 +15,8 @@ public class Door : MonoBehaviour
     void Start()
     {
         collider = GetComponent<Collider2D>();
-        animator = GetComponent<Animator>();
+        TryGetComponent<Animator>(out animator);
+        //animator = GetComponent<Animator>();
     }
 
     public void Open()
@@ -48,7 +49,7 @@ public class Door : MonoBehaviour
     {
         isOpen = open;
         collider.isTrigger = open;
-        animator.SetBool("Open", open);
+        animator?.SetBool("Open", open);
 
     }
 

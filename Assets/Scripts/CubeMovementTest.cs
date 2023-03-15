@@ -124,4 +124,21 @@ public class CubeMovementTest : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            inColliders.ForEach(n => n.SendMessage("Use", SendMessageOptions.DontRequireReceiver));
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        inColliders.Add(collision);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        inColliders.Remove(collision);
+    }
 }
