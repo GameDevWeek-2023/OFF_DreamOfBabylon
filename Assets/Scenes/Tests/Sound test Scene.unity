@@ -409,10 +409,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
-      propertyPath: sounds.Array.data[2].name
-      value: DreamThemeIntro
-      objectReference: {fileID: 0}
-    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
       propertyPath: sounds.Array.data[0].volume
       value: 1
       objectReference: {fileID: 0}
