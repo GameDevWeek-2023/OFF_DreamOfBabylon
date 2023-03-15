@@ -7,8 +7,8 @@ public class Switch : MonoBehaviour
     public enum ResetType { Never, OnUse, Timed, Immediately}
     [SerializeField] private ResetType resetType = ResetType.OnUse;
     [SerializeField] GameObject Target;
-    public string OnMessage;
-    public string OffMessage;
+    public string OnMessage = "Open";
+    public string OffMessage = "Close";
     public bool isOn;
     [SerializeField] private float resetTime;
     Animator animator;
