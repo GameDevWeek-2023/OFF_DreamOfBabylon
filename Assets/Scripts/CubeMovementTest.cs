@@ -36,11 +36,13 @@ public class CubeMovementTest : MonoBehaviour
     private bool isLadder;
     private bool isClimbing;
     private float gravity;
+    private DragonBones.UnityArmatureComponent armatureComponent;
 
         // Start is called before the first frame update
     void Start()
     {
         gravity = rb.gravityScale;
+        armatureComponent = GetComponentInChildren<DragonBones.UnityArmatureComponent>();
     }
 
     // Update is called once per frame
@@ -51,6 +53,15 @@ public class CubeMovementTest : MonoBehaviour
             return;
         }
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if(rb.velocity.x == 0f && IsGrounded()&& armatureComponent.animation.lastAnimationName != "Idle")
+        {
+            armatureComponent.animation.Play("Idle");
+            armatureComponent.animation.timeScale = 1;
+        }else if(rb.velocity.x != 0f && IsGrounded() && armatureComponent.animation.lastAnimationName != "Run")
+        {
+            armatureComponent.animation.Play("Run");
+            armatureComponent.animation.timeScale = 1.5f;
+        }
         if (!isFacingRight && horizontal > 0f)
         {
             Flip();
@@ -129,6 +140,8 @@ public class CubeMovementTest : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * canceledJumpMultiplier);
         }
+        armatureComponent.animation.Play("Jump", 1);
+        armatureComponent.animation.timeScale = 2;
     }
 
     /*public void Jump(InputAction.CallbackContext context)
@@ -176,6 +189,7 @@ public class CubeMovementTest : MonoBehaviour
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
         tr.emitting = true;
+        armatureComponent.animation.Play("Dash", 1);
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;
