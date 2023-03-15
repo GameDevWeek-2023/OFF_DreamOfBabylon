@@ -40,12 +40,16 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Sound dreamIntro = FindMusic("DreamThemeIntro");
-        Sound dream = FindMusic("DreamTheme");
-        Sound nightmare = FindMusic("NightmareTheme");
-        dreamIntro.source.Play();
-        dream.source.PlayScheduled(AudioSettings.dspTime + dreamIntro.GetAudioClip().length);
-        nightmare.source.PlayScheduled(AudioSettings.dspTime + dreamIntro.GetAudioClip().length);
+        Sound windUpMusicBox= FindMusic("WindUpMusicBox");
+        Sound dreamThemeIntro = FindMusic("DreamThemeIntro");
+        Sound nightmareThemeIntro = FindMusic("NightmareThemeIntro");
+        Sound dreamTheme = FindMusic("DreamTheme");
+        Sound nightmareTheme = FindMusic("NightmareTheme");
+        windUpMusicBox.source.Play();
+        dreamThemeIntro.source.PlayScheduled(AudioSettings.dspTime + windUpMusicBox.GetAudioClip().length);
+        nightmareThemeIntro.source.PlayScheduled(AudioSettings.dspTime + windUpMusicBox.GetAudioClip().length);
+        dreamTheme.source.PlayScheduled(AudioSettings.dspTime + dreamThemeIntro.GetAudioClip().length);
+        nightmareTheme.source.PlayScheduled(AudioSettings.dspTime + dreamThemeIntro.GetAudioClip().length);
     }
 
     public Sound FindMusic(string name)
@@ -82,29 +86,59 @@ public class AudioManager : MonoBehaviour
     {
         float timeToFade = 1f;
         float timeElapsed = 0;
-        Sound s1 = Array.Find(sounds, sound => sound.name == "DreamTheme");
-        Sound s2 = Array.Find(sounds, sound => sound.name == "NightmareTheme");
-        if (nightmare == false)
+        Sound dreamThemeIntro = Array.Find(sounds, sound => sound.name == "DreamThemeIntro");
+        Sound nightmareThemeIntro = Array.Find(sounds, sound => sound.name == "NightmareThemeIntro");
+        Sound dreamTheme = Array.Find(sounds, sound => sound.name == "DreamTheme");
+        Sound nightmareTheme = Array.Find(sounds, sound => sound.name == "NightmareTheme");
+        if (dreamThemeIntro.source.isPlaying)
         {
-            while(timeElapsed < timeToFade)
+            if (nightmare == false)
             {
-                s2.source.volume = Mathf.Lerp(0, 1, timeElapsed/timeToFade);
-                s1.source.volume = Mathf.Lerp(1, 0, timeElapsed / timeToFade);
-                timeElapsed += Time.deltaTime;
-                yield return null;
+                while (timeElapsed < timeToFade)
+                {
+                    nightmareThemeIntro.source.volume = Mathf.Lerp(0, 1, timeElapsed / timeToFade);
+                    dreamThemeIntro.source.volume = Mathf.Lerp(1, 0, timeElapsed / timeToFade);
+                    timeElapsed += Time.deltaTime;
+                    yield return null;
+                }
+                nightmare = true;
             }
-            nightmare = true;
+            else
+            {
+                while (timeElapsed < timeToFade)
+                {
+                    dreamThemeIntro.source.volume = Mathf.Lerp(0, 1, timeElapsed / timeToFade);
+                    nightmareThemeIntro.source.volume = Mathf.Lerp(1, 0, timeElapsed / timeToFade);
+                    timeElapsed += Time.deltaTime;
+                    yield return null;
+                }
+                nightmare = false;
+            }
         }
         else
         {
-            while (timeElapsed < timeToFade)
+            if (nightmare == false)
             {
-                s1.source.volume = Mathf.Lerp(0, 1, timeElapsed / timeToFade);
-                s2.source.volume = Mathf.Lerp(1, 0, timeElapsed / timeToFade);
-                timeElapsed += Time.deltaTime;
-                yield return null;
+                while (timeElapsed < timeToFade)
+                {
+                    nightmareTheme.source.volume = Mathf.Lerp(0, 1, timeElapsed / timeToFade);
+                    dreamTheme.source.volume = Mathf.Lerp(1, 0, timeElapsed / timeToFade);
+                    timeElapsed += Time.deltaTime;
+                    yield return null;
+                }
+                nightmare = true;
             }
-            nightmare = false;
+            else
+            {
+                while (timeElapsed < timeToFade)
+                {
+                    dreamTheme.source.volume = Mathf.Lerp(0, 1, timeElapsed / timeToFade);
+                    nightmareTheme.source.volume = Mathf.Lerp(1, 0, timeElapsed / timeToFade);
+                    timeElapsed += Time.deltaTime;
+                    yield return null;
+                }
+                nightmare = false;
+            }
         }
     }
 }
