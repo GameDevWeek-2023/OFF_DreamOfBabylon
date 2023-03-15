@@ -35,6 +35,7 @@ public class CubeMovementTest : MonoBehaviour
     private float ladderSpeed;
     private bool isLadder;
     private bool isClimbing;
+    private bool pauseInputs = false;
     private float gravity;
     private DragonBones.UnityArmatureComponent armatureComponent;
 
@@ -44,6 +45,7 @@ public class CubeMovementTest : MonoBehaviour
         // Start is called before the first frame update
     void Start()
     {
+        pauseInputs = false;
         gravity = rb.gravityScale;
         armatureComponent = GetComponentInChildren<DragonBones.UnityArmatureComponent>();
     }
@@ -60,7 +62,7 @@ public class CubeMovementTest : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
         
-        if (isDashing)
+        if (isDashing || pauseInputs)
         {
             return;
         }
@@ -89,7 +91,7 @@ public class CubeMovementTest : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDashing)
+        if (isDashing || pauseInputs)
         {
             return;
         }
@@ -108,11 +110,19 @@ public class CubeMovementTest : MonoBehaviour
 
     void OnLadderUpDown(InputValue value)
     {
+        if(pauseInputs)
+        {
+            return;
+        }
         vertical = value.Get<float>();
     }
 
     void OnMovement(InputValue value)
     {
+        if(pauseInputs)
+        {
+            return;
+        }
         horizontal = value.Get<Vector2>().x;
     }
 
@@ -128,6 +138,10 @@ public class CubeMovementTest : MonoBehaviour
 
     private void Flip()
     {
+        if(pauseInputs)
+        {
+            return;
+        }
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
             isFacingRight = !isFacingRight;
@@ -139,7 +153,7 @@ public class CubeMovementTest : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (isDashing)
+        if (isDashing || pauseInputs)
         {
             return;
         }
@@ -155,6 +169,11 @@ public class CubeMovementTest : MonoBehaviour
         }
         armatureComponent.animation.Play("Jump", 1);
         armatureComponent.animation.timeScale = 2;
+    }
+    
+    public void PauseInputs(bool pause)
+    {
+        pauseInputs = pause;
     }
 
     /*public void Jump(InputAction.CallbackContext context)
