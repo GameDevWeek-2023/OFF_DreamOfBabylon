@@ -12360,6 +12360,30 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 235243624, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 545164883, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
+      propertyPath: m_Name
+      value: BarBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 545164885, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 683609540, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 683609540, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 683609540, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8601809913714888440, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
       propertyPath: m_Pivot.x
       value: 0
