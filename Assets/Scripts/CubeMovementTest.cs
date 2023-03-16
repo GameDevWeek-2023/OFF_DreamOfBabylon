@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,7 @@ public class CubeMovementTest : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask grabObjectLayer;
     [SerializeField] private TrailRenderer tr;
 
     [SerializeField]private float canceledJumpMultiplier = 0.5f;
@@ -56,7 +58,7 @@ public class CubeMovementTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsGrounded())
+        if (IsGrounded() || IsOnBox())
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -70,19 +72,15 @@ public class CubeMovementTest : MonoBehaviour
             return;
         }
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-        if(IsGrounded() && armatureComponent.animation.lastAnimationName == "Jump_Down_loop")
-        {
-            //aufkommen-Sound abspielen.
-        }
-        if(rb.velocity.x == 0f && IsGrounded()&& armatureComponent.animation.lastAnimationName != "Idle")
+        if(rb.velocity.x == 0f && (IsGrounded() || IsOnBox())&& armatureComponent.animation.lastAnimationName != "Idle")
         {
             armatureComponent.animation.Play("Idle");
             armatureComponent.animation.timeScale = 0.8f;
-        }else if(rb.velocity.x != 0f && IsGrounded() && armatureComponent.animation.lastAnimationName != "Run")
+        }else if(rb.velocity.x != 0f && (IsGrounded() || IsOnBox()) && armatureComponent.animation.lastAnimationName != "Run")
         {
             armatureComponent.animation.Play("Run");
             armatureComponent.animation.timeScale = 1.5f;
-        }else if(rb.velocity.y<0 && !IsGrounded() && armatureComponent.animation.lastAnimationName != "Jump_Down_loop")
+        }else if(rb.velocity.y<0 && !(IsGrounded() || IsOnBox()) && armatureComponent.animation.lastAnimationName != "Jump_Down_loop")
         {
             armatureComponent.animation.Play("Jump_Down_loop");
             //armatureComponent.animation.timeScale = 1;
@@ -145,6 +143,11 @@ public class CubeMovementTest : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+    
+    private bool IsOnBox()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, grabObjectLayer);
     }
 
     private void Flip()

@@ -46,32 +46,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: DreamTheme
-    clip: {fileID: 8300000, guid: 588a56fa23b1e7749acefe64419ff13d, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 3e83f92495dbf07469f7b78b724386cd, type: 3}
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: NightmareTheme
-    clip: {fileID: 8300000, guid: c1432796d142ae04898ded31b65f2f37, type: 3}
+    clip: {fileID: 8300000, guid: 244ca99317367084091f1375c83e0a47, type: 3}
     volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: DreamThemeIntro
-    clip: {fileID: 8300000, guid: 00ea034ca997d01439a690b456add54e, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 23226b3136a598e4084e7dcf359dfca1, type: 3}
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: NightmareThemeIntro
-    clip: {fileID: 8300000, guid: e95cde1829216f6408c92de64bfbcd89, type: 3}
+    clip: {fileID: 8300000, guid: 22b0d9c10443d89469661b7591e439f6, type: 3}
     volume: 0
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: WindUpMusicBox
-    clip: {fileID: 8300000, guid: cbabb733795b48840b0827638abed810, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 6d98bdc7850041c45b37d7c68678d4ad, type: 3}
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
