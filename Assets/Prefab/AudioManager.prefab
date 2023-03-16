@@ -83,13 +83,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Footsteps
     clip: {fileID: 8300000, guid: 8b10ecc1aca94d24c8b6663819f1b805, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Landing
     clip: {fileID: 8300000, guid: 65a1c70cd3760084584333cb8634a493, type: 3}
-    volume: 0.324
+    volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
