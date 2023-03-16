@@ -35,6 +35,7 @@ public class DyingScript : MonoBehaviour
             armatureComponent.animation.Play("Death", 1);
             armatureComponent.animation.timeScale = 0.8f;
             isDead = true;
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 
@@ -53,7 +54,6 @@ public class DyingScript : MonoBehaviour
         gameObject.transform.position = CheckPoint.instance.GetRespornPosition();
         isDead = false;
         cubeMovement.PauseInputs(false);
-        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         cubeMovement.Horizontal = 0;
     }
 }
