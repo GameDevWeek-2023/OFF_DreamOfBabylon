@@ -34,6 +34,15 @@ public class CheckPoint : MonoBehaviour
             CheckPoint.instance = this;
             Debug.Log("New Checkpoint is CheckPoint " + numberOfCheckPoint + ".");
             psa.gameObject.SetActive(true);
+            bool currentThemeIsNightmare = FindObjectOfType<Character_Action_Nightmare>().IsCurrentThemeNightmare();
+            if(currentThemeIsNightmare == false)
+            {
+                FindObjectOfType<AudioManager>().Play("MagicCircleDream");
+            }
+            else
+            {
+                FindObjectOfType<AudioManager>().Play("MagicCircleNightmare");
+            }
             StartCoroutine(NewCheckpointEffect());
 
         }

@@ -93,3 +93,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: MagicCircleDream
+    clip: {fileID: 8300000, guid: 46a0a65e79954be4b9d5f063e4e11243, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MagicCircleNightmare
+    clip: {fileID: 8300000, guid: 1a6b6c7aafdb7714ca75a0d81043c26e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
