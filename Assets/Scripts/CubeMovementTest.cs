@@ -72,7 +72,7 @@ public class CubeMovementTest : MonoBehaviour
         if(rb.velocity.x == 0f && IsGrounded()&& armatureComponent.animation.lastAnimationName != "Idle")
         {
             armatureComponent.animation.Play("Idle");
-            armatureComponent.animation.timeScale = 1;
+            armatureComponent.animation.timeScale = 0.8f;
         }else if(rb.velocity.x != 0f && IsGrounded() && armatureComponent.animation.lastAnimationName != "Run")
         {
             armatureComponent.animation.Play("Run");
