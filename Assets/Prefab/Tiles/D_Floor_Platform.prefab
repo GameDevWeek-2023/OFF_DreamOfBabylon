@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6362016062488202885
+--- !u!1 &6787134694192243139
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7259950373455412086}
-  - component: {fileID: 6041718345124648523}
-  m_Layer: 3
-  m_Name: Floor_corner_right
-  m_TagString: ground
+  - component: {fileID: 7703264841209133370}
+  - component: {fileID: 7788289696253637774}
+  m_Layer: 0
+  m_Name: Platform
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7259950373455412086
+--- !u!4 &7703264841209133370
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6362016062488202885}
+  m_GameObject: {fileID: 6787134694192243139}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4047911880079486821}
+  m_Father: {fileID: 2501210406767841878}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6041718345124648523
+--- !u!212 &7788289696253637774
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6362016062488202885}
+  m_GameObject: {fileID: 6787134694192243139}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 8a01e95711a247a4a9083d40c34f4852, type: 3}
-  m_Color: {r: 0.46751517, g: 0.48026955, b: 0.9622642, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 7771340674e5eee4c9f1f3e92cc03165, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &6419049141085622559
+--- !u!1001 &4867842385192660012
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -93,7 +93,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 727404295936870336, guid: 7ce4058d37db90b4ea8f10d0ac2e048f, type: 3}
       propertyPath: m_Name
-      value: D_Floor_Corner_Right
+      value: D_Floor_Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729858957867932641, guid: 7ce4058d37db90b4ea8f10d0ac2e048f, type: 3}
+      propertyPath: m_Offset.y
+      value: -6.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765604187683654739, guid: 7ce4058d37db90b4ea8f10d0ac2e048f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765604187683654739, guid: 7ce4058d37db90b4ea8f10d0ac2e048f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: 7005377014519037562, guid: 7ce4058d37db90b4ea8f10d0ac2e048f, type: 3}
       propertyPath: m_RootOrder
@@ -141,8 +153,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ce4058d37db90b4ea8f10d0ac2e048f, type: 3}
---- !u!4 &4047911880079486821 stripped
+--- !u!4 &2501210406767841878 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7005377014519037562, guid: 7ce4058d37db90b4ea8f10d0ac2e048f, type: 3}
-  m_PrefabInstance: {fileID: 6419049141085622559}
+  m_PrefabInstance: {fileID: 4867842385192660012}
   m_PrefabAsset: {fileID: 0}
