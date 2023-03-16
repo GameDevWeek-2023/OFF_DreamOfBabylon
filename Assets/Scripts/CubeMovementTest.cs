@@ -80,7 +80,7 @@ public class CubeMovementTest : MonoBehaviour
         {
             armatureComponent.animation.Play("Run");
             armatureComponent.animation.timeScale = 1.5f;
-        }else if(rb.velocity.y<0 && !IsGrounded() && armatureComponent.animation.lastAnimationName != "Jump_Down_loop")
+        }else if(rb.velocity.y<0 && !(IsGrounded() || IsOnBox()) && armatureComponent.animation.lastAnimationName != "Jump_Down_loop")
         {
             armatureComponent.animation.Play("Jump_Down_loop");
             //armatureComponent.animation.timeScale = 1;
