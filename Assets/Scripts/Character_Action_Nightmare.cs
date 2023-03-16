@@ -12,6 +12,8 @@ public class Character_Action_Nightmare : MonoBehaviour
     private GameObject backgroundNM;
     private GameObject floor;
     private GameObject floorNM;
+    private bool canSwitch = true;
+    private float switchCooldown = 1.1f;
 
     private void Start()
     {
@@ -45,20 +47,48 @@ public class Character_Action_Nightmare : MonoBehaviour
 
     void OnNightmare(InputValue value)
     {
-        if (inNightmare) 
+        if (inNightmare && canSwitch) 
             {
+                StartCoroutine(ToDream());
                 // The player changes to normal dream
-                SetToDream();
+                //SetToDream();
             } 
-            else 
+            else if (!inNightmare && canSwitch)
             {
+                StartCoroutine(ToNightmare());
                 // The player changes to nightmare
-                inNightmare = true;
-                SetToNightmare();
+                //inNightmare = true;
+                //SetToNightmare();
             }
-        AudioManager.instance.SwapBackgroundAudios();
+        //AudioManager.instance.SwapBackgroundAudios();
 
-    }    
+    }
+    
+    private IEnumerator ToDream()
+    {
+        canSwitch = false;
+        inNightmare = false;
+        background.SetActive(true);
+        backgroundNM.SetActive(false);
+        floor.SetActive(true);
+        floorNM.SetActive(false);
+        AudioManager.instance.SwapBackgroundAudios();
+        yield return new WaitForSeconds(switchCooldown);
+        canSwitch = true;
+    }
+    
+    private IEnumerator ToNightmare()
+    {
+        canSwitch = false;
+        inNightmare = true;
+        background.SetActive(false);
+        backgroundNM.SetActive(true);
+        floor.SetActive(false);
+        floorNM.SetActive(true);
+        AudioManager.instance.SwapBackgroundAudios();
+        yield return new WaitForSeconds(switchCooldown);
+        canSwitch = true;
+    }
 
 }
 
