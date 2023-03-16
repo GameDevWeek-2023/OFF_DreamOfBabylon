@@ -92,41 +92,30 @@ public class AudioManager : MonoBehaviour
         Sound nightmareTheme = Array.Find(sounds, sound => sound.name == "NightmareTheme");
         if (nightmare == false)
         {
-            
-            if (dreamThemeIntro.source.isPlaying)
-            {
-                while (timeElapsed < timeToFade)
-                {
-                    nightmareThemeIntro.source.volume = Mathf.Lerp(0, 0.2f, timeElapsed / timeToFade);
-                    dreamThemeIntro.source.volume = Mathf.Lerp(0.2f, 0, timeElapsed / timeToFade);
-                    timeElapsed += Time.deltaTime;
-                    yield return null;
-                }
-            }
             while (timeElapsed < timeToFade)
             {
-                nightmareTheme.source.volume = Mathf.Lerp(0, 0.2f, timeElapsed / timeToFade);
-                dreamTheme.source.volume = Mathf.Lerp(0.2f, 0, timeElapsed / timeToFade);
+                if (dreamThemeIntro.source.isPlaying)
+                {
+                    nightmareThemeIntro.source.volume = Mathf.Lerp(0, 0.1f, timeElapsed / timeToFade);
+                    dreamThemeIntro.source.volume = Mathf.Lerp(0.1f, 0, timeElapsed / timeToFade);
+                }
+                    nightmareTheme.source.volume = Mathf.Lerp(0, 0.1f, timeElapsed / timeToFade);
+                dreamTheme.source.volume = Mathf.Lerp(0.1f, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
         }
         else
         {
-            if (nightmareThemeIntro.source.isPlaying)
-            {
-                while (timeElapsed < timeToFade)
-                {
-                    dreamThemeIntro.source.volume = Mathf.Lerp(0, 0.2f, timeElapsed / timeToFade);
-                    nightmareThemeIntro.source.volume = Mathf.Lerp(0.2f, 0, timeElapsed / timeToFade);
-                    timeElapsed += Time.deltaTime;
-                    yield return null;
-                }
-            }
             while (timeElapsed < timeToFade)
             {
-                dreamTheme.source.volume = Mathf.Lerp(0, 0.2f, timeElapsed / timeToFade);
-                nightmareTheme.source.volume = Mathf.Lerp(0.2f, 0, timeElapsed / timeToFade);
+                if (nightmareThemeIntro.source.isPlaying)
+                {
+                    dreamThemeIntro.source.volume = Mathf.Lerp(0, 0.1f, timeElapsed / timeToFade);
+                    nightmareThemeIntro.source.volume = Mathf.Lerp(0.1f, 0, timeElapsed / timeToFade);
+                }
+                dreamTheme.source.volume = Mathf.Lerp(0, 0.1f, timeElapsed / timeToFade);
+                nightmareTheme.source.volume = Mathf.Lerp(0.1f, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }

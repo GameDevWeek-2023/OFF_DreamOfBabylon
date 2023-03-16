@@ -47,7 +47,7 @@ MonoBehaviour:
   sounds:
   - name: DreamTheme
     clip: {fileID: 8300000, guid: 3e83f92495dbf07469f7b78b724386cd, type: 3}
-    volume: 0.2
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: DreamThemeIntro
     clip: {fileID: 8300000, guid: 23226b3136a598e4084e7dcf359dfca1, type: 3}
-    volume: 0.2
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -71,7 +71,25 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: WindUpMusicBox
     clip: {fileID: 8300000, guid: 6d98bdc7850041c45b37d7c68678d4ad, type: 3}
-    volume: 0.2
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dash
+    clip: {fileID: 8300000, guid: d73c71027b990784cb982b399ca43090, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Footsteps
+    clip: {fileID: 8300000, guid: 8b10ecc1aca94d24c8b6663819f1b805, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Landing
+    clip: {fileID: 8300000, guid: 65a1c70cd3760084584333cb8634a493, type: 3}
+    volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
