@@ -233,6 +233,7 @@ public class CubeMovementTest : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        FindObjectOfType<AudioManager>().Play("Dash");
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
