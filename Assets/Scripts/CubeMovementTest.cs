@@ -145,9 +145,9 @@ public class CubeMovementTest : MonoBehaviour
         if (((IsGrounded() || IsOnBox())&& value.Get<Vector2>().x == 0) || !(IsGrounded() || IsOnBox()))
         {
             FindObjectOfType<AudioManager>().Stop("Footsteps");
-        }else if ((IsGrounded() || IsOnBox()) && value.Get<Vector2>().x != 0)
+        } else if ((IsGrounded() || IsOnBox()) && value.Get<Vector2>().x != 0)
         {
-        FindObjectOfType<AudioManager>().Play("Footsteps"); 
+            FindObjectOfType<AudioManager>().Play("Footsteps"); 
         }
 
         
