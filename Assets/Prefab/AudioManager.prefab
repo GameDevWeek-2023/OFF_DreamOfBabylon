@@ -87,3 +87,9 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: Landing
+    clip: {fileID: 8300000, guid: 65a1c70cd3760084584333cb8634a493, type: 3}
+    volume: 0.324
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

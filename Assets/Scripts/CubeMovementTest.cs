@@ -75,7 +75,7 @@ public class CubeMovementTest : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         if (IsGrounded() && armatureComponent.animation.lastAnimationName == "Jump_Down_loop")
         {
-            //aufkommen sound
+            FindObjectOfType<AudioManager>().Play("Landing");
             if (rb.velocity.x != 0)
             {
                 FindObjectOfType<AudioManager>().Play("Footsteps");
