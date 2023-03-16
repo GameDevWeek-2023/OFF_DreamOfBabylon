@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public class Character_Action_Nightmare : MonoBehaviour
@@ -14,9 +15,21 @@ public class Character_Action_Nightmare : MonoBehaviour
     private GameObject floorNM;
     private bool canSwitch = true;
     private float switchCooldown = 1.1f;
+    
+    [SerializeField]private Slider slider;
+    public float fillspeed = 1.1f;
+
+    private void Update()
+    {
+        if (slider.value < switchCooldown)
+        {
+            slider.value += fillspeed * Time.deltaTime;
+        }
+    }
 
     private void Start()
     {
+        //progressBar.GetComponent<NightmareBarScript>();
         background = GameObject.Find("Background");
         backgroundNM = GameObject.Find("Background_NM");
         floor = GameObject.Find("Floortiles");
@@ -25,6 +38,8 @@ public class Character_Action_Nightmare : MonoBehaviour
         SetToNightmare();
         SetToDream();
         AudioManager.instance.StartBackgroundMusic();
+        
+        slider.value = 1f;
     }
 
     private void SetToNightmare()
@@ -73,6 +88,7 @@ public class Character_Action_Nightmare : MonoBehaviour
         floor.SetActive(true);
         floorNM.SetActive(false);
         AudioManager.instance.SwapBackgroundAudios();
+        slider.value = 0f;
         yield return new WaitForSeconds(switchCooldown);
         canSwitch = true;
     }
@@ -86,9 +102,16 @@ public class Character_Action_Nightmare : MonoBehaviour
         floor.SetActive(false);
         floorNM.SetActive(true);
         AudioManager.instance.SwapBackgroundAudios();
+        slider.value = 0f;
         yield return new WaitForSeconds(switchCooldown);
         canSwitch = true;
     }
+    
+    /*public void IncrementProgress(float newProgress)
+    {
+        slider.value = 0f;
+        targetProgress = slider.value + newProgress;
+    }*/
 
 }
 
