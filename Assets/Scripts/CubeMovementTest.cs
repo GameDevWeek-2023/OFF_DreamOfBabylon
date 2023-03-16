@@ -65,6 +65,7 @@ public class CubeMovementTest : MonoBehaviour
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
+            FindObjectOfType<AudioManager>().Stop("Footsteps");
         }
         
         if (isDashing || pauseInputs)
@@ -75,6 +76,10 @@ public class CubeMovementTest : MonoBehaviour
         if (IsGrounded() && armatureComponent.animation.lastAnimationName == "Jump_Down_loop")
         {
             //aufkommen sound
+            if (rb.velocity.x != 0)
+            {
+                FindObjectOfType<AudioManager>().Play("Footsteps");
+            }
         }
         if(rb.velocity.x == 0f && (IsGrounded() || IsOnBox())&& armatureComponent.animation.lastAnimationName != "Idle")
         {
@@ -137,8 +142,16 @@ public class CubeMovementTest : MonoBehaviour
             return;
         }
         horizontal = value.Get<Vector2>().x;
-        if (IsGrounded() || IsOnBox() && value.Get<Vector2>().x == 0) FindObjectOfType<AudioManager>().Stop("Footsteps");
-        else FindObjectOfType<AudioManager>().Play("Footsteps");
+        if (((IsGrounded() || IsOnBox())&& value.Get<Vector2>().x == 0) || !(IsGrounded() || IsOnBox()))
+        {
+            FindObjectOfType<AudioManager>().Stop("Footsteps");
+        }else if ((IsGrounded() || IsOnBox()) && value.Get<Vector2>().x != 0)
+        {
+        FindObjectOfType<AudioManager>().Play("Footsteps"); 
+        }
+
+        
+        
     }
 
     /*public void Movement(InputAction.CallbackContext context)
