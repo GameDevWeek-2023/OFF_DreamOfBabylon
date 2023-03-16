@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2254222437076606999
 Transform:
@@ -46,20 +46,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: DreamTheme
-    clip: {fileID: 8300000, guid: ea4806f3655c2f64f94a38e4010b98e6, type: 3}
+    clip: {fileID: 8300000, guid: 588a56fa23b1e7749acefe64419ff13d, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: NightmareTheme
-    clip: {fileID: 8300000, guid: 74cd7b6d64f319545b0ba8a4cec38cd3, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: c1432796d142ae04898ded31b65f2f37, type: 3}
+    volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: DreamIntro
-    clip: {fileID: 8300000, guid: 7b93595b99511cb4aa1464290ee11c30, type: 3}
+  - name: DreamThemeIntro
+    clip: {fileID: 8300000, guid: 00ea034ca997d01439a690b456add54e, type: 3}
     volume: 1
     pitch: 1
-    loop: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: NightmareThemeIntro
+    clip: {fileID: 8300000, guid: e95cde1829216f6408c92de64bfbcd89, type: 3}
+    volume: 0
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WindUpMusicBox
+    clip: {fileID: 8300000, guid: cbabb733795b48840b0827638abed810, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
     source: {fileID: 0}

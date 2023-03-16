@@ -22,6 +22,7 @@ public class Character_Action_Nightmare : MonoBehaviour
 
         SetToNightmare();
         SetToDream();
+        AudioManager.instance.StartBackgroundMusic();
     }
 
     private void SetToNightmare()
@@ -38,7 +39,7 @@ public class Character_Action_Nightmare : MonoBehaviour
         background.SetActive(true);
         backgroundNM.SetActive(false);
         floor.SetActive(true);
-        floorNM.SetActive(false);
+        floorNM.SetActive(false); 
     }
 
 
@@ -55,6 +56,7 @@ public class Character_Action_Nightmare : MonoBehaviour
                 inNightmare = true;
                 SetToNightmare();
             }
+        AudioManager.instance.SwapBackgroundAudios();
 
     }    
 
