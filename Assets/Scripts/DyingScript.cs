@@ -22,8 +22,8 @@ public class DyingScript : MonoBehaviour
         {
             cubeMovement.PauseInputs(true);
             armatureComponent.animation.Play("Death", 1);
+            FindObjectOfType<AudioManager>().Play("Death");
             isDead = true;
-
         }
     }
 
@@ -34,6 +34,7 @@ public class DyingScript : MonoBehaviour
             cubeMovement.PauseInputs(true);
             armatureComponent.animation.Play("Death", 1);
             armatureComponent.animation.timeScale = 0.8f;
+            FindObjectOfType<AudioManager>().Play("MagicCircleDream");
             isDead = true;
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
@@ -45,7 +46,6 @@ public class DyingScript : MonoBehaviour
         if(isDead && armatureComponent.animation.isCompleted)
         {
             RespornPlayer(CheckPoint.instance);
-           
         }
     }
 
