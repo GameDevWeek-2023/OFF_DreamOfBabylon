@@ -70,6 +70,10 @@ public class CubeMovementTest : MonoBehaviour
             return;
         }
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if(IsGrounded() && armatureComponent.animation.lastAnimationName == "Jump_Down_loop")
+        {
+            //aufkommen-Sound abspielen.
+        }
         if(rb.velocity.x == 0f && IsGrounded()&& armatureComponent.animation.lastAnimationName != "Idle")
         {
             armatureComponent.animation.Play("Idle");
