@@ -243,6 +243,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  grabObjectLayer:
+    serializedVersion: 2
+    m_Bits: 0
   tr: {fileID: 7284766669145925053}
   canceledJumpMultiplier: 0.5
   dashingPower: 24
