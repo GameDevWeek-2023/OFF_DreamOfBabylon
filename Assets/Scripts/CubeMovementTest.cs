@@ -72,7 +72,7 @@ public class CubeMovementTest : MonoBehaviour
             return;
         }
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-        if(IsGrounded() && armatureComponent.animation.lastAnimationName == "Jump_Down_loop")
+        if (IsGrounded() && armatureComponent.animation.lastAnimationName == "Jump_Down_loop")
         {
             //aufkommen sound
         }
@@ -137,6 +137,8 @@ public class CubeMovementTest : MonoBehaviour
             return;
         }
         horizontal = value.Get<Vector2>().x;
+        if (IsGrounded() || IsOnBox() && value.Get<Vector2>().x == 0) FindObjectOfType<AudioManager>().Stop("Footsteps");
+        else FindObjectOfType<AudioManager>().Play("Footsteps");
     }
 
     /*public void Movement(InputAction.CallbackContext context)

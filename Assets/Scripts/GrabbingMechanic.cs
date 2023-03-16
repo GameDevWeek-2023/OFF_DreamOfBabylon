@@ -18,9 +18,17 @@ public class GrabbingMechanic : MonoBehaviour
 
     private int layerIndex;
     private Vector2 direction;
-
-    private Rigidbody2D boxrb;
     private bool isGrabbing=false;
+    
+    //store Settings Rigidbody
+    private PhysicsMaterial2D rbMaterial;
+    private float rbMass;
+    private float rbDrag;
+    private CollisionDetectionMode2D rbCollDect;
+    private RigidbodyInterpolation2D rbInterpol;
+    private bool rbFreezeRot;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +59,17 @@ public class GrabbingMechanic : MonoBehaviour
             if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
             {
                 grabbedObject = hitInfo.collider.gameObject;
+
+                Rigidbody2D storeRB = grabbedObject.GetComponent<Rigidbody2D>();
+                rbMaterial= storeRB.sharedMaterial;
+                rbMass = storeRB.mass;
+                rbDrag = storeRB.drag;
+                rbCollDect = storeRB.collisionDetectionMode;
+                rbInterpol = storeRB.interpolation;
+                rbFreezeRot = storeRB.freezeRotation;
+                
                 Destroy(grabbedObject.GetComponent<Rigidbody2D>());
+                
                 grabbedObject.transform.position = grabPoint.position;
                 grabbedObject.transform.SetParent(transform);
             }
@@ -60,12 +78,12 @@ public class GrabbingMechanic : MonoBehaviour
         {
             grabbedObject.AddComponent<Rigidbody2D>();
             Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
-            rb.sharedMaterial = new PhysicsMaterial2D("BoxMaterial");
-            rb.mass = 10f;
-            rb.drag = 0.3f;
-            rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-            rb.interpolation = RigidbodyInterpolation2D.Interpolate;
-            rb.freezeRotation = true;
+            rb.sharedMaterial = rbMaterial;
+            rb.mass = rbMass;
+            rb.drag = rbDrag;
+            rb.collisionDetectionMode = rbCollDect;
+            rb.interpolation = rbInterpol;
+            rb.freezeRotation = rbFreezeRot;
                 
             grabbedObject.transform.SetParent(null);
             grabbedObject = null;
