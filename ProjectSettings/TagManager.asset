@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ground
   - Ladder
+  - Deadly
   layers:
   - Default
   - TransparentFX

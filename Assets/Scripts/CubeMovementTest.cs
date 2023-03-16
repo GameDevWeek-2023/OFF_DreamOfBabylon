@@ -42,7 +42,9 @@ public class CubeMovementTest : MonoBehaviour
     [SerializeField]private float coyoteTime = 0.05f;
     private float coyoteTimeCounter;
 
-        // Start is called before the first frame update
+    public float Horizontal { get => horizontal; set => horizontal = value; }
+
+    // Start is called before the first frame update
     void Start()
     {
         pauseInputs = false;
