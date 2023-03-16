@@ -44,9 +44,12 @@ public class CubeMovementTest : MonoBehaviour
     [SerializeField]private float coyoteTime = 0.05f;
     private float coyoteTimeCounter;
 
-        // Start is called before the first frame update
+    public float Horizontal { get => horizontal; set => horizontal = value; }
+
+    // Start is called before the first frame update
     void Start()
     {
+        //Time.timeScale = 0.3f;
         pauseInputs = false;
         gravity = rb.gravityScale;
         armatureComponent = GetComponentInChildren<DragonBones.UnityArmatureComponent>();
@@ -77,6 +80,10 @@ public class CubeMovementTest : MonoBehaviour
         {
             armatureComponent.animation.Play("Run");
             armatureComponent.animation.timeScale = 1.5f;
+        }else if(rb.velocity.y<0 && !IsGrounded() && armatureComponent.animation.lastAnimationName != "Jump_Down_loop")
+        {
+            armatureComponent.animation.Play("Jump_Down_loop");
+            //armatureComponent.animation.timeScale = 1;
         }
         if (!isFacingRight && horizontal > 0f)
         {
@@ -174,8 +181,8 @@ public class CubeMovementTest : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * canceledJumpMultiplier);
             coyoteTimeCounter = 0f;
         }
-        armatureComponent.animation.Play("Jump", 1);
-        armatureComponent.animation.timeScale = 2;
+        armatureComponent.animation.Play("Jump_up", 1);
+        armatureComponent.animation.timeScale = 0.7f;
     }
     
     public void PauseInputs(bool pause)
@@ -229,6 +236,7 @@ public class CubeMovementTest : MonoBehaviour
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
         tr.emitting = true;
         armatureComponent.animation.Play("Dash", 1);
+        armatureComponent.animation.timeScale = 1.4f;
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;
