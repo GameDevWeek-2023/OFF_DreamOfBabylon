@@ -881,14 +881,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
-    - target: {fileID: 5450581061591011488, guid: b0c9f8453465e3641b28465fb1e7a332, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5450581061591011489, guid: b0c9f8453465e3641b28465fb1e7a332, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5450581061591011492, guid: b0c9f8453465e3641b28465fb1e7a332, type: 3}
       propertyPath: m_RootOrder
       value: 6
