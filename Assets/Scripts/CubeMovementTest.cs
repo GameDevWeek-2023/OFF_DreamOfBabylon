@@ -47,6 +47,7 @@ public class CubeMovementTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Time.timeScale = 0.3f;
         pauseInputs = false;
         gravity = rb.gravityScale;
         armatureComponent = GetComponentInChildren<DragonBones.UnityArmatureComponent>();
@@ -174,7 +175,7 @@ public class CubeMovementTest : MonoBehaviour
             coyoteTimeCounter = 0f;
         }
         armatureComponent.animation.Play("Jump_up", 1);
-        armatureComponent.animation.timeScale = 1;
+        armatureComponent.animation.timeScale = 0.7f;
     }
     
     public void PauseInputs(bool pause)
@@ -228,6 +229,7 @@ public class CubeMovementTest : MonoBehaviour
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
         tr.emitting = true;
         armatureComponent.animation.Play("Dash", 1);
+        armatureComponent.animation.timeScale = 1.4f;
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;
