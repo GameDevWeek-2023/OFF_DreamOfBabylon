@@ -11,7 +11,7 @@ public class CheckPoint : MonoBehaviour
     public int NumberOfCheckPoint { get => numberOfCheckPoint;}
 
     private Vector3 respornPosition;
-    public ParticleSystem ps;
+    private ParticleSystem ps;
     private ParticleSystem psa;
 
     // Start is called before the first frame update
@@ -30,7 +30,7 @@ public class CheckPoint : MonoBehaviour
     {
         if(CheckPoint.instance == null || CheckPoint.instance.NumberOfCheckPoint < numberOfCheckPoint)
         {
-            
+            CheckPoint.instance?.ps.gameObject.SetActive(false);
             CheckPoint.instance = this;
             Debug.Log("New Checkpoint is CheckPoint " + numberOfCheckPoint + ".");
             psa.gameObject.SetActive(true);

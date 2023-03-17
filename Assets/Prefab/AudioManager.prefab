@@ -46,25 +46,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: DreamTheme
-    clip: {fileID: 8300000, guid: 3e83f92495dbf07469f7b78b724386cd, type: 3}
+    clip: {fileID: 8300000, guid: 719910ddd404f1242a39225be17e67fa, type: 3}
     volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: NightmareTheme
-    clip: {fileID: 8300000, guid: 244ca99317367084091f1375c83e0a47, type: 3}
+    clip: {fileID: 8300000, guid: fd114d0bf84103949a9438e9d2134765, type: 3}
     volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: DreamThemeIntro
-    clip: {fileID: 8300000, guid: 23226b3136a598e4084e7dcf359dfca1, type: 3}
+    clip: {fileID: 8300000, guid: 8a8e3c108abe9a94e952cd05f65a7150, type: 3}
     volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: NightmareThemeIntro
-    clip: {fileID: 8300000, guid: 22b0d9c10443d89469661b7591e439f6, type: 3}
+    clip: {fileID: 8300000, guid: 9e0f9dc52a830af4fad8e2c31f2d2eda, type: 3}
     volume: 0
     pitch: 1
     loop: 0
@@ -117,20 +117,14 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: GrabLoop
+  - name: Grab
     clip: {fileID: 8300000, guid: 38db94553d013f9489e18383d5ddd13d, type: 3}
-    volume: 0.1
+    volume: 0.3
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: GrabStart
-    clip: {fileID: 8300000, guid: 5d17af0fe7c51004f8cd2cecc8b9f897, type: 3}
-    volume: 0.1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: GrabEnd
-    clip: {fileID: 8300000, guid: 145e9a3f60589cf4e93f0c77d67ef3dc, type: 3}
+  - name: Switch
+    clip: {fileID: 8300000, guid: 927a2fa4333502c46b1c7e0021471848, type: 3}
     volume: 0.1
     pitch: 1
     loop: 0

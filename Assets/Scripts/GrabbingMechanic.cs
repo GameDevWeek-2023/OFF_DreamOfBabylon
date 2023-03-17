@@ -31,6 +31,7 @@ public class GrabbingMechanic : MonoBehaviour
 
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,7 @@ public class GrabbingMechanic : MonoBehaviour
 
     void OnInteract(InputValue value)
     {
+
         if (player.transform.localScale.x > 0f)
         {
             direction = Vector2.right;
@@ -59,6 +61,8 @@ public class GrabbingMechanic : MonoBehaviour
             RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, direction, rayDistance);
             if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
             {
+                FindObjectOfType<AudioManager>().Play("Grab");
+
                 grabbedObject = hitInfo.collider.gameObject;
 
                 Rigidbody2D storeRB = grabbedObject.GetComponent<Rigidbody2D>();
@@ -77,6 +81,8 @@ public class GrabbingMechanic : MonoBehaviour
         }
         else
         {
+            FindObjectOfType<AudioManager>().Stop("Grab");
+
             grabbedObject.AddComponent<Rigidbody2D>();
             Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
             rb.sharedMaterial = rbMaterial;
