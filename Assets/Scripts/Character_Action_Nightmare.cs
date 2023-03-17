@@ -111,6 +111,11 @@ public class Character_Action_Nightmare : MonoBehaviour
         yield return new WaitForSeconds(switchCooldown);
         canSwitch = true;
     }
+
+    public bool IsCurrentThemeNightmare()
+    {
+        return inNightmare;
+    }
     
     /*public void IncrementProgress(float newProgress)
     {

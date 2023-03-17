@@ -13,7 +13,10 @@ public class PressureSwitch : Switch
     {
         //numberColliding++;
         if(!onSwitch.Contains(collision.gameObject))
+        {
             onSwitch.Add(collision.gameObject);
+            FindObjectOfType<AudioManager>().Play("PressureSwitch");
+        }
         TurnOn();
     }
 
