@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
 
     public static AudioManager instance;
-
+    private float masterVolume = 1;
     private bool nightmare = false;
 
     void Awake()
@@ -81,6 +81,16 @@ public class AudioManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(FadeBackgroundAudios());
     }
+
+    public void ChangeVolume(float newVolume)
+    {
+        this.masterVolume = newVolume;
+        foreach (Sound s in sounds)
+        {
+
+            s.source.volume = s.volume * masterVolume;
+        }
+    }
     
     private IEnumerator FadeBackgroundAudios()
     {
@@ -96,11 +106,15 @@ public class AudioManager : MonoBehaviour
             {
                 if (dreamThemeIntro.source.isPlaying)
                 {
-                    nightmareThemeIntro.source.volume = Mathf.Lerp(0, 0.1f, timeElapsed / timeToFade);
-                    dreamThemeIntro.source.volume = Mathf.Lerp(0.1f, 0, timeElapsed / timeToFade);
+                    nightmareThemeIntro.volume = 0.1f;
+                    dreamThemeIntro.volume = 0;
+                    nightmareThemeIntro.source.volume = Mathf.Lerp(0, 0.1f*masterVolume, timeElapsed / timeToFade);
+                    dreamThemeIntro.source.volume = Mathf.Lerp(0.1f*masterVolume, 0, timeElapsed / timeToFade);
                 }
-                    nightmareTheme.source.volume = Mathf.Lerp(0, 0.1f, timeElapsed / timeToFade);
-                dreamTheme.source.volume = Mathf.Lerp(0.1f, 0, timeElapsed / timeToFade);
+                nightmareTheme.volume = 0.1f;
+                dreamTheme.volume = 0;
+                nightmareTheme.source.volume = Mathf.Lerp(0, 0.1f*masterVolume, timeElapsed / timeToFade);
+                dreamTheme.source.volume = Mathf.Lerp(0.1f*masterVolume, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
@@ -111,11 +125,15 @@ public class AudioManager : MonoBehaviour
             {
                 if (nightmareThemeIntro.source.isPlaying)
                 {
-                    dreamThemeIntro.source.volume = Mathf.Lerp(0, 0.1f, timeElapsed / timeToFade);
-                    nightmareThemeIntro.source.volume = Mathf.Lerp(0.1f, 0, timeElapsed / timeToFade);
+                    nightmareThemeIntro.volume = 0;
+                    dreamThemeIntro.volume = .1f;
+                    dreamThemeIntro.source.volume = Mathf.Lerp(0, 0.1f*masterVolume, timeElapsed / timeToFade);
+                    nightmareThemeIntro.source.volume = Mathf.Lerp(0.1f*masterVolume, 0, timeElapsed / timeToFade);
                 }
-                dreamTheme.source.volume = Mathf.Lerp(0, 0.1f, timeElapsed / timeToFade);
-                nightmareTheme.source.volume = Mathf.Lerp(0.1f, 0, timeElapsed / timeToFade);
+                nightmareTheme.volume = 0;
+                dreamTheme.volume = 0.1f;
+                dreamTheme.source.volume = Mathf.Lerp(0, 0.1f*masterVolume, timeElapsed / timeToFade);
+                nightmareTheme.source.volume = Mathf.Lerp(0.1f*masterVolume, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }

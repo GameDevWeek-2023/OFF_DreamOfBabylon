@@ -20,9 +20,11 @@ public class InGameMenu : MonoBehaviour
     private bool dialogWasActive;
     private int dialogueIndex;
     private int indexInDialogue;
+    //private AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
+        //audioManager = FindObjectOfType<AudioManager>();
         dialogueTextComponent.text = string.Empty;
         if(SceneManager.GetActiveScene().buildIndex ==1 )
         {
@@ -90,6 +92,7 @@ public class InGameMenu : MonoBehaviour
     public void ChangeMusicVolume()
     {
         Debug.Log("New Value: " + volumeSlider.value);
+        AudioManager.instance?.ChangeVolume(volumeSlider.value);
     }
 
     // Update is called once per frame
