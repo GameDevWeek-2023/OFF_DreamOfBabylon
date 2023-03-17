@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7223651603745286491}
   - component: {fileID: 5509704975517076556}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Deadly_Fog
   m_TagString: Deadly
   m_Icon: {fileID: 0}
@@ -4928,13 +4928,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3150845322400345809}
   - component: {fileID: 3289715343785494638}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3150845322400345809
 Transform:
   m_ObjectHideFlags: 0
