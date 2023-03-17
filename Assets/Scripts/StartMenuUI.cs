@@ -9,10 +9,12 @@ public class StartMenuUI : MonoBehaviour
 {
     [SerializeField] Button playButton;
     [SerializeField] Button quitButton;
+    [SerializeField] GameObject MainMenu;
+    [SerializeField] GameObject OptionsMenu;
+    [SerializeField] Slider volumeSlider;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -28,10 +30,23 @@ public class StartMenuUI : MonoBehaviour
 
     public void ShowOptions()
     {
-
+        MainMenu.SetActive(false);
+        OptionsMenu.SetActive(true);
+    }
+    public void ShowMainMenu ()
+    {
+        MainMenu.SetActive(true);
+        OptionsMenu.SetActive(false);
     }
     public void QuitGame()
     {
         Application.Quit();
     }
+
+    public void ChangeMusicVolume()
+    {
+        Debug.Log("New Value: " + volumeSlider.value);
+        AudioManager.instance?.ChangeVolume(volumeSlider.value);
+    }
+
 }

@@ -11,7 +11,7 @@ public class CheckPoint : MonoBehaviour
     public int NumberOfCheckPoint { get => numberOfCheckPoint;}
 
     private Vector3 respornPosition;
-    private ParticleSystem ps;
+    public ParticleSystem ps;
     private ParticleSystem psa;
 
     // Start is called before the first frame update

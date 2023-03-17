@@ -43,18 +43,23 @@ public class CubeMovementTest : MonoBehaviour
 
     [SerializeField]private float coyoteTime = 0.05f;
     private float coyoteTimeCounter;
-    private AudioManager _audioManager;
+    //private AudioManager _audioManager;
 
     public float Horizontal { get => horizontal; set => horizontal = value; }
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        pauseInputs = false;
+        
+    }
     void Start()
     {
         //Time.timeScale = 0.3f;
-        pauseInputs = false;
         gravity = rb.gravityScale;
         armatureComponent = GetComponentInChildren<DragonBones.UnityArmatureComponent>();
-        _audioManager = FindObjectOfType<AudioManager>();
+        //_audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -67,7 +72,7 @@ public class CubeMovementTest : MonoBehaviour
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
-            _audioManager.Stop("Footsteps");
+            AudioManager.instance?.Stop("Footsteps");
         }
         
         if (isDashing || pauseInputs)
@@ -77,10 +82,10 @@ public class CubeMovementTest : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         if (IsGrounded() && armatureComponent.animation.lastAnimationName == "Jump_Down_loop")
         {
-            _audioManager.Play("Landing");
+            AudioManager.instance?.Play("Landing");
             if (rb.velocity.x != 0)
             {
-                _audioManager.Play("Footsteps");
+                AudioManager.instance?.Play("Footsteps");
             }
         }
         if(rb.velocity.x == 0f && (IsGrounded() || IsOnBox())&& armatureComponent.animation.lastAnimationName != "Idle")
@@ -146,10 +151,10 @@ public class CubeMovementTest : MonoBehaviour
         horizontal = value.Get<Vector2>().x;
         if (((IsGrounded() || IsOnBox())&& value.Get<Vector2>().x == 0) || !(IsGrounded() || IsOnBox()))
         {
-            _audioManager.Stop("Footsteps");
+            AudioManager.instance?.Stop("Footsteps");
         } else if ((IsGrounded() || IsOnBox()) && value.Get<Vector2>().x != 0)
         {
-            _audioManager.Play("Footsteps"); 
+            AudioManager.instance?.Play("Footsteps"); 
         }
 
         
@@ -250,7 +255,7 @@ public class CubeMovementTest : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        _audioManager.Play("Dash");
+        AudioManager.instance?.Play("Dash");
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
