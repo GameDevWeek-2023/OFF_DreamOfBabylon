@@ -29,6 +29,7 @@ public class MovingPlattformScipt : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
     }
 
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
@@ -49,5 +50,21 @@ public class MovingPlattformScipt : MonoBehaviour
             collision.transform.SetParent(null);
         }
         
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        
+        if (collision.collider.CompareTag("Player"))
+        {
+            var horizontal = collision.gameObject.GetComponent<CubeMovementTest>().Horizontal;
+            if (horizontal == 0)
+            {
+                Debug.Log("Is still Platform" );
+                collision.transform.SetParent(transform);    
+            }
+
+            
+        }
     }
 }
