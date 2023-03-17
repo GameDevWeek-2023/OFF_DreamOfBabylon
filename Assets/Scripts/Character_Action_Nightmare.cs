@@ -17,13 +17,18 @@ public class Character_Action_Nightmare : MonoBehaviour
     private float switchCooldown = 1.1f;
     
     [SerializeField]private Slider slider;
-    public float fillspeed = 1.1f;
+    [SerializeField]public float fillspeed = 0.7f;
 
     private void Update()
     {
+        
+    }
+
+    private void FixedUpdate()
+    {
         if (slider.value < switchCooldown)
         {
-            slider.value += fillspeed * Time.deltaTime;
+            slider.value += fillspeed * Time.fixedDeltaTime;
         }
     }
 
