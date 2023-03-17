@@ -14,8 +14,11 @@ public class PressureSwitch : Switch
         //numberColliding++;
         if(!onSwitch.Contains(collision.gameObject))
         {
+            if (onSwitch.Count == 0)
+            {
+                FindObjectOfType<AudioManager>().Play("PressureSwitch");
+            }
             onSwitch.Add(collision.gameObject);
-            FindObjectOfType<AudioManager>().Play("PressureSwitch");
         }
         TurnOn();
     }
@@ -30,6 +33,7 @@ public class PressureSwitch : Switch
         if(onSwitch.Count == 0)
         {
             TurnOff();
+            
         }
     }
 }

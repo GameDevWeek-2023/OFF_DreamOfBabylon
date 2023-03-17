@@ -7,5 +7,6 @@ public class UseableSwitch : Switch
     public void Use()
     {
         Toggle();
+        FindObjectOfType<AudioManager>().Play("Switch");
     }
 }
