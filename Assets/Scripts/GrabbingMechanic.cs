@@ -56,15 +56,12 @@ public class GrabbingMechanic : MonoBehaviour
             direction = Vector2.left;
         }
 
-        Sound grabStart = FindObjectOfType<AudioManager>().FindMusic("GrabStart");
-        Sound grabLoop = FindObjectOfType<AudioManager>().FindMusic("GrabLoop");
         if (grabbedObject == null)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, direction, rayDistance);
             if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
             {
-                grabStart.source.Play();
-                grabLoop.source.PlayScheduled(AudioSettings.dspTime + grabStart.GetAudioClip().length);
+                FindObjectOfType<AudioManager>().Play("Grab");
 
                 grabbedObject = hitInfo.collider.gameObject;
 
@@ -84,7 +81,7 @@ public class GrabbingMechanic : MonoBehaviour
         }
         else
         {
-            grabLoop.source.Stop();
+            FindObjectOfType<AudioManager>().Stop("Grab");
 
             grabbedObject.AddComponent<Rigidbody2D>();
             Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
