@@ -9,6 +9,8 @@ public class GrabbingMechanic : MonoBehaviour
 
     [SerializeField] private Transform grabPoint;
 
+    [SerializeField] private Transform dropPoint;
+
     [SerializeField] private Transform rayPoint;
 
     [SerializeField] private float rayDistance;
@@ -92,6 +94,7 @@ public class GrabbingMechanic : MonoBehaviour
             rb.interpolation = rbInterpol;
             rb.freezeRotation = rbFreezeRot;
                 
+            grabbedObject.transform.position = dropPoint.position;
             grabbedObject.transform.SetParent(null);
             grabbedObject = null;
         }
