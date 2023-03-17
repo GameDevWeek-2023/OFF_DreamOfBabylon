@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,7 @@ public class CubeMovementTest : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask grabObjectLayer;
     [SerializeField] private TrailRenderer tr;
 
     [SerializeField]private float canceledJumpMultiplier = 0.5f;
@@ -41,25 +43,31 @@ public class CubeMovementTest : MonoBehaviour
 
     [SerializeField]private float coyoteTime = 0.05f;
     private float coyoteTimeCounter;
+    private AudioManager _audioManager;
 
-        // Start is called before the first frame update
+    public float Horizontal { get => horizontal; set => horizontal = value; }
+
+    // Start is called before the first frame update
     void Start()
     {
+        //Time.timeScale = 0.3f;
         pauseInputs = false;
         gravity = rb.gravityScale;
         armatureComponent = GetComponentInChildren<DragonBones.UnityArmatureComponent>();
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (IsGrounded())
+        if (IsGrounded() || IsOnBox())
         {
             coyoteTimeCounter = coyoteTime;
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
+            _audioManager.Stop("Footsteps");
         }
         
         if (isDashing || pauseInputs)
@@ -67,14 +75,26 @@ public class CubeMovementTest : MonoBehaviour
             return;
         }
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-        if(rb.velocity.x == 0f && IsGrounded()&& armatureComponent.animation.lastAnimationName != "Idle")
+        if (IsGrounded() && armatureComponent.animation.lastAnimationName == "Jump_Down_loop")
+        {
+            _audioManager.Play("Landing");
+            if (rb.velocity.x != 0)
+            {
+                _audioManager.Play("Footsteps");
+            }
+        }
+        if(rb.velocity.x == 0f && (IsGrounded() || IsOnBox())&& armatureComponent.animation.lastAnimationName != "Idle")
         {
             armatureComponent.animation.Play("Idle");
             armatureComponent.animation.timeScale = 0.8f;
-        }else if(rb.velocity.x != 0f && IsGrounded() && armatureComponent.animation.lastAnimationName != "Run")
+        }else if(rb.velocity.x != 0f && (IsGrounded() || IsOnBox()) && armatureComponent.animation.lastAnimationName != "Run")
         {
             armatureComponent.animation.Play("Run");
             armatureComponent.animation.timeScale = 1.5f;
+        }else if(rb.velocity.y<0 && !(IsGrounded() || IsOnBox()) && armatureComponent.animation.lastAnimationName != "Jump_Down_loop")
+        {
+            armatureComponent.animation.Play("Jump_Down_loop");
+            //armatureComponent.animation.timeScale = 1;
         }
         if (!isFacingRight && horizontal > 0f)
         {
@@ -124,6 +144,16 @@ public class CubeMovementTest : MonoBehaviour
             return;
         }
         horizontal = value.Get<Vector2>().x;
+        if (((IsGrounded() || IsOnBox())&& value.Get<Vector2>().x == 0) || !(IsGrounded() || IsOnBox()))
+        {
+            _audioManager.Stop("Footsteps");
+        } else if ((IsGrounded() || IsOnBox()) && value.Get<Vector2>().x != 0)
+        {
+            _audioManager.Play("Footsteps"); 
+        }
+
+        
+        
     }
 
     /*public void Movement(InputAction.CallbackContext context)
@@ -134,6 +164,11 @@ public class CubeMovementTest : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+    
+    private bool IsOnBox()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, grabObjectLayer);
     }
 
     private void Flip()
@@ -167,8 +202,8 @@ public class CubeMovementTest : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * canceledJumpMultiplier);
             coyoteTimeCounter = 0f;
         }
-        armatureComponent.animation.Play("Jump", 1);
-        armatureComponent.animation.timeScale = 2;
+        armatureComponent.animation.Play("Jump_up", 1);
+        armatureComponent.animation.timeScale = 0.7f;
     }
     
     public void PauseInputs(bool pause)
@@ -215,6 +250,7 @@ public class CubeMovementTest : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        _audioManager.Play("Dash");
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
@@ -222,6 +258,7 @@ public class CubeMovementTest : MonoBehaviour
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
         tr.emitting = true;
         armatureComponent.animation.Play("Dash", 1);
+        armatureComponent.animation.timeScale = 1.4f;
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;

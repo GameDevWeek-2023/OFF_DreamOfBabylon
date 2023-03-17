@@ -46,32 +46,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: DreamTheme
-    clip: {fileID: 8300000, guid: 588a56fa23b1e7749acefe64419ff13d, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 719910ddd404f1242a39225be17e67fa, type: 3}
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: NightmareTheme
-    clip: {fileID: 8300000, guid: c1432796d142ae04898ded31b65f2f37, type: 3}
+    clip: {fileID: 8300000, guid: fd114d0bf84103949a9438e9d2134765, type: 3}
     volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: DreamThemeIntro
-    clip: {fileID: 8300000, guid: 00ea034ca997d01439a690b456add54e, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 8a8e3c108abe9a94e952cd05f65a7150, type: 3}
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: NightmareThemeIntro
-    clip: {fileID: 8300000, guid: e95cde1829216f6408c92de64bfbcd89, type: 3}
+    clip: {fileID: 8300000, guid: 9e0f9dc52a830af4fad8e2c31f2d2eda, type: 3}
     volume: 0
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: WindUpMusicBox
-    clip: {fileID: 8300000, guid: cbabb733795b48840b0827638abed810, type: 3}
+    clip: {fileID: 8300000, guid: 6d98bdc7850041c45b37d7c68678d4ad, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Dash
+    clip: {fileID: 8300000, guid: d73c71027b990784cb982b399ca43090, type: 3}
     volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Footsteps
+    clip: {fileID: 8300000, guid: 8b10ecc1aca94d24c8b6663819f1b805, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Landing
+    clip: {fileID: 8300000, guid: 65a1c70cd3760084584333cb8634a493, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MagicCircleDream
+    clip: {fileID: 8300000, guid: 46a0a65e79954be4b9d5f063e4e11243, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MagicCircleNightmare
+    clip: {fileID: 8300000, guid: 1a6b6c7aafdb7714ca75a0d81043c26e, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 90cc042dbe7237e458a45528975884df, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PressureSwitch
+    clip: {fileID: 8300000, guid: 05ca0a8def35e354c85055383eb04391, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Grab
+    clip: {fileID: 8300000, guid: 38db94553d013f9489e18383d5ddd13d, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Switch
+    clip: {fileID: 8300000, guid: 927a2fa4333502c46b1c7e0021471848, type: 3}
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
