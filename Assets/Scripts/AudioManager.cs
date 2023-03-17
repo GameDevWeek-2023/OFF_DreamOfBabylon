@@ -37,7 +37,13 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         } 
     }
-
+    public void StartMainMenuMusic()
+    {
+        Sound mainMenuMusicIntro = FindMusic("MainMenuMusicIntro");
+        Sound mainMenuMusicLoop = FindMusic("MeinMenuMusicLoop");
+        mainMenuMusicIntro.source.Play();
+        mainMenuMusicLoop.source.PlayScheduled(AudioSettings.dspTime + mainMenuMusicIntro.GetAudioClip().length);
+    }
     public void StartBackgroundMusic()
     {
         Sound windUpMusicBox= FindMusic("WindUpMusicBox");
@@ -50,6 +56,11 @@ public class AudioManager : MonoBehaviour
         nightmareThemeIntro.source.PlayScheduled(AudioSettings.dspTime + windUpMusicBox.GetAudioClip().length);
         dreamTheme.source.PlayScheduled(AudioSettings.dspTime + windUpMusicBox.GetAudioClip().length + dreamThemeIntro.GetAudioClip().length);
         nightmareTheme.source.PlayScheduled(AudioSettings.dspTime + windUpMusicBox.GetAudioClip().length + dreamThemeIntro.GetAudioClip().length);
+    }
+
+    public float GetMasterVolume()
+    {
+        return masterVolume;
     }
 
     public Sound FindMusic(string name)
@@ -67,7 +78,12 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = FindMusic(name);
         s.source.Play();
-        
+    }
+
+    public void Pause(string name)
+    {
+        Sound s = FindMusic(name);
+        s.source.Pause();
     }
 
     public void Stop(string name)
