@@ -117,20 +117,14 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: GrabLoop
+  - name: Grab
     clip: {fileID: 8300000, guid: 38db94553d013f9489e18383d5ddd13d, type: 3}
-    volume: 0.1
+    volume: 0.3
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: GrabStart
-    clip: {fileID: 8300000, guid: 5d17af0fe7c51004f8cd2cecc8b9f897, type: 3}
-    volume: 0.1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: GrabEnd
-    clip: {fileID: 8300000, guid: 145e9a3f60589cf4e93f0c77d67ef3dc, type: 3}
+  - name: Switch
+    clip: {fileID: 8300000, guid: 927a2fa4333502c46b1c7e0021471848, type: 3}
     volume: 0.1
     pitch: 1
     loop: 0
