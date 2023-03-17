@@ -5029,7 +5029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50117aaf8020a32409073fa504cba20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfCheckPoint: -1
+  numberOfCheckPoint: 0
   newCheckpointEffectTime: 3
   ps: {fileID: 0}
 --- !u!1 &7277247536307528403

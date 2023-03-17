@@ -4,20 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 
 
 public class Character_Action_Nightmare : MonoBehaviour
 {
     [SerializeField]private bool inNightmare = false;
-    private GameObject background;
-    private GameObject backgroundNM;
-    private GameObject floor;
-    private GameObject floorNM;
+    [SerializeField]private GameObject background;
+    [SerializeField]private GameObject backgroundNM;
+    [SerializeField]private GameObject floor;
+    [SerializeField]private GameObject floorNM;
     private bool canSwitch = true;
     private float switchCooldown = 1.1f;
     
     [SerializeField]private Slider slider;
     [SerializeField]public float fillspeed = 0.7f;
+
 
     private void Update()
     {
@@ -35,12 +37,8 @@ public class Character_Action_Nightmare : MonoBehaviour
     private void Start()
     {
         //progressBar.GetComponent<NightmareBarScript>();
-        background = GameObject.Find("Background");
-        backgroundNM = GameObject.Find("Background_NM");
-        floor = GameObject.Find("Floortiles");
-        floorNM = GameObject.Find("Floortiles_NM");
 
-        SetToNightmare();
+        //SetToNightmare();
         SetToDream();
         AudioManager.instance.StartBackgroundMusic();
         
@@ -51,8 +49,8 @@ public class Character_Action_Nightmare : MonoBehaviour
     {
         background.SetActive(false);
         backgroundNM.SetActive(true);
-        floor.SetActive(false);
-        floorNM.SetActive(true);
+        SetTilemapActive(floor,false);
+        SetTilemapActive(floorNM,true);
     }
 
     private void SetToDream()
@@ -60,9 +58,31 @@ public class Character_Action_Nightmare : MonoBehaviour
         inNightmare = false;
         background.SetActive(true);
         backgroundNM.SetActive(false);
-        floor.SetActive(true);
-        floorNM.SetActive(false); 
+        SetTilemapActive(floor,true);
+        SetTilemapActive(floorNM,false);
     }
+
+    void SetTilemapActive(GameObject go, bool active) {
+        float alpha = active ? 1 : 0.25f;
+        go.GetComponent<Tilemap>().color = new Color(1,1,1,alpha);
+        Collider2D[] cols = go.GetComponentsInChildren<Collider2D>();
+        SpriteRenderer[] sps = go.GetComponentsInChildren<SpriteRenderer>();
+        ParticleSystem[] pss = go.GetComponentsInChildren<ParticleSystem>();
+
+        foreach(Collider2D col in cols) {
+            col.enabled = active;
+        }
+
+        foreach(SpriteRenderer sp in sps) {
+                Color color = sp.color;
+                color.a =  alpha;
+                sp.color = color;
+        }
+
+       foreach(ParticleSystem ps in pss) {
+            ps.gameObject.SetActive(active);
+        }
+    } 
 
 
     void OnNightmare(InputValue value)
@@ -88,12 +108,9 @@ public class Character_Action_Nightmare : MonoBehaviour
     {
         canSwitch = false;
         inNightmare = false;
-        background.SetActive(true);
-        backgroundNM.SetActive(false);
-        floor.SetActive(true);
-        floorNM.SetActive(false);
         AudioManager.instance.SwapBackgroundAudios();
         slider.value = 0f;
+        SetToDream();
         yield return new WaitForSeconds(switchCooldown);
         canSwitch = true;
     }
@@ -102,12 +119,9 @@ public class Character_Action_Nightmare : MonoBehaviour
     {
         canSwitch = false;
         inNightmare = true;
-        background.SetActive(false);
-        backgroundNM.SetActive(true);
-        floor.SetActive(false);
-        floorNM.SetActive(true);
         AudioManager.instance.SwapBackgroundAudios();
         slider.value = 0f;
+        SetToNightmare();
         yield return new WaitForSeconds(switchCooldown);
         canSwitch = true;
     }

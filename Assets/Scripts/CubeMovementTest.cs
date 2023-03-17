@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+// using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -79,7 +79,6 @@ public class CubeMovementTest : MonoBehaviour
         {
             return;
         }
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         if (IsGrounded() && armatureComponent.animation.lastAnimationName == "Jump_Down_loop")
         {
             AudioManager.instance?.Play("Landing");
@@ -131,6 +130,10 @@ public class CubeMovementTest : MonoBehaviour
             rb.gravityScale = gravity;
         }
         
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        
+        
     }
 
     void OnLadderUpDown(InputValue value)
@@ -149,6 +152,11 @@ public class CubeMovementTest : MonoBehaviour
             return;
         }
         horizontal = value.Get<Vector2>().x;
+        if (transform.parent != null && transform.parent.CompareTag("Plattform") && horizontal != 0 )
+        {
+            transform.SetParent(null);
+        }
+
         if (((IsGrounded() || IsOnBox())&& value.Get<Vector2>().x == 0) || !(IsGrounded() || IsOnBox()))
         {
             AudioManager.instance?.Stop("Footsteps");

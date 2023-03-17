@@ -129,3 +129,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: MainMenuMusicIntro
+    clip: {fileID: 8300000, guid: a0e2fcdba00ae234d93c6796a53bdd93, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MainMenuMusicLoop
+    clip: {fileID: 8300000, guid: bfa2e12c1f7c75344a0890f626ca5b6e, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
