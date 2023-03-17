@@ -34,7 +34,6 @@ public class Character_Action_Nightmare : MonoBehaviour
 
     private void Start()
     {
-        //progressBar.GetComponent<NightmareBarScript>();
         background = GameObject.Find("Background");
         backgroundNM = GameObject.Find("Background_NM");
         floor = GameObject.Find("Floortiles");

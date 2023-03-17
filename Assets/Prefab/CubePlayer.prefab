@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8548131f04546b1beab4c9192e9872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  jumpPower: 16
+  speed: 6
+  jumpPower: 14
   rb: {fileID: 7284766669145925040}
   groundCheck: {fileID: 7284766668501196803}
   groundLayer:
@@ -541,6 +541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inNightmare: 0
+  slider: {fileID: 0}
+  fillspeed: 0.9
 --- !u!114 &1791616917906743989
 MonoBehaviour:
   m_ObjectHideFlags: 0
