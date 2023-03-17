@@ -8,6 +8,8 @@ public class GrabbingMechanic : MonoBehaviour
 {
 
     [SerializeField] private Transform grabPoint;
+    
+    [SerializeField] private Transform dropPoint;
 
     [SerializeField] private Transform rayPoint;
 
@@ -28,8 +30,7 @@ public class GrabbingMechanic : MonoBehaviour
     private CollisionDetectionMode2D rbCollDect;
     private RigidbodyInterpolation2D rbInterpol;
     private bool rbFreezeRot;
-
-
+   
 
 
     // Start is called before the first frame update
@@ -92,6 +93,7 @@ public class GrabbingMechanic : MonoBehaviour
             rb.interpolation = rbInterpol;
             rb.freezeRotation = rbFreezeRot;
                 
+            grabbedObject.transform.position = dropPoint.position;
             grabbedObject.transform.SetParent(null);
             grabbedObject = null;
         }
