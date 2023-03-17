@@ -75,6 +75,7 @@ public class InGameMenu : MonoBehaviour
         Time.timeScale = 1;
         player.GetComponent<CubeMovementTest>().PauseInputs(false);
         SceneManager.LoadScene(0);
+        SaveSystem.SaveProgress(new PlayerProgress(SceneManager.GetActiveScene().buildIndex, CheckPoint.instance.NumberOfCheckPoint/*, AudioManager.instance.GetMasterVolume()*/));
     }
 
     public void OpenOptions()

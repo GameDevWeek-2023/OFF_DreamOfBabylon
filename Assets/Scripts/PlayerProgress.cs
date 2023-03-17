@@ -14,4 +14,6 @@ public class PlayerProgress
         this.checkPointInLevel = checkPointInLevel;
         this.audioVolume = audioVolume;
     }
+
+    //public void LoadPlayerProgress()
 }
