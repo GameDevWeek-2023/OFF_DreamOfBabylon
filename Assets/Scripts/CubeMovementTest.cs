@@ -48,10 +48,15 @@ public class CubeMovementTest : MonoBehaviour
     public float Horizontal { get => horizontal; set => horizontal = value; }
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        pauseInputs = false;
+        
+    }
     void Start()
     {
         //Time.timeScale = 0.3f;
-        pauseInputs = false;
         gravity = rb.gravityScale;
         armatureComponent = GetComponentInChildren<DragonBones.UnityArmatureComponent>();
         _audioManager = FindObjectOfType<AudioManager>();

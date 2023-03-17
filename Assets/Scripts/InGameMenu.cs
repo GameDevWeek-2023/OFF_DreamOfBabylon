@@ -4,15 +4,20 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class InGameMenu : MonoBehaviour
 {
     [SerializeField] GameObject ingameUI;
+    [SerializeField] GameObject optionsMenu;
     [SerializeField] GameObject player;
     [SerializeField] GameObject dialogueComponent;
+    [SerializeField] GameObject nightmareBar;
+    [SerializeField] private Slider volumeSlider;
     [SerializeField] private TextMeshProUGUI dialogueTextComponent;
     [SerializeField] private Dialog[] dialogues;
     [SerializeField] private float textSpeed;
+    private bool dialogWasActive;
     private int dialogueIndex;
     private int indexInDialogue;
     // Start is called before the first frame update
@@ -21,14 +26,23 @@ public class InGameMenu : MonoBehaviour
         dialogueTextComponent.text = string.Empty;
         if(SceneManager.GetActiveScene().buildIndex ==1 )
         {
+            player.GetComponent<CubeMovementTest>().PauseInputs(true);
+            Debug.Log("BuildIndex 1");
             dialogueIndex = 0;
             StartDialogue();
         }
+        dialogWasActive = dialogueComponent.activeInHierarchy;
     }
 
     void OnEscButton(InputValue value)
     {
-        ContinueGame();
+        if(!optionsMenu.activeInHierarchy)
+            ContinueGame();
+        else
+        {
+            optionsMenu.SetActive(false);
+            ingameUI.SetActive(true);
+        }
     }
 
     public void ContinueGame()
@@ -38,6 +52,8 @@ public class InGameMenu : MonoBehaviour
         {
 
             ingameUI.SetActive(true);
+            nightmareBar.SetActive(false);
+            dialogueComponent.SetActive(false);
             Debug.Log("Menu aufgerufen");
             Time.timeScale = 0;
             player.GetComponent<CubeMovementTest>().PauseInputs(true);
@@ -45,8 +61,10 @@ public class InGameMenu : MonoBehaviour
         else
         {
             ingameUI.SetActive(false);
+            nightmareBar.SetActive(true);
+            dialogueComponent.SetActive(dialogWasActive);
             Time.timeScale = 1;
-            player.GetComponent<CubeMovementTest>().PauseInputs(false);
+            player.GetComponent<CubeMovementTest>().PauseInputs(dialogWasActive);
         }
     }
 
@@ -57,6 +75,22 @@ public class InGameMenu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void OpenOptions()
+    {
+        ingameUI.SetActive(false);
+        optionsMenu.SetActive(true);
+    }
+
+    public void ShowPauseMenu()
+    {
+        ingameUI.SetActive(true);
+        optionsMenu.SetActive(false);
+    }
+
+    public void ChangeMusicVolume()
+    {
+        Debug.Log("New Value: " + volumeSlider.value);
+    }
 
     // Update is called once per frame
     void Update()
@@ -78,6 +112,9 @@ public class InGameMenu : MonoBehaviour
     public void StartDialogue()
     {
         indexInDialogue = 0;
+        dialogueComponent.SetActive(true);
+        dialogWasActive = true;
+        player.GetComponent<CubeMovementTest>().PauseInputs(true);
         StartCoroutine(TypeLine());
     }
 
@@ -118,6 +155,8 @@ public class InGameMenu : MonoBehaviour
         {
             dialogueIndex++;
             dialogueComponent.SetActive(false);
+            dialogWasActive = false;
+            player.GetComponent<CubeMovementTest>().PauseInputs(dialogWasActive);
         }
     }
 }
