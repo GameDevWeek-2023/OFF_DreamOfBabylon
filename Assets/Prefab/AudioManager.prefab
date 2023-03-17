@@ -93,3 +93,45 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: MagicCircleDream
+    clip: {fileID: 8300000, guid: 46a0a65e79954be4b9d5f063e4e11243, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MagicCircleNightmare
+    clip: {fileID: 8300000, guid: 1a6b6c7aafdb7714ca75a0d81043c26e, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 90cc042dbe7237e458a45528975884df, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PressureSwitch
+    clip: {fileID: 8300000, guid: 05ca0a8def35e354c85055383eb04391, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GrabLoop
+    clip: {fileID: 8300000, guid: 38db94553d013f9489e18383d5ddd13d, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: GrabStart
+    clip: {fileID: 8300000, guid: 5d17af0fe7c51004f8cd2cecc8b9f897, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GrabEnd
+    clip: {fileID: 8300000, guid: 145e9a3f60589cf4e93f0c77d67ef3dc, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
