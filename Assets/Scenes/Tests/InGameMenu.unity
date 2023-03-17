@@ -1516,6 +1516,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5927289473168450110, guid: aeda6aa63edc7bd4da6e880ee16c8820, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7223651603745286488, guid: aeda6aa63edc7bd4da6e880ee16c8820, type: 3}
       propertyPath: numberOfCheckPoint
       value: 0
@@ -1581,6 +1585,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 235243623, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 235243623, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8601809913714888440, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1669,6 +1681,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 149105407}
+    - target: {fileID: 8601809913714888443, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
+      propertyPath: dialogues.Array.data[0].lines.Array.data[0]
+      value: 'Steuerung: \\nBewegung: WASD \\nDash: Shift'
+      objectReference: {fileID: 0}
     - target: {fileID: 8601809913714888444, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
       propertyPath: m_Name
       value: Canvas
