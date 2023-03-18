@@ -30,8 +30,7 @@ public class GrabbingMechanic : MonoBehaviour
     private CollisionDetectionMode2D rbCollDect;
     private RigidbodyInterpolation2D rbInterpol;
     private bool rbFreezeRot;
-
-
+    private float rbGravityScale;
 
 
     // Start is called before the first frame update
@@ -68,6 +67,7 @@ public class GrabbingMechanic : MonoBehaviour
                 grabbedObject = hitInfo.collider.gameObject;
 
                 Rigidbody2D storeRB = grabbedObject.GetComponent<Rigidbody2D>();
+                rbGravityScale = storeRB.gravityScale;
                 rbMaterial= storeRB.sharedMaterial;
                 rbMass = storeRB.mass;
                 rbDrag = storeRB.drag;
@@ -87,6 +87,7 @@ public class GrabbingMechanic : MonoBehaviour
 
             grabbedObject.AddComponent<Rigidbody2D>();
             Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
+            rb.gravityScale = rbGravityScale;
             rb.sharedMaterial = rbMaterial;
             rb.mass = rbMass;
             rb.drag = rbDrag;
