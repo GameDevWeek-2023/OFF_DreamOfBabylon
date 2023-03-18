@@ -19,7 +19,7 @@ public class InGameMenu : MonoBehaviour
     [SerializeField] private float textSpeed;
     [SerializeField] private ScriptableObjectScript progressHolder;
     private bool dialogWasActive;
-    private int dialogueIndex;
+    //private int dialogueIndex;
     private int indexInDialogue;
     float timer = 0.0f;
     
@@ -76,11 +76,10 @@ public class InGameMenu : MonoBehaviour
         volumeSlider.value = AudioManager.instance.GetMasterVolume();
         //audioManager = FindObjectOfType<AudioManager>();
         dialogueTextComponent.text = string.Empty;
-        if(SceneManager.GetActiveScene().buildIndex ==1 )
+        if(progressHolder.dialogIndex == 0)
         {
             player.GetComponent<CubeMovementTest>().PauseInputs(true);
             Debug.Log("BuildIndex 1");
-            dialogueIndex = 0;
             StartDialogue();
         }
         dialogWasActive = dialogueComponent.activeInHierarchy;
@@ -169,7 +168,7 @@ public class InGameMenu : MonoBehaviour
         Time.timeScale = 1;
         player.GetComponent<CubeMovementTest>().PauseInputs(false);
         SceneManager.LoadScene(0);
-        SaveSystem.SaveProgress(new PlayerProgress(SceneManager.GetActiveScene().buildIndex, CheckPoint.instance.NumberOfCheckPoint, AudioManager.instance.GetMasterVolume()));
+        SaveSystem.SaveProgress(new PlayerProgress(SceneManager.GetActiveScene().buildIndex, CheckPoint.instance.NumberOfCheckPoint, AudioManager.instance.GetMasterVolume(), progressHolder.dialogIndex));
     }
 
     public void OpenOptions()
@@ -195,14 +194,14 @@ public class InGameMenu : MonoBehaviour
     {
         if(dialogueComponent.activeInHierarchy&&(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return)))
         {
-            if(dialogueTextComponent.text == dialogues[dialogueIndex].lines[indexInDialogue].Replace("\\n", "\n"))
+            if(dialogueTextComponent.text == dialogues[progressHolder.dialogIndex].lines[indexInDialogue].Replace("\\n", "\n"))
             {
                 NextLine();
             }
             else
             {
                 StopAllCoroutines();
-                dialogueTextComponent.text = dialogues[dialogueIndex].lines[indexInDialogue].Replace("\\n", "\n");   
+                dialogueTextComponent.text = dialogues[progressHolder.dialogIndex].lines[indexInDialogue].Replace("\\n", "\n");   
             }
         }
     }
@@ -220,7 +219,7 @@ public class InGameMenu : MonoBehaviour
     IEnumerator TypeLine()
     {
         string s = "";
-        foreach(char c in dialogues[dialogueIndex].lines[indexInDialogue].ToCharArray())
+        foreach(char c in dialogues[progressHolder.dialogIndex].lines[indexInDialogue].ToCharArray())
         {
             if(!s.Contains("\\"))
             {
@@ -244,7 +243,7 @@ public class InGameMenu : MonoBehaviour
 
     void NextLine()
     {
-        if (indexInDialogue < dialogues[dialogueIndex].lines.Length - 1)
+        if (indexInDialogue < dialogues[progressHolder.dialogIndex].lines.Length - 1)
         {
             indexInDialogue++;
             dialogueTextComponent.text = string.Empty;
@@ -252,7 +251,7 @@ public class InGameMenu : MonoBehaviour
         }
         else
         {
-            dialogueIndex++;
+            progressHolder.dialogIndex++;
             dialogueComponent.SetActive(false);
             dialogWasActive = false;
             player.GetComponent<CubeMovementTest>().PauseInputs(dialogWasActive);

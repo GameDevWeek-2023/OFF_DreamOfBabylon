@@ -28,6 +28,7 @@ public class StartMenuUI : MonoBehaviour
             AudioManager.instance.ChangeVolume(progress.audioVolume);
             progressHolder.level = progress.level;
             progressHolder.checkPointInLevel = progress.checkPointInLevel;
+            progressHolder.dialogIndex = progress.dialogIndex;
             continueButton.SetActive(true);
             deleteSavesButton.SetActive(true);
         }
@@ -53,6 +54,7 @@ public class StartMenuUI : MonoBehaviour
         AudioManager.instance.StopMainMenuMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         progressHolder.newGame = true;
+        progressHolder.dialogIndex = 0;
     }
 
     public void ContinueGame()
