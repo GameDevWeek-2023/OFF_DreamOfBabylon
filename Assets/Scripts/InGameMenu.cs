@@ -89,6 +89,7 @@ public class InGameMenu : MonoBehaviour
             Debug.Log("Menu aufgerufen");
             Time.timeScale = 0;
             player.GetComponent<CubeMovementTest>().PauseInputs(true);
+            player.GetComponent<Character_Action_Nightmare>().PauseInputs(true);
             if ((bool)(AudioManager.instance.FindMusic("DreamThemeIntro")?.source.isPlaying))
             {
                 AudioManager.instance.Pause("DreamThemeIntro");
@@ -121,6 +122,7 @@ public class InGameMenu : MonoBehaviour
             dialogueComponent.SetActive(dialogWasActive);
             Time.timeScale = 1;
             player.GetComponent<CubeMovementTest>().PauseInputs(dialogWasActive);
+            player.GetComponent<Character_Action_Nightmare>().PauseInputs(dialogWasActive);
         }
     }
 
@@ -190,6 +192,7 @@ public class InGameMenu : MonoBehaviour
         dialogueComponent.SetActive(true);
         dialogWasActive = true;
         player.GetComponent<CubeMovementTest>().PauseInputs(true);
+        player.GetComponent<Character_Action_Nightmare>().PauseInputs(true);
         StartCoroutine(TypeLine());
     }
 
@@ -232,6 +235,7 @@ public class InGameMenu : MonoBehaviour
             dialogueComponent.SetActive(false);
             dialogWasActive = false;
             player.GetComponent<CubeMovementTest>().PauseInputs(dialogWasActive);
+            player.GetComponent<Character_Action_Nightmare>().PauseInputs(dialogWasActive);
         }
     }
 }
