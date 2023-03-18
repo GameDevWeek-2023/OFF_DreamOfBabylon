@@ -13,7 +13,9 @@ public class StartMenuUI : MonoBehaviour
     [SerializeField] GameObject deleteSavesButton;
     [SerializeField] GameObject MainMenu;
     [SerializeField] GameObject OptionsMenu;
+    [SerializeField] GameObject Credits;
     [SerializeField] Slider volumeSlider;
+    [SerializeField] ScriptableObjectScript progressHolder;
     private PlayerProgress progress;
     // Start is called before the first frame update
     void Start()
@@ -24,11 +26,16 @@ public class StartMenuUI : MonoBehaviour
         if (progress != null)
         {
             AudioManager.instance.ChangeVolume(progress.audioVolume);
+            progressHolder.level = progress.level;
+            progressHolder.checkPointInLevel = progress.checkPointInLevel;
             continueButton.SetActive(true);
             deleteSavesButton.SetActive(true);
         }
         else 
         {
+            progressHolder.level = 1;
+            progressHolder.checkPointInLevel = 0;
+            progressHolder.newGame = true;
             continueButton.SetActive(false);
             deleteSavesButton.SetActive(false);
         }
@@ -45,12 +52,14 @@ public class StartMenuUI : MonoBehaviour
     {
         AudioManager.instance.StopMainMenuMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        progressHolder.newGame = true;
     }
 
     public void ContinueGame()
     {
         AudioManager.instance.StopMainMenuMusic();
         SceneManager.LoadScene(progress.level);
+        progressHolder.newGame = false;
     }
 
     public void ShowOptions()
@@ -62,10 +71,17 @@ public class StartMenuUI : MonoBehaviour
     {
         MainMenu.SetActive(true);
         OptionsMenu.SetActive(false);
+        Credits.SetActive(false);
     }
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ShowCredits()
+    {
+        MainMenu.SetActive(false);
+        Credits.SetActive(true);
     }
 
     public void DeleteSaves()
@@ -75,6 +91,9 @@ public class StartMenuUI : MonoBehaviour
             SaveSystem.DeleteSaves();
             continueButton.SetActive(false);
             deleteSavesButton.SetActive(false);
+            progressHolder.newGame = true;
+            progressHolder.level = 1;
+            progressHolder.checkPointInLevel = 0;
         }
     }
 

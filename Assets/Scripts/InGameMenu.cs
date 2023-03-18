@@ -17,27 +17,28 @@ public class InGameMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueTextComponent;
     [SerializeField] private Dialog[] dialogues;
     [SerializeField] private float textSpeed;
+    [SerializeField] private ScriptableObjectScript progressHolder;
     private bool dialogWasActive;
     private int dialogueIndex;
     private int indexInDialogue;
     float timer = 0.0f;
     
 
-    private PlayerProgress progress;
+    //private PlayerProgress progress;
 
     //private AudioManager audioManager;
     // Start is called before the first frame update
 
     private void Awake()
     {
-        progress = SaveSystem.LoadProgress();
+        //progress = SaveSystem.LoadProgress();
     }
     void Start()
     {
-        if (progress != null && progress.level == SceneManager.GetActiveScene().buildIndex)
+        CheckPoint[] cp = FindObjectsOfType<CheckPoint>();
+        if (!progressHolder.newGame && progressHolder.level == SceneManager.GetActiveScene().buildIndex)
         {
             //AudioManager.instance.ChangeVolume(progress.audioVolume);
-            CheckPoint[] cp = FindObjectsOfType<CheckPoint>();
             if(cp.Length == 0)
             {
                 Debug.Log("No Check points");
@@ -46,13 +47,31 @@ public class InGameMenu : MonoBehaviour
             {
                 foreach(CheckPoint c in cp)
                 {
-                    if(c.NumberOfCheckPoint == progress.checkPointInLevel)
+                    if(c.NumberOfCheckPoint == progressHolder.checkPointInLevel)
                     {
                         CheckPoint.instance = c;
                         player.transform.position = CheckPoint.instance.GetRespornPosition(); ;
                     }
                 }
             }        
+        }
+        else
+        {
+            if (cp.Length == 0)
+            {
+                Debug.Log("No Check points");
+            }
+            else
+            {
+                foreach (CheckPoint c in cp)
+                {
+                    if (c.NumberOfCheckPoint == 0)
+                    {
+                        CheckPoint.instance = c;
+                        player.transform.position = CheckPoint.instance.GetRespornPosition(); ;
+                    }
+                }
+            }
         }
         volumeSlider.value = AudioManager.instance.GetMasterVolume();
         //audioManager = FindObjectOfType<AudioManager>();
@@ -65,6 +84,7 @@ public class InGameMenu : MonoBehaviour
             StartDialogue();
         }
         dialogWasActive = dialogueComponent.activeInHierarchy;
+        Debug.Log("Active Checkpoint: CheckPoint Nr. "+ CheckPoint.instance.NumberOfCheckPoint);
     }
 
     void OnEscButton(InputValue value)

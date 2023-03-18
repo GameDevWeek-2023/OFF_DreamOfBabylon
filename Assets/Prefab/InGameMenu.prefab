@@ -2756,6 +2756,7 @@ MonoBehaviour:
     - 'Steuerung: \nBewegung: WASD \nDash: Shift\nSwitch Dream: E\nInteract: F'
     - "Viel Spa\xDF!"
   textSpeed: 0.05
+  progressHolder: {fileID: 11400000, guid: 6e6da5cbb0de5e44a9308b971b307946, type: 2}
 --- !u!114 &8601809913714888442
 MonoBehaviour:
   m_ObjectHideFlags: 0
