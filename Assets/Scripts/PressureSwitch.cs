@@ -3,10 +3,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+
 public class PressureSwitch : Switch
 {
+    
+    [SerializeField] private Sprite imgSwitchOff;
+    [SerializeField] private Sprite imgSwitchOn;
+    private SpriteRenderer spriteRenderer;
+
     int numberColliding = 0;
     public List<GameObject> onSwitch = new List<GameObject>();
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
 
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,6 +30,7 @@ public class PressureSwitch : Switch
             if (onSwitch.Count == 0)
             {
                 FindObjectOfType<AudioManager>().Play("PressureSwitch");
+                spriteRenderer.sprite = imgSwitchOn;
             }
             onSwitch.Add(collision.gameObject);
         }
@@ -34,7 +48,8 @@ public class PressureSwitch : Switch
         if(onSwitch.Count == 0)
         {
             TurnOff();
-            
+            spriteRenderer.sprite = imgSwitchOff;
+
         }
 
         Debug.Log("Exit. On Switch: " + onSwitch.Count);
