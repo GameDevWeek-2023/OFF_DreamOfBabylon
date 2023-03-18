@@ -7,11 +7,14 @@ using System.IO;
 public class AudioManager : MonoBehaviour
 {
 
+    [SerializeField] AudioMixer mixer;
     public Sound[] sounds;
 
     public static AudioManager instance;
     private float masterVolume = 1;
     private bool nightmare = false;
+
+    public const string MASTER_KEY = "masterVolume";
 
     void Awake()
     {
@@ -19,27 +22,29 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
-            return; 
         }
-        DontDestroyOnLoad(gameObject);
+        LoadVolume();
 
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = s.outputAudioMixerGroup;
+            
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
-            /*s.source.spatialBlend = s.spatialBlend;
+            s.source.spatialBlend = s.spatialBlend;
             s.source.dopplerLevel = s.dopplerLevel;
             s.source.minDistance = s.minDistance;
-            s.source.maxDistance = s.maxDistance;*/
-        } 
+            s.source.maxDistance = s.maxDistance;
+        }
     }
     public void StartMainMenuMusic()
     {
@@ -168,5 +173,11 @@ public class AudioManager : MonoBehaviour
             }
         }
         nightmare = !nightmare;
+    }
+
+    void LoadVolume() //Volume saved in VolumeSettings.cs
+    {
+        float masterVolume = PlayerPrefs.GetFloat(MASTER_KEY, 1f);
+        mixer.SetFloat(VolumeSettings.MIXER_MASTER, Mathf.Log10(masterVolume) * 20);
     }
 }

@@ -13,7 +13,7 @@ public class InGameMenu : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject dialogueComponent;
     [SerializeField] GameObject nightmareBar;
-    [SerializeField] private Slider volumeSlider;
+//    [SerializeField] private Slider volumeSlider;
     [SerializeField] private TextMeshProUGUI dialogueTextComponent;
     [SerializeField] private Dialog[] dialogues;
     [SerializeField] private float textSpeed;
@@ -73,7 +73,7 @@ public class InGameMenu : MonoBehaviour
                 }
             }
         }
-        volumeSlider.value = AudioManager.instance.GetMasterVolume();
+        //volumeSlider.value = AudioManager.instance.GetMasterVolume();
         //audioManager = FindObjectOfType<AudioManager>();
         dialogueTextComponent.text = string.Empty;
         if(SceneManager.GetActiveScene().buildIndex ==1 )
@@ -184,11 +184,11 @@ public class InGameMenu : MonoBehaviour
         optionsMenu.SetActive(false);
     }
 
-    public void ChangeMusicVolume()
+/*    public void ChangeMusicVolume()
     {
         Debug.Log("New Value: " + volumeSlider.value);
         AudioManager.instance?.ChangeVolume(volumeSlider.value);
-    }
+    }*/
 
     // Update is called once per frame
     void Update()

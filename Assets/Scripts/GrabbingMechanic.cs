@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class GrabbingMechanic : MonoBehaviour
 {
+    [SerializeField] AudioSource grab;
 
     [SerializeField] private Transform grabPoint;
 
@@ -62,7 +63,7 @@ public class GrabbingMechanic : MonoBehaviour
             RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, direction, rayDistance);
             if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
             {
-                FindObjectOfType<AudioManager>().Play("Grab");
+                grab.Play();
 
                 grabbedObject = hitInfo.collider.gameObject;
 
@@ -83,7 +84,7 @@ public class GrabbingMechanic : MonoBehaviour
         }
         else
         {
-            FindObjectOfType<AudioManager>().Stop("Grab");
+            grab.Stop();
 
             grabbedObject.AddComponent<Rigidbody2D>();
             Rigidbody2D rb = grabbedObject.GetComponent<Rigidbody2D>();
