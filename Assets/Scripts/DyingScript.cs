@@ -46,15 +46,16 @@ public class DyingScript : MonoBehaviour
     {
         if(isDead && armatureComponent.animation.isCompleted)
         {
-            RespornPlayer(CheckPoint.instance);
+            RespornPlayer();
         }
     }
 
-    private void RespornPlayer(CheckPoint checkPoint)
+    private void RespornPlayer()
     {
-        gameObject.transform.position = CheckPoint.instance.GetRespornPosition();
+        //gameObject.transform.position = CheckPoint.instance.GetRespornPosition();
         isDead = false;
         cubeMovement.PauseInputs(false);
         cubeMovement.Horizontal = 0;
+        cubeMovement.ResetLevel();
     }
 }
