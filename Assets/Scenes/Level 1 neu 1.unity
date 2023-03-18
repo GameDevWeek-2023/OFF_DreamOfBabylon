@@ -6076,6 +6076,126 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a0e2fcdba00ae234d93c6796a53bdd93, type: 3}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[5].name
+      value: MainMenuMusicIntro
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bfa2e12c1f7c75344a0890f626ca5b6e, type: 3}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[6].name
+      value: MainMenuMusicLoop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bfa2e12c1f7c75344a0890f626ca5b6e, type: 3}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[7].name
+      value: MainMenuMusicLoop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bfa2e12c1f7c75344a0890f626ca5b6e, type: 3}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[8].name
+      value: MainMenuMusicLoop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bfa2e12c1f7c75344a0890f626ca5b6e, type: 3}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[9].name
+      value: MainMenuMusicLoop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[5].volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[6].volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[7].volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[5].maxDistance
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[5].minDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[6].maxDistance
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[6].minDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[7].maxDistance
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[7].minDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[8].maxDistance
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[8].minDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[5].dopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[5].spatialBlend
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[6].dopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[6].spatialBlend
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[7].dopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[7].spatialBlend
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[8].dopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254222437076607000, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
+      propertyPath: sounds.Array.data[8].spatialBlend
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2254222437076607001, guid: 2a17ee78e0e44184aa97b1a77bc74ddd, type: 3}
       propertyPath: m_Name
       value: AudioManager
