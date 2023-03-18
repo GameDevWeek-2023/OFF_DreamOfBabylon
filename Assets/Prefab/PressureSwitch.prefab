@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0, g: 0.9706273, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1a1f33324554b114e91f0dd617223992, type: 3}
+  m_Color: {r: 0, g: 0.7696705, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,8 +102,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.21133333}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.5019531}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -130,3 +130,6 @@ MonoBehaviour:
   OffMessage: Close
   isOn: 0
   resetTime: 2
+  imgSwitchOff: {fileID: 21300000, guid: bb5113942f04eb14abb3d8cfea5fc254, type: 3}
+  imgSwitchOn: {fileID: 21300000, guid: 7ce85cbfc11fd1f47bc4dc43cc2e7bed, type: 3}
+  onSwitch: []
