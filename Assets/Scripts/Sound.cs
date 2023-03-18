@@ -18,6 +18,8 @@ public class Sound
     [HideInInspector]
     public AudioSource source;
 
+    public bool isPaused = false;
+
     public AudioClip GetAudioClip()
     {
         return clip;

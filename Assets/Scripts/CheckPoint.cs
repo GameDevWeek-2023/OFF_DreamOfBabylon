@@ -37,11 +37,11 @@ public class CheckPoint : MonoBehaviour
             bool currentThemeIsNightmare = FindObjectOfType<Character_Action_Nightmare>().IsCurrentThemeNightmare();
             if(currentThemeIsNightmare == false)
             {
-                FindObjectOfType<AudioManager>().Play("MagicCircleDream");
+                AudioManager.instance.Play("MagicCircleDream");
             }
             else
             {
-                FindObjectOfType<AudioManager>().Play("MagicCircleNightmare");
+                AudioManager.instance.Play("MagicCircleNightmare");
             }
             StartCoroutine(NewCheckpointEffect());
 

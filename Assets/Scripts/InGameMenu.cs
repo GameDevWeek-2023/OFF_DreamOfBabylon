@@ -20,10 +20,38 @@ public class InGameMenu : MonoBehaviour
     private bool dialogWasActive;
     private int dialogueIndex;
     private int indexInDialogue;
+
+    private PlayerProgress progress;
+
     //private AudioManager audioManager;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        progress = SaveSystem.LoadProgress();
+    }
     void Start()
     {
+        if (progress != null)
+        {
+            AudioManager.instance.ChangeVolume(progress.audioVolume);
+            CheckPoint[] cp = FindObjectsOfType<CheckPoint>();
+            if(cp.Length == 0)
+            {
+                Debug.Log("No Check points");
+            }
+            else
+            {
+                foreach(CheckPoint c in cp)
+                {
+                    if(c.NumberOfCheckPoint == progress.checkPointInLevel)
+                    {
+                        CheckPoint.instance = c;
+                        player.transform.position = CheckPoint.instance.transform.GetChild(0).transform.position;
+                    }
+                }
+            }        }
+        volumeSlider.value = AudioManager.instance.GetMasterVolume();
         //audioManager = FindObjectOfType<AudioManager>();
         dialogueTextComponent.text = string.Empty;
         if(SceneManager.GetActiveScene().buildIndex ==1 )
@@ -59,9 +87,34 @@ public class InGameMenu : MonoBehaviour
             Debug.Log("Menu aufgerufen");
             Time.timeScale = 0;
             player.GetComponent<CubeMovementTest>().PauseInputs(true);
+            if ((bool)(AudioManager.instance.FindMusic("DreamThemeIntro")?.source.isPlaying))
+            {
+                AudioManager.instance.Pause("DreamThemeIntro");
+                AudioManager.instance.Pause("NightmareThemeIntro");
+            }
+            if ((bool)(AudioManager.instance.FindMusic("DreamTheme")?.source.isPlaying))
+            {
+
+                AudioManager.instance.Pause("DreamTheme");
+                AudioManager.instance.Pause("NightmareTheme");
+            }
+            AudioManager.instance.StartMainMenuMusic();
+
         }
         else
         {
+            if((bool)(AudioManager.instance.FindMusic("DreamThemeIntro")?.isPaused))
+            {
+                AudioManager.instance.Play("DreamThemeIntro");
+                AudioManager.instance.Play("NightmareThemeIntro");
+            }
+            if ((bool)(AudioManager.instance.FindMusic("DreamTheme")?.isPaused))
+            {
+
+                AudioManager.instance.Play("DreamTheme");
+                AudioManager.instance.Play("NightmareTheme");
+            }
+            AudioManager.instance.StopMainMenuMusic();
             ingameUI.SetActive(false);
             nightmareBar.SetActive(true);
             dialogueComponent.SetActive(dialogWasActive);
@@ -75,7 +128,7 @@ public class InGameMenu : MonoBehaviour
         Time.timeScale = 1;
         player.GetComponent<CubeMovementTest>().PauseInputs(false);
         SceneManager.LoadScene(0);
-        SaveSystem.SaveProgress(new PlayerProgress(SceneManager.GetActiveScene().buildIndex, CheckPoint.instance.NumberOfCheckPoint/*, AudioManager.instance.GetMasterVolume()*/));
+        SaveSystem.SaveProgress(new PlayerProgress(SceneManager.GetActiveScene().buildIndex, CheckPoint.instance.NumberOfCheckPoint, AudioManager.instance.GetMasterVolume()));
     }
 
     public void OpenOptions()

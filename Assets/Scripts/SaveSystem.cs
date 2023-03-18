@@ -30,8 +30,25 @@ public static class SaveSystem
             return data;
         } else
         {
-            Debug.LogError("Save file not found in " + path);
+            //Debug.LogError("Save file not found in " + path);
             return null;
+        }
+    }
+
+    public static void DeleteSaves()
+    {
+        string path = Application.persistentDataPath + "/playerProgress.fun";
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            if (File.Exists(path))
+            {
+                Debug.Log("File didn't get Deleted");
+            }
+            //BinaryFormatter formatter = new BinaryFormatter();
+            //FileStream stream = new FileStream(path, FileMode.Open);
+            //formatter.
         }
     }
 }

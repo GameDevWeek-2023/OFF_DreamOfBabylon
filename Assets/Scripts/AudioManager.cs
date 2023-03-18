@@ -40,9 +40,16 @@ public class AudioManager : MonoBehaviour
     public void StartMainMenuMusic()
     {
         Sound mainMenuMusicIntro = FindMusic("MainMenuMusicIntro");
-        Sound mainMenuMusicLoop = FindMusic("MeinMenuMusicLoop");
+        Sound mainMenuMusicLoop = FindMusic("MainMenuMusicLoop");
         mainMenuMusicIntro.source.Play();
         mainMenuMusicLoop.source.PlayScheduled(AudioSettings.dspTime + mainMenuMusicIntro.GetAudioClip().length);
+    }
+    public void StopMainMenuMusic()
+    {
+        Sound mainMenuMusicIntro = FindMusic("MainMenuMusicIntro");
+        Sound mainMenuMusicLoop = FindMusic("MainMenuMusicLoop");
+        mainMenuMusicIntro.source.Stop();
+        mainMenuMusicLoop.source.Stop();
     }
     public void StartBackgroundMusic()
     {
@@ -78,12 +85,14 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = FindMusic(name);
         s.source.Play();
+        s.isPaused = false;
     }
 
     public void Pause(string name)
     {
         Sound s = FindMusic(name);
         s.source.Pause();
+        s.isPaused = true;
     }
 
     public void Stop(string name)
