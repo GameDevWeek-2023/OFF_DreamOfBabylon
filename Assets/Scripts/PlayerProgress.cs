@@ -8,11 +8,13 @@ public class PlayerProgress
     public int level;
     public float audioVolume;
     public int checkPointInLevel;
-    public PlayerProgress(int lvl, int checkPointInLevel = 0, float audioVolume = 1)
+    public int dialogIndex;
+    public PlayerProgress(int lvl, int checkPointInLevel = 0, float audioVolume = 1, int dialogIndex = 0)
     {
         level = lvl;
         this.checkPointInLevel = checkPointInLevel;
         this.audioVolume = audioVolume;
+        this.dialogIndex = dialogIndex;
     }
 
     //public void LoadPlayerProgress()
