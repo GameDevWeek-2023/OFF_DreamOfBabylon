@@ -7,15 +7,31 @@ public class Door : MonoBehaviour
 
     [SerializeField] private bool isOpen;
     [SerializeField] private int knocksToOpen = 1;
+    [SerializeField] private Sprite imgOpenDoor;
+    [SerializeField] private Sprite imgClosedDoor;
+
     private Collider2D collider;
     private Animator animator;
     private int knocks = 0;
 
-
-
+    private SpriteRenderer spriteRenderer;
+  
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        if (isOpen) 
+        {
+            // set img open
+            spriteRenderer.sprite = imgOpenDoor;
+        }
+        else 
+        {
+            // set img closed
+            spriteRenderer.sprite = imgClosedDoor;
+
+        }
         collider = GetComponent<Collider2D>();
         TryGetComponent<Animator>(out animator);
         //animator = GetComponent<Animator>();
@@ -25,7 +41,12 @@ public class Door : MonoBehaviour
     {
         knocks++;
         if (!isOpen && knocks >= knocksToOpen)
+        {
+            spriteRenderer.sprite = imgOpenDoor;
+            AudioManager.instance.Play("Door");
             SetState(true);
+        }
+            
     }
 
     public void Close()
@@ -37,6 +58,8 @@ public class Door : MonoBehaviour
         {
             SetState(false);
             Debug.Log("success");
+            spriteRenderer.sprite = imgClosedDoor;
+            AudioManager.instance.Play("Door");            
             return;
         }
         Debug.Log("failed");

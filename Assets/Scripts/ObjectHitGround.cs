@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class ObjectHitGround : MonoBehaviour
 {
-    void OnCollisionEnter2D()
+    void OnCollisionEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ground")
+        {
+            AudioManager.instance?.Play("Drop");
+        }
+    }
 }
