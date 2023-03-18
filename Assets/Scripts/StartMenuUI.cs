@@ -43,14 +43,13 @@ public class StartMenuUI : MonoBehaviour
 
     public void PlayGame()
     {
-        //AudioManager.instance.StopAllCoroutines();
         AudioManager.instance.StopMainMenuMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ContinueGame()
     {
-        AudioManager.instance.StopAllCoroutines();
+        AudioManager.instance.StopMainMenuMusic();
         SceneManager.LoadScene(progress.level);
     }
 

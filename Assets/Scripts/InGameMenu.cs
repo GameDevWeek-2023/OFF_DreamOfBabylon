@@ -20,6 +20,8 @@ public class InGameMenu : MonoBehaviour
     private bool dialogWasActive;
     private int dialogueIndex;
     private int indexInDialogue;
+    float timer = 0.0f;
+    
 
     private PlayerProgress progress;
 
@@ -91,6 +93,7 @@ public class InGameMenu : MonoBehaviour
             {
                 AudioManager.instance.Pause("DreamThemeIntro");
                 AudioManager.instance.Pause("NightmareThemeIntro");
+                timer += Time.deltaTime;
             }
             if ((bool)(AudioManager.instance.FindMusic("DreamTheme")?.source.isPlaying))
             {
@@ -110,9 +113,7 @@ public class InGameMenu : MonoBehaviour
             }
             if ((bool)(AudioManager.instance.FindMusic("DreamTheme")?.isPaused))
             {
-
-                AudioManager.instance.Play("DreamTheme");
-                AudioManager.instance.Play("NightmareTheme");
+                StartCoroutine(StartBackgroundMusicAgain());
             }
             AudioManager.instance.StopMainMenuMusic();
             ingameUI.SetActive(false);
@@ -123,8 +124,25 @@ public class InGameMenu : MonoBehaviour
         }
     }
 
+    IEnumerator StartBackgroundMusicAgain()
+    {
+        yield return new WaitForSeconds(timer);
+        AudioManager.instance.Play("DreamTheme");
+        AudioManager.instance.Play("NightmareTheme");
+    }
+
     public void BackToMainMenu()
     {
+        if ((bool)(AudioManager.instance.FindMusic("DreamThemeIntro")?.source.isPlaying) || (bool)(AudioManager.instance.FindMusic("DreamThemeIntro")?.isPaused))
+        {
+            AudioManager.instance.Stop("DreamThemeIntro");
+            AudioManager.instance.Stop("NightmareThemeIntro");
+        }
+        if ((bool)(AudioManager.instance.FindMusic("DreamTheme")?.source.isPlaying) || (bool)(AudioManager.instance.FindMusic("DreamTheme")?.isPaused))
+        {
+            AudioManager.instance.Stop("DreamTheme");
+            AudioManager.instance.Stop("NightmareTheme");
+        }
         Time.timeScale = 1;
         player.GetComponent<CubeMovementTest>().PauseInputs(false);
         SceneManager.LoadScene(0);
