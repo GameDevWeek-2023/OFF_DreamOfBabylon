@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 
 public class BallScript : MonoBehaviour, IResetable
 {
+    [SerializeField] AudioSource roll;
     private Vector2 startPos;
     public void Reset()
     {
@@ -15,15 +17,20 @@ public class BallScript : MonoBehaviour, IResetable
     {
         if (gameObject.GetComponent<Rigidbody2D>().velocity.x > 0.5f || gameObject.GetComponent<Rigidbody2D>().velocity.x < -0.5f)
         {
-            if (!((bool)(AudioManager.instance.FindMusic("Roll")?.source.isPlaying)))
+            if (!((bool)(roll.isPlaying)))
             {
-                AudioManager.instance?.Play("Roll");
+                roll.Play();
             }
         }
         else
         {
-            AudioManager.instance?.Stop("Roll");
+            roll.Stop();
         }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        roll.Stop();
     }
 
     // Start is called before the first frame update
