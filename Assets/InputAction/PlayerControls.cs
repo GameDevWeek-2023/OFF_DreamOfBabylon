@@ -98,6 +98,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f0f4755-5f64-4ec4-803d-0f114f3d224d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -397,6 +406,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""LadderUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a724ff24-45e8-4b8a-a251-c4866010f6e6"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -413,6 +433,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Input_Nightmare = m_Input.FindAction("Nightmare", throwIfNotFound: true);
         m_Input_Interact = m_Input.FindAction("Interact", throwIfNotFound: true);
         m_Input_LadderUpDown = m_Input.FindAction("LadderUpDown", throwIfNotFound: true);
+        m_Input_Reset = m_Input.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -482,6 +503,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Input_Nightmare;
     private readonly InputAction m_Input_Interact;
     private readonly InputAction m_Input_LadderUpDown;
+    private readonly InputAction m_Input_Reset;
     public struct InputActions
     {
         private @PlayerControls m_Wrapper;
@@ -494,6 +516,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Nightmare => m_Wrapper.m_Input_Nightmare;
         public InputAction @Interact => m_Wrapper.m_Input_Interact;
         public InputAction @LadderUpDown => m_Wrapper.m_Input_LadderUpDown;
+        public InputAction @Reset => m_Wrapper.m_Input_Reset;
         public InputActionMap Get() { return m_Wrapper.m_Input; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -527,6 +550,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LadderUpDown.started += instance.OnLadderUpDown;
             @LadderUpDown.performed += instance.OnLadderUpDown;
             @LadderUpDown.canceled += instance.OnLadderUpDown;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
         }
 
         private void UnregisterCallbacks(IInputActions instance)
@@ -555,6 +581,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LadderUpDown.started -= instance.OnLadderUpDown;
             @LadderUpDown.performed -= instance.OnLadderUpDown;
             @LadderUpDown.canceled -= instance.OnLadderUpDown;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
         }
 
         public void RemoveCallbacks(IInputActions instance)
@@ -582,5 +611,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnNightmare(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnLadderUpDown(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }

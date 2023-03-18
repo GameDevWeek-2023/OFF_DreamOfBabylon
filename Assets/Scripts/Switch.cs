@@ -94,6 +94,7 @@ public class Switch : MonoBehaviour, IResetable
 
     public void Reset()
     {
-        SetState(false);
+        if(isOn)
+            SetState(false);
     }
 }

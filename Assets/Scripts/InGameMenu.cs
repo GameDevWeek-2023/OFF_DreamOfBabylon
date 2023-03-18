@@ -34,9 +34,9 @@ public class InGameMenu : MonoBehaviour
     }
     void Start()
     {
-        if (progress != null)
+        if (progress != null && progress.level == SceneManager.GetActiveScene().buildIndex)
         {
-            AudioManager.instance.ChangeVolume(progress.audioVolume);
+            //AudioManager.instance.ChangeVolume(progress.audioVolume);
             CheckPoint[] cp = FindObjectsOfType<CheckPoint>();
             if(cp.Length == 0)
             {
@@ -49,10 +49,11 @@ public class InGameMenu : MonoBehaviour
                     if(c.NumberOfCheckPoint == progress.checkPointInLevel)
                     {
                         CheckPoint.instance = c;
-                        player.transform.position = CheckPoint.instance.transform.GetChild(0).transform.position;
+                        player.transform.position = CheckPoint.instance.GetRespornPosition(); ;
                     }
                 }
-            }        }
+            }        
+        }
         volumeSlider.value = AudioManager.instance.GetMasterVolume();
         //audioManager = FindObjectOfType<AudioManager>();
         dialogueTextComponent.text = string.Empty;

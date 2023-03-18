@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CubeMovementTest : MonoBehaviour
+public class CubeMovementTest : MonoBehaviour, IResetable
 {
     private float horizontal;
 
@@ -40,6 +40,7 @@ public class CubeMovementTest : MonoBehaviour
     private bool pauseInputs = false;
     private float gravity;
     private DragonBones.UnityArmatureComponent armatureComponent;
+    private List<IResetable> resetList;
 
     [SerializeField]private float coyoteTime = 0.05f;
     private float coyoteTimeCounter;
@@ -59,6 +60,17 @@ public class CubeMovementTest : MonoBehaviour
         //Time.timeScale = 0.3f;
         gravity = rb.gravityScale;
         armatureComponent = GetComponentInChildren<DragonBones.UnityArmatureComponent>();
+        resetList = new List<IResetable>();
+        var compenentsInScene = FindObjectsOfType<Component>();
+        foreach(var component in compenentsInScene)
+        {
+            var componentInterface = component.GetComponent<IResetable>();
+            if(componentInterface!=null)
+            {
+                resetList.Add(componentInterface);
+            }
+        }
+        //resetList = FindObjectsByType<IResetable>();
         //_audioManager = FindObjectOfType<AudioManager>();
     }
 
@@ -167,6 +179,18 @@ public class CubeMovementTest : MonoBehaviour
 
         
         
+    }
+
+    void OnReset(InputValue value)
+    {
+        if(pauseInputs)
+        {
+            return;
+        }
+        foreach(IResetable r in resetList)
+        {
+            r.Reset();
+        }
     }
 
     /*public void Movement(InputAction.CallbackContext context)
@@ -315,5 +339,10 @@ public class CubeMovementTest : MonoBehaviour
     {
         horizontal = 0f;
         AudioManager.instance?.Stop("Footsteps");
+    }
+
+    public void Reset()
+    {
+        gameObject.transform.position = CheckPoint.instance.GetRespornPosition();
     }
 }

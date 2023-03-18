@@ -21,6 +21,7 @@ public class PressureSwitch : Switch
             onSwitch.Add(collision.gameObject);
         }
         TurnOn();
+        Debug.Log("Enter. On Switch: " + onSwitch.Count);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -35,5 +36,7 @@ public class PressureSwitch : Switch
             TurnOff();
             
         }
+
+        Debug.Log("Exit. On Switch: " + onSwitch.Count);
     }
 }

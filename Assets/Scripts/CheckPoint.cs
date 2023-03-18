@@ -14,6 +14,11 @@ public class CheckPoint : MonoBehaviour
     public ParticleSystem ps;
     private ParticleSystem psa;
 
+    private void Awake()
+    {
+        respornPosition = gameObject.transform.GetChild(0).position;
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +26,6 @@ public class CheckPoint : MonoBehaviour
         {
             Debug.LogWarning("Checkpoint has no number assigned");
         }
-        respornPosition = gameObject.transform.GetChild(0).position;
         ps = gameObject.transform.GetChild(1).GetComponent<ParticleSystem>();
         psa = gameObject.transform.GetChild(2).GetComponent<ParticleSystem>();
     }
