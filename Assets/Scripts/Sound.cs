@@ -8,6 +8,8 @@ public class Sound
 
     public AudioClip clip;
 
+    public AudioMixerGroup outputAudioMixerGroup;
+
     [Range(0f, 1f)]
     public float volume;
     [Range (1f, 3)]
@@ -18,16 +20,13 @@ public class Sound
     [HideInInspector]
     public AudioSource source;
 
-    [HideInInspector]
     public float spatialBlend = 1f;
-    /*
+    
     public float dopplerLevel;
 
-    [HideInInspector]
-    public float minDistance = 2;
+    public float minDistance;
 
-    [HideInInspector]
-    public float maxDistance = 6;*/
+    public float maxDistance;
 
     public bool isPaused = false;
 

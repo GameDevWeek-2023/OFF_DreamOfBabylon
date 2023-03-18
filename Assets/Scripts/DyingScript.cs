@@ -8,6 +8,7 @@ public class DyingScript : MonoBehaviour
     private DragonBones.UnityArmatureComponent armatureComponent;
     private CubeMovementTest cubeMovement;
     private bool isDead;
+    [SerializeField] AudioSource death;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class DyingScript : MonoBehaviour
         {
             cubeMovement.PauseInputs(true);
             armatureComponent.animation.Play("Death", 1);
-            FindObjectOfType<AudioManager>().Play("Death");
+            death.Play();
             isDead = true;
         }
     }
@@ -34,7 +35,7 @@ public class DyingScript : MonoBehaviour
             cubeMovement.PauseInputs(true);
             armatureComponent.animation.Play("Death", 1);
             armatureComponent.animation.timeScale = 0.8f;
-            FindObjectOfType<AudioManager>().Play("Death");
+            death.Play();
             isDead = true;
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
@@ -45,15 +46,16 @@ public class DyingScript : MonoBehaviour
     {
         if(isDead && armatureComponent.animation.isCompleted)
         {
-            RespornPlayer(CheckPoint.instance);
+            RespornPlayer();
         }
     }
 
-    private void RespornPlayer(CheckPoint checkPoint)
+    private void RespornPlayer()
     {
-        gameObject.transform.position = CheckPoint.instance.GetRespornPosition();
+        //gameObject.transform.position = CheckPoint.instance.GetRespornPosition();
         isDead = false;
         cubeMovement.PauseInputs(false);
         cubeMovement.Horizontal = 0;
+        cubeMovement.ResetLevel();
     }
 }

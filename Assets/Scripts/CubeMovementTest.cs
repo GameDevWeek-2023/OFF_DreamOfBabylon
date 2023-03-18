@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 
 public class CubeMovementTest : MonoBehaviour, IResetable
 {
+    [SerializeField] AudioSource dash;
+    [SerializeField] AudioSource footsteps;
+    [SerializeField] AudioSource landing;
+
     private float horizontal;
 
     [SerializeField]private float speed = 8f;
@@ -84,7 +88,7 @@ public class CubeMovementTest : MonoBehaviour, IResetable
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
-            AudioManager.instance?.Stop("Footsteps");
+            footsteps.Stop();
         }
         
         if (isDashing || pauseInputs)
@@ -93,10 +97,10 @@ public class CubeMovementTest : MonoBehaviour, IResetable
         }
         if (IsGrounded() && armatureComponent.animation.lastAnimationName == "Jump_Down_loop")
         {
-            AudioManager.instance?.Play("Landing");
+            landing.Play();
             if (rb.velocity.x != 0)
             {
-                AudioManager.instance?.Play("Footsteps");
+                footsteps.Play();
             }
         }
         if(rb.velocity.x == 0f && (IsGrounded() || IsOnBox())&& armatureComponent.animation.lastAnimationName != "Idle")
@@ -171,10 +175,10 @@ public class CubeMovementTest : MonoBehaviour, IResetable
 
         if (((IsGrounded() || IsOnBox())&& value.Get<Vector2>().x == 0) || !(IsGrounded() || IsOnBox()))
         {
-            AudioManager.instance?.Stop("Footsteps");
+            footsteps.Stop();
         } else if ((IsGrounded() || IsOnBox()) && value.Get<Vector2>().x != 0)
         {
-            AudioManager.instance?.Play("Footsteps"); 
+            footsteps.Play(); 
         }
 
         
@@ -187,7 +191,12 @@ public class CubeMovementTest : MonoBehaviour, IResetable
         {
             return;
         }
-        foreach(IResetable r in resetList)
+        ResetLevel();
+    }
+
+    public void ResetLevel()
+    {
+        foreach (IResetable r in resetList)
         {
             r.Reset();
         }
@@ -287,7 +296,7 @@ public class CubeMovementTest : MonoBehaviour, IResetable
 
     private IEnumerator Dash()
     {
-        AudioManager.instance?.Play("Dash");
+        dash.Play();
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
@@ -338,11 +347,12 @@ public class CubeMovementTest : MonoBehaviour, IResetable
     private void OnEscButton(InputValue value)
     {
         horizontal = 0f;
-        AudioManager.instance?.Stop("Footsteps");
+        footsteps.Stop();
     }
 
     public void Reset()
     {
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         gameObject.transform.position = CheckPoint.instance.GetRespornPosition();
     }
 }

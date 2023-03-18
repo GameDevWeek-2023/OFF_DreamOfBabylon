@@ -14,7 +14,7 @@ public class StartMenuUI : MonoBehaviour
     [SerializeField] GameObject MainMenu;
     [SerializeField] GameObject OptionsMenu;
     [SerializeField] GameObject Credits;
-    [SerializeField] Slider volumeSlider;
+    //[SerializeField] Slider volumeSlider;
     [SerializeField] ScriptableObjectScript progressHolder;
     private PlayerProgress progress;
     // Start is called before the first frame update
@@ -40,7 +40,7 @@ public class StartMenuUI : MonoBehaviour
             continueButton.SetActive(false);
             deleteSavesButton.SetActive(false);
         }
-        volumeSlider.value = AudioManager.instance.GetMasterVolume();
+        //volumeSlider.value = AudioManager.instance.GetMasterVolume();
     }
 
     // Update is called once per frame
@@ -99,10 +99,11 @@ public class StartMenuUI : MonoBehaviour
         }
     }
 
+    /*
     public void ChangeMusicVolume()
     {
         Debug.Log("New Value: " + volumeSlider.value);
         AudioManager.instance?.ChangeVolume(volumeSlider.value);
-    }
+    }*/
 
 }
