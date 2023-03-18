@@ -310,6 +310,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7c761957-3d04-4869-b642-658cb0b3ca0b",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EscButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a6cdbb33-d277-4722-b512-5bd48e74c44d",
                     "path": "<Keyboard>/#(E)",
                     "interactions": "",
@@ -353,7 +364,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "1D Axis",
+                    "name": "1D Axis WS",
                     "id": "867c3441-6825-459e-9a76-170ce2faeaad",
                     "path": "1DAxis",
                     "interactions": "",
@@ -386,9 +397,86 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "1D Axis Controller",
+                    "id": "4dcde995-f2b0-499b-bce8-c1cd4d402b92",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LadderUpDown",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "b67787c3-d1ab-44ac-8b43-5d6b7c48cbe9",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LadderUpDown",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "ab0f4b32-8e8b-4691-a46f-a0b33c2577ac",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LadderUpDown",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis Arrow Up/Down",
+                    "id": "f03cec99-1920-4ad5-bc8e-c137baf2f194",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LadderUpDown",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "6034616b-5ce3-41c8-a87e-bdc9f42c01d2",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LadderUpDown",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "89869dda-2b59-470e-9bbc-c130b7bd7d7a",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LadderUpDown",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "a724ff24-45e8-4b8a-a251-c4866010f6e6",
                     "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c0abd30-3041-4707-8033-6fe1e907c85e",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

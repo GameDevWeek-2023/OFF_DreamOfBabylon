@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -2749,11 +2749,11 @@ MonoBehaviour:
   player: {fileID: 0}
   dialogueComponent: {fileID: 3098225878630666078}
   nightmareBar: {fileID: 683609539}
-  volumeSlider: {fileID: 8641425719078662377}
   dialogueTextComponent: {fileID: 34351710946883009}
   dialogues:
   - lines:
-    - 'Steuerung: \nBewegung: WASD \nDash: Shift\nSwitch Dream: E\nInteract: F'
+    - 'Steuerung: \nBewegung: WASD \nDash: Shift\nSwitch Dream: E\nInteract: F\nReset
+      Level: R'
     - "Viel Spa\xDF!"
   textSpeed: 0.05
   progressHolder: {fileID: 11400000, guid: 6e6da5cbb0de5e44a9308b971b307946, type: 2}

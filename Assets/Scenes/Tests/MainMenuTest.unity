@@ -2126,8 +2126,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Simon Deutscher: Programming, VFX\n\nNils: Programming\n\nRay G\xF6hler:
-    Music, Sound, Programming\n\nAndreas Schmidt: Programming, Level Design\n\nSophie
+  m_text: "Simon Deutscher: Programming, VFX\n\nNils Schwaab: Programming\n\nRay
+    G\xF6hler: Music, Sound, Programming\n\nAndreas Schmidt: Programming, Level Design\n\nSophie
     Fischer: Charakter Design, Animation\n\nSophia Hauf: Poster Design, Environment-
     and Asset Design\n\nSaint Fischer: Envirnment-Art, Lighting"
   m_isRightToLeft: 0
