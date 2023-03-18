@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Switch : MonoBehaviour
+public class Switch : MonoBehaviour, IResetable
 {
     public enum ResetType { Never, OnUse, Timed, Immediately}
     [SerializeField] private ResetType resetType = ResetType.OnUse;
@@ -90,5 +90,10 @@ public class Switch : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Reset()
+    {
+        SetState(false);
     }
 }
