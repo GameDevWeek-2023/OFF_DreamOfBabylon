@@ -74,14 +74,21 @@ public class Character_Action_Nightmare : MonoBehaviour
         }
 
         foreach(SpriteRenderer sp in sps) {
-                Color color = sp.color;
+            Color color = sp.color;
                 color.a =  alpha;
                 sp.color = color;
         }
 
        foreach(ParticleSystem ps in pss) {
-            ps.gameObject.SetActive(active);
-        }
+           if (ps.isStopped)
+           {
+               ps.Play();    
+           }
+           else
+           {
+               ps.Stop();
+           }
+       }
     } 
 
 
