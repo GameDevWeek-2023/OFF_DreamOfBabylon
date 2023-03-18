@@ -19,6 +19,7 @@ public class Character_Action_Nightmare : MonoBehaviour
     
     [SerializeField]private Slider slider;
     [SerializeField]public float fillspeed = 0.7f;
+    private bool pauseInputs;
 
 
     private void Update()
@@ -80,7 +81,7 @@ public class Character_Action_Nightmare : MonoBehaviour
         }
 
        foreach(ParticleSystem ps in pss) {
-           if (ps.isStopped)
+           if (inNightmare)
            {
                ps.Play();    
            }
@@ -94,13 +95,13 @@ public class Character_Action_Nightmare : MonoBehaviour
 
     void OnNightmare(InputValue value)
     {
-        if (inNightmare && canSwitch) 
+        if (inNightmare && canSwitch && !pauseInputs) 
             {
                 StartCoroutine(ToDream());
                 // The player changes to normal dream
                 //SetToDream();
             } 
-            else if (!inNightmare && canSwitch)
+            else if (!inNightmare && canSwitch && !pauseInputs)
             {
                 StartCoroutine(ToNightmare());
                 // The player changes to nightmare
@@ -143,7 +144,11 @@ public class Character_Action_Nightmare : MonoBehaviour
         slider.value = 0f;
         targetProgress = slider.value + newProgress;
     }*/
-
+    
+    public void PauseInputs(bool pause)
+    {
+        pauseInputs = pause;
+    }
 }
 
 

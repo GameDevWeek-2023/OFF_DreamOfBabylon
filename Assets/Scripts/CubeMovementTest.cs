@@ -310,4 +310,10 @@ public class CubeMovementTest : MonoBehaviour
             isClimbing = false;
         }
     }
+
+    private void OnEscButton(InputValue value)
+    {
+        horizontal = 0f;
+        AudioManager.instance?.Stop("Footsteps");
+    }
 }
