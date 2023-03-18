@@ -18,6 +18,17 @@ public class Sound
     [HideInInspector]
     public AudioSource source;
 
+    [HideInInspector]
+    public float spatialBlend = 1f;
+    /*
+    public float dopplerLevel;
+
+    [HideInInspector]
+    public float minDistance = 2;
+
+    [HideInInspector]
+    public float maxDistance = 6;*/
+
     public bool isPaused = false;
 
     public AudioClip GetAudioClip()
