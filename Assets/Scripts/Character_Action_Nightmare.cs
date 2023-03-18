@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using UnityEngine.Rendering.Universal;
 
 
 public class Character_Action_Nightmare : MonoBehaviour
@@ -69,9 +70,14 @@ public class Character_Action_Nightmare : MonoBehaviour
         Collider2D[] cols = go.GetComponentsInChildren<Collider2D>();
         SpriteRenderer[] sps = go.GetComponentsInChildren<SpriteRenderer>();
         ParticleSystem[] pss = go.GetComponentsInChildren<ParticleSystem>();
+        Light2D[] lss = go.GetComponentsInChildren<Light2D>();
 
         foreach(Collider2D col in cols) {
             col.enabled = active;
+        }
+
+        foreach(Light2D ls in lss) {
+            ls.enabled = active;
         }
 
         foreach(SpriteRenderer sp in sps) {
