@@ -97,6 +97,36 @@ public class InGameMenu : MonoBehaviour
         }
     }
 
+    void OnJump(InputValue value)
+    {
+        if(dialogueComponent.activeInHierarchy)
+            ContinueDialog();
+    }
+
+    void OnNightmare(InputValue value)
+    {
+        if (dialogueComponent.activeInHierarchy)
+            ContinueDialog();
+    }
+
+    void OnInteract(InputValue value)
+    {
+        if (dialogueComponent.activeInHierarchy)
+            ContinueDialog();
+    }
+    private void ContinueDialog()
+    {
+        if (dialogueTextComponent.text == dialogues[progressHolder.dialogIndex].lines[indexInDialogue].Replace("\\n", "\n"))
+        {
+            NextLine();
+        }
+        else
+        {
+            StopAllCoroutines();
+            dialogueTextComponent.text = dialogues[progressHolder.dialogIndex].lines[indexInDialogue].Replace("\\n", "\n");
+        }
+    }
+
     public void ContinueGame()
     {
         Debug.Log("OnEscape aufgerufen");
@@ -196,15 +226,7 @@ public class InGameMenu : MonoBehaviour
     {
         if(dialogueComponent.activeInHierarchy&&(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return)))
         {
-            if(dialogueTextComponent.text == dialogues[progressHolder.dialogIndex].lines[indexInDialogue].Replace("\\n", "\n"))
-            {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                dialogueTextComponent.text = dialogues[progressHolder.dialogIndex].lines[indexInDialogue].Replace("\\n", "\n");   
-            }
+            ContinueDialog();
         }
     }
 

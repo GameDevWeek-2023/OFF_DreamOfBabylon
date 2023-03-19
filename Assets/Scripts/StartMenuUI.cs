@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 //using UnityEngine.UIElements;
 
 public class StartMenuUI : MonoBehaviour
@@ -14,6 +15,7 @@ public class StartMenuUI : MonoBehaviour
     [SerializeField] GameObject MainMenu;
     [SerializeField] GameObject OptionsMenu;
     [SerializeField] GameObject Credits;
+    [SerializeField] EventSystem eventSystem;
     //[SerializeField] Slider volumeSlider;
     [SerializeField] ScriptableObjectScript progressHolder;
     private PlayerProgress progress;
@@ -30,6 +32,7 @@ public class StartMenuUI : MonoBehaviour
             progressHolder.checkPointInLevel = progress.checkPointInLevel;
             progressHolder.dialogIndex = progress.dialogIndex;
             continueButton.SetActive(true);
+            eventSystem.firstSelectedGameObject = continueButton;
             deleteSavesButton.SetActive(true);
         }
         else 
@@ -38,6 +41,7 @@ public class StartMenuUI : MonoBehaviour
             progressHolder.checkPointInLevel = 0;
             progressHolder.newGame = true;
             continueButton.SetActive(false);
+            eventSystem.firstSelectedGameObject = playButton.gameObject;
             deleteSavesButton.SetActive(false);
         }
         //volumeSlider.value = AudioManager.instance.GetMasterVolume();

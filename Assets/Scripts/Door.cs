@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-
+    [SerializeField] AudioSource door;
     [SerializeField] private bool isOpen;
     [SerializeField] private int knocksToOpen = 1;
     [SerializeField] private Sprite imgOpenDoor;
@@ -43,7 +43,7 @@ public class Door : MonoBehaviour
         if (!isOpen && knocks >= knocksToOpen)
         {
             spriteRenderer.sprite = imgOpenDoor;
-            AudioManager.instance.Play("Door");
+            door.Play();
             SetState(true);
         }
             
@@ -59,7 +59,7 @@ public class Door : MonoBehaviour
             SetState(false);
             Debug.Log("success");
             spriteRenderer.sprite = imgClosedDoor;
-            AudioManager.instance.Play("Door");            
+            door.Play();            
             return;
         }
         Debug.Log("failed");

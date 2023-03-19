@@ -5,6 +5,8 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     public static CheckPoint instance;
+    [SerializeField] AudioSource magicCircleDream;
+    [SerializeField] AudioSource magicCircleNightmare;
     [SerializeField] private int numberOfCheckPoint = -1;
     [SerializeField] private float newCheckpointEffectTime = 1f;
 
@@ -41,11 +43,11 @@ public class CheckPoint : MonoBehaviour
             bool currentThemeIsNightmare = FindObjectOfType<Character_Action_Nightmare>().IsCurrentThemeNightmare();
             if(currentThemeIsNightmare == false)
             {
-                AudioManager.instance.Play("MagicCircleDream");
+                magicCircleDream.Play();
             }
             else
             {
-                AudioManager.instance.Play("MagicCircleNightmare");
+                magicCircleNightmare.Play();
             }
             StartCoroutine(NewCheckpointEffect());
 
