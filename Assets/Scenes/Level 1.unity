@@ -22694,7 +22694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1357886894}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &776498978
@@ -40159,6 +40159,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6681060000631394601, guid: 6076672b014fd484fa3d202560937084, type: 3}
   m_PrefabInstance: {fileID: 526426915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1357886894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8601809912773512954, guid: b41ba4c9cd3f1e6478891b8bc7602004, type: 3}
+  m_PrefabInstance: {fileID: 1721613285}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1358058672 stripped
 Transform:
