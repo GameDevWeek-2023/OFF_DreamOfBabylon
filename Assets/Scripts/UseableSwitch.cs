@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class UseableSwitch : Switch
 {
+
+    [SerializeField] AudioSource usableSwitch;
     public void Use()
     {
         Toggle();
-        FindObjectOfType<AudioManager>().Play("Switch");
+        usableSwitch.Play();
     }
 }
