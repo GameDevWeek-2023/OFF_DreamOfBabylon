@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadNextLevel : MonoBehaviour
 {
+
+    [SerializeField] AudioSource succsess;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,7 +14,8 @@ public class LoadNextLevel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && SceneManager.GetActiveScene().buildIndex<SceneManager.sceneCountInBuildSettings-1)
+        succsess.Play();
+        if (collision.gameObject.CompareTag("Player") && SceneManager.GetActiveScene().buildIndex<SceneManager.sceneCountInBuildSettings-1)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

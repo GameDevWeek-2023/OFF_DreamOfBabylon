@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class PressureSwitch : Switch
 {
-    
+
+    [SerializeField] AudioSource pressureSwitch;
     [SerializeField] private Sprite imgSwitchOff;
     [SerializeField] private Sprite imgSwitchOn;
     private SpriteRenderer spriteRenderer;
@@ -29,7 +30,7 @@ public class PressureSwitch : Switch
         {
             if (onSwitch.Count == 0)
             {
-                FindObjectOfType<AudioManager>().Play("PressureSwitch");
+                pressureSwitch.Play();
                 spriteRenderer.sprite = imgSwitchOn;
             }
             onSwitch.Add(collision.gameObject);
