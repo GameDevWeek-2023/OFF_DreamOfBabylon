@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.Rendering.Universal;
 
 
+
 public class Character_Action_Nightmare : MonoBehaviour
 {
     [SerializeField]private bool inNightmare = false;
@@ -22,11 +23,6 @@ public class Character_Action_Nightmare : MonoBehaviour
     [SerializeField]public float fillspeed = 0.7f;
     private bool pauseInputs;
 
-
-    private void Update()
-    {
-        
-    }
 
     private void FixedUpdate()
     {
@@ -72,7 +68,9 @@ public class Character_Action_Nightmare : MonoBehaviour
         ParticleSystem[] pss = go.GetComponentsInChildren<ParticleSystem>();
         Light2D[] lss = go.GetComponentsInChildren<Light2D>();
 
-        foreach(Collider2D col in cols) {
+        
+
+        foreach (Collider2D col in cols) {
             col.enabled = active;
         }
 
@@ -89,11 +87,13 @@ public class Character_Action_Nightmare : MonoBehaviour
        foreach(ParticleSystem ps in pss) {
            if (inNightmare)
            {
-               ps.Play();    
+               ps.Play();
+//               ps.GetComponent<AudioSource>().Play();
            }
            else
            {
                ps.Stop();
+//               ps.GetComponent<AudioSource>().Stop();
            }
        }
     } 
