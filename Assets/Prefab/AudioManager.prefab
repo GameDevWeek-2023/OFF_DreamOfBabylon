@@ -178,39 +178,3 @@ MonoBehaviour:
     minDistance: 1
     maxDistance: 500
     isPaused: 0
-  - name: Door
-    clip: {fileID: 8300000, guid: 170a4d784727213438fb736dc62bcee2, type: 3}
-    outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-    spatialBlend: 1
-    dopplerLevel: 0.6
-    minDistance: 4
-    maxDistance: 12
-    isPaused: 0
-  - name: Fire
-    clip: {fileID: 8300000, guid: 5546e19ec74ee564fba979da4d427eb8, type: 3}
-    outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
-    volume: 1
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-    spatialBlend: 1
-    dopplerLevel: 0.6
-    minDistance: 4
-    maxDistance: 12
-    isPaused: 0
-  - name: Roll
-    clip: {fileID: 8300000, guid: 1052e3ce72d0010469e3a45c119680d6, type: 3}
-    outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
-    volume: 0.5
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-    spatialBlend: 1
-    dopplerLevel: 0.6
-    minDistance: 4
-    maxDistance: 12
-    isPaused: 0

@@ -198,7 +198,7 @@ public class CubeMovementTest : MonoBehaviour, IResetable
     {
         foreach (IResetable r in resetList)
         {
-            r.Reset();
+            r.ResetToStart();
         }
     }
 
@@ -350,7 +350,7 @@ public class CubeMovementTest : MonoBehaviour, IResetable
         footsteps.Stop();
     }
 
-    public void Reset()
+    public void ResetToStart()
     {
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         gameObject.transform.position = CheckPoint.instance.GetRespornPosition();

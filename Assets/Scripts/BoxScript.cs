@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoxScript : MonoBehaviour, IResetable
 {
     Vector2 startPos;
-    public void Reset()
+    public void ResetToStart()
     {
         gameObject.transform.parent = null;
         gameObject.transform.position = startPos;

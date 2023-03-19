@@ -97,6 +97,36 @@ public class InGameMenu : MonoBehaviour
         }
     }
 
+    void OnJump(InputValue value)
+    {
+        if(dialogueComponent.activeInHierarchy)
+            ContinueDialog();
+    }
+
+    void OnNightmare(InputValue value)
+    {
+        if (dialogueComponent.activeInHierarchy)
+            ContinueDialog();
+    }
+
+    void OnInteract(InputValue value)
+    {
+        if (dialogueComponent.activeInHierarchy)
+            ContinueDialog();
+    }
+    private void ContinueDialog()
+    {
+        if (dialogueTextComponent.text == dialogues[progressHolder.dialogIndex].lines[indexInDialogue].Replace("\\n", "\n"))
+        {
+            NextLine();
+        }
+        else
+        {
+            StopAllCoroutines();
+            dialogueTextComponent.text = dialogues[progressHolder.dialogIndex].lines[indexInDialogue].Replace("\\n", "\n");
+        }
+    }
+
     public void ContinueGame()
     {
         Debug.Log("OnEscape aufgerufen");
@@ -110,6 +140,7 @@ public class InGameMenu : MonoBehaviour
             Time.timeScale = 0;
             player.GetComponent<CubeMovementTest>().PauseInputs(true);
             player.GetComponent<Character_Action_Nightmare>().PauseInputs(true);
+            player.GetComponent<GrabbingMechanic>().PauseInputs=true;
             if ((bool)(AudioManager.instance.FindMusic("DreamThemeIntro")?.source.isPlaying))
             {
                 AudioManager.instance.Pause("DreamThemeIntro");
@@ -143,6 +174,7 @@ public class InGameMenu : MonoBehaviour
             Time.timeScale = 1;
             player.GetComponent<CubeMovementTest>().PauseInputs(dialogWasActive);
             player.GetComponent<Character_Action_Nightmare>().PauseInputs(dialogWasActive);
+            player.GetComponent<GrabbingMechanic>().PauseInputs=dialogWasActive;
         }
     }
 
@@ -194,15 +226,7 @@ public class InGameMenu : MonoBehaviour
     {
         if(dialogueComponent.activeInHierarchy&&(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return)))
         {
-            if(dialogueTextComponent.text == dialogues[progressHolder.dialogIndex].lines[indexInDialogue].Replace("\\n", "\n"))
-            {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                dialogueTextComponent.text = dialogues[progressHolder.dialogIndex].lines[indexInDialogue].Replace("\\n", "\n");   
-            }
+            ContinueDialog();
         }
     }
 
@@ -213,6 +237,7 @@ public class InGameMenu : MonoBehaviour
         dialogWasActive = true;
         player.GetComponent<CubeMovementTest>().PauseInputs(true);
         player.GetComponent<Character_Action_Nightmare>().PauseInputs(true);
+        player.GetComponent<GrabbingMechanic>().PauseInputs=true;
         StartCoroutine(TypeLine());
     }
 
@@ -256,6 +281,7 @@ public class InGameMenu : MonoBehaviour
             dialogWasActive = false;
             player.GetComponent<CubeMovementTest>().PauseInputs(dialogWasActive);
             player.GetComponent<Character_Action_Nightmare>().PauseInputs(dialogWasActive);
+            player.GetComponent<GrabbingMechanic>().PauseInputs=dialogWasActive;
         }
     }
 }

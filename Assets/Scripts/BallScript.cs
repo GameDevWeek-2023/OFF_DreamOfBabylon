@@ -7,7 +7,7 @@ public class BallScript : MonoBehaviour, IResetable
 {
     [SerializeField] AudioSource roll;
     private Vector2 startPos;
-    public void Reset()
+    public void ResetToStart()
     {
         gameObject.transform.position = startPos;
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
