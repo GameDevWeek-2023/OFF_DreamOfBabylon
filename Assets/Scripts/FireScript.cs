@@ -1,18 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class FireScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        AudioManager.instance?.Play("Fire");
-    }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] AudioSource fire;
+    [SerializeField] private bool inNightmare = false;
+
+    private void Update()
     {
-        
+        if (gameObject.GetComponentInChildren<ParticleSystem>().isPlaying)
+        {
+            if(!((bool)(fire.isPlaying)))
+            {
+                fire.Play();
+            }
+        }
+        else
+        {
+            fire.Stop();
+        }
     }
 }
