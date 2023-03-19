@@ -110,6 +110,7 @@ public class InGameMenu : MonoBehaviour
             Time.timeScale = 0;
             player.GetComponent<CubeMovementTest>().PauseInputs(true);
             player.GetComponent<Character_Action_Nightmare>().PauseInputs(true);
+            player.GetComponent<GrabbingMechanic>().PauseInputs=true;
             if ((bool)(AudioManager.instance.FindMusic("DreamThemeIntro")?.source.isPlaying))
             {
                 AudioManager.instance.Pause("DreamThemeIntro");
@@ -143,6 +144,7 @@ public class InGameMenu : MonoBehaviour
             Time.timeScale = 1;
             player.GetComponent<CubeMovementTest>().PauseInputs(dialogWasActive);
             player.GetComponent<Character_Action_Nightmare>().PauseInputs(dialogWasActive);
+            player.GetComponent<GrabbingMechanic>().PauseInputs=dialogWasActive;
         }
     }
 
@@ -213,6 +215,7 @@ public class InGameMenu : MonoBehaviour
         dialogWasActive = true;
         player.GetComponent<CubeMovementTest>().PauseInputs(true);
         player.GetComponent<Character_Action_Nightmare>().PauseInputs(true);
+        player.GetComponent<GrabbingMechanic>().PauseInputs=true;
         StartCoroutine(TypeLine());
     }
 
@@ -256,6 +259,7 @@ public class InGameMenu : MonoBehaviour
             dialogWasActive = false;
             player.GetComponent<CubeMovementTest>().PauseInputs(dialogWasActive);
             player.GetComponent<Character_Action_Nightmare>().PauseInputs(dialogWasActive);
+            player.GetComponent<GrabbingMechanic>().PauseInputs=dialogWasActive;
         }
     }
 }

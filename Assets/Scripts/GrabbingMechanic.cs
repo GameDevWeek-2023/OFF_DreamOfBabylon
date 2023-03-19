@@ -32,6 +32,13 @@ public class GrabbingMechanic : MonoBehaviour
     private RigidbodyInterpolation2D rbInterpol;
     private bool rbFreezeRot;
     private float rbGravityScale;
+    private bool pauseInputs = false;
+
+    public bool PauseInputs
+    {
+        get { return pauseInputs;}
+        set { pauseInputs = value; }
+    }
 
 
     // Start is called before the first frame update
@@ -48,6 +55,11 @@ public class GrabbingMechanic : MonoBehaviour
 
     void OnInteract(InputValue value)
     {
+
+        if (pauseInputs)
+        {
+            return;
+        }
 
         if (player.transform.localScale.x > 0f)
         {
