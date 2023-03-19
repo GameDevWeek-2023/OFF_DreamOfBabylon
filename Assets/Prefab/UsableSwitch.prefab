@@ -131,6 +131,8 @@ MonoBehaviour:
   OffMessage: Close
   isOn: 0
   resetTime: 0
+  imgSwitchOff: {fileID: 21300000, guid: 19f8c4c40c431114ba12f9bb877c6dfc, type: 3}
+  imgSwitchOn: {fileID: 21300000, guid: 45253ababe5243f4093da6cabfe53440, type: 3}
   usableSwitch: {fileID: 5679336118991488379}
 --- !u!82 &5679336118991488379
 AudioSource:

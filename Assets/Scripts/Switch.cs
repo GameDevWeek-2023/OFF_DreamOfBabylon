@@ -21,6 +21,7 @@ public class Switch : MonoBehaviour, IResetable
     {
         TryGetComponent<Animator>(out animator);
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        Debug.Log(spriteRenderer);
         //animator = GetComponent<Animator>();
     }
 
