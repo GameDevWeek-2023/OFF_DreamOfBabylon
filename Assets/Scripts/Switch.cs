@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour, IResetable
 {
+
     public enum ResetType { Never, OnUse, Timed, Immediately}
     [SerializeField] private ResetType resetType = ResetType.OnUse;
     [SerializeField] GameObject Target;
@@ -11,11 +12,15 @@ public class Switch : MonoBehaviour, IResetable
     public string OffMessage = "Close";
     public bool isOn;
     [SerializeField] private float resetTime;
+    [SerializeField] private Sprite imgSwitchOff;
+    [SerializeField] private Sprite imgSwitchOn;
     Animator animator;
+    private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
         TryGetComponent<Animator>(out animator);
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         //animator = GetComponent<Animator>();
     }
 
@@ -56,7 +61,8 @@ public class Switch : MonoBehaviour, IResetable
         animator?.SetBool("On", on);
         if(on)
         {
-            if(Target != null && !string.IsNullOrEmpty(OnMessage))
+            spriteRenderer.sprite = imgSwitchOn;
+            if (Target != null && !string.IsNullOrEmpty(OnMessage))
             {
                 Target.SendMessage(OnMessage);
             }
@@ -78,6 +84,7 @@ public class Switch : MonoBehaviour, IResetable
         }
         else
         {
+            spriteRenderer.sprite = imgSwitchOff;
             if (Target != null && !string.IsNullOrEmpty(OffMessage))
             {
                 Target.SendMessage(OffMessage);
