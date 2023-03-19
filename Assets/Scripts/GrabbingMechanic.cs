@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class GrabbingMechanic : MonoBehaviour
 {
+    
     [SerializeField] AudioSource grab;
 
     [SerializeField] private Transform grabPoint;
@@ -112,5 +114,14 @@ public class GrabbingMechanic : MonoBehaviour
             grabbedObject.transform.SetParent(null);
             grabbedObject = null;
         }
+    }
+
+    void OnReset(InputValue value)
+    {
+        if (!pauseInputs)
+        {
+            grabbedObject = null;
+        }
+
     }
 }
