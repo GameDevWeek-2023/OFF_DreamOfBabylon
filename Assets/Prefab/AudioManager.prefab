@@ -157,7 +157,7 @@ MonoBehaviour:
   - name: MainMenuMusicIntro
     clip: {fileID: 8300000, guid: a0e2fcdba00ae234d93c6796a53bdd93, type: 3}
     outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
-    volume: 0.1
+    volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -169,7 +169,7 @@ MonoBehaviour:
   - name: MainMenuMusicLoop
     clip: {fileID: 8300000, guid: bfa2e12c1f7c75344a0890f626ca5b6e, type: 3}
     outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
-    volume: 0.1
+    volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
