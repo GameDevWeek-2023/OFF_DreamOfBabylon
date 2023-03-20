@@ -103,11 +103,4 @@ public class StartMenuUI : MonoBehaviour
         }
     }
 
-    /*
-    public void ChangeMusicVolume()
-    {
-        Debug.Log("New Value: " + volumeSlider.value);
-        AudioManager.instance?.ChangeVolume(volumeSlider.value);
-    }*/
-
 }

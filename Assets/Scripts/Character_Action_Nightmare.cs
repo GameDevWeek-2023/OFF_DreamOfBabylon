@@ -34,11 +34,11 @@ public class Character_Action_Nightmare : MonoBehaviour
 
     private void Start()
     {
-        //progressBar.GetComponent<NightmareBarScript>();
-
-        //SetToNightmare();
         SetToDream();
-        AudioManager.instance.StartBackgroundMusic();
+        if (!(bool)(AudioManager.instance?.FindMusic("DreamTheme").source?.isPlaying))
+        {
+            AudioManager.instance.StartBackgroundMusic();
+        }
         
         slider.value = 1f;
     }
@@ -88,12 +88,10 @@ public class Character_Action_Nightmare : MonoBehaviour
            if (inNightmare)
            {
                ps.Play();
-//               ps.GetComponent<AudioSource>().Play();
            }
            else
            {
                ps.Stop();
-//               ps.GetComponent<AudioSource>().Stop();
            }
        }
     } 
@@ -104,17 +102,11 @@ public class Character_Action_Nightmare : MonoBehaviour
         if (inNightmare && canSwitch && !pauseInputs) 
             {
                 StartCoroutine(ToDream());
-                // The player changes to normal dream
-                //SetToDream();
             } 
             else if (!inNightmare && canSwitch && !pauseInputs)
             {
                 StartCoroutine(ToNightmare());
-                // The player changes to nightmare
-                //inNightmare = true;
-                //SetToNightmare();
             }
-        //AudioManager.instance.SwapBackgroundAudios();
 
     }
     
@@ -145,11 +137,6 @@ public class Character_Action_Nightmare : MonoBehaviour
         return inNightmare;
     }
     
-    /*public void IncrementProgress(float newProgress)
-    {
-        slider.value = 0f;
-        targetProgress = slider.value + newProgress;
-    }*/
     
     public void PauseInputs(bool pause)
     {

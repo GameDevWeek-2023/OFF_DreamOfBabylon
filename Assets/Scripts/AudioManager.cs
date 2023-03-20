@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.IO;
+using Unity.VisualScripting;
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,9 +12,14 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
 
     public static AudioManager instance;
-    private float masterVolume = 1;
-    private bool nightmare = false;
+    float masterVolume;
+    float backgroundVolume;
 
+    Sound currentlyPlayingIntro;
+    Sound currentlyPlaying;
+    Sound currentlyNotPlayingIntro;
+    Sound currentlyNotPlaying;
+    bool inNightmare;
     public const string MASTER_KEY = "masterVolume";
 
     void Awake()
@@ -45,6 +51,8 @@ public class AudioManager : MonoBehaviour
             s.source.minDistance = s.minDistance;
             s.source.maxDistance = s.maxDistance;
         }
+        backgroundVolume = FindMusic("DreamTheme").source.volume;
+        
     }
     public void StartMainMenuMusic()
     {
@@ -62,11 +70,20 @@ public class AudioManager : MonoBehaviour
     }
     public void StartBackgroundMusic()
     {
+        inNightmare = false; 
         Sound windUpMusicBox= FindMusic("WindUpMusicBox");
         Sound dreamThemeIntro = FindMusic("DreamThemeIntro");
         Sound nightmareThemeIntro = FindMusic("NightmareThemeIntro");
         Sound dreamTheme = FindMusic("DreamTheme");
         Sound nightmareTheme = FindMusic("NightmareTheme");
+        if (dreamTheme.source.volume < nightmareTheme.source.volume)
+        {
+            backgroundVolume = nightmareTheme.source.volume;
+        }
+        dreamThemeIntro.source.volume = backgroundVolume;
+        dreamTheme.source.volume = backgroundVolume;
+        nightmareThemeIntro.source.volume = 0;
+        nightmareTheme.source.volume = 0;
         windUpMusicBox.source.Play();
         dreamThemeIntro.source.PlayScheduled(AudioSettings.dspTime + windUpMusicBox.GetAudioClip().length);
         nightmareThemeIntro.source.PlayScheduled(AudioSettings.dspTime + windUpMusicBox.GetAudioClip().length);
@@ -74,6 +91,10 @@ public class AudioManager : MonoBehaviour
         nightmareTheme.source.PlayScheduled(AudioSettings.dspTime + windUpMusicBox.GetAudioClip().length + dreamThemeIntro.GetAudioClip().length);
     }
 
+    public void setInNightmare(bool inNightmare)
+    {
+        this.inNightmare = inNightmare;
+    }
     public float GetMasterVolume()
     {
         return masterVolume;
@@ -134,50 +155,45 @@ public class AudioManager : MonoBehaviour
         Sound nightmareThemeIntro = Array.Find(sounds, sound => sound.name == "NightmareThemeIntro");
         Sound dreamTheme = Array.Find(sounds, sound => sound.name == "DreamTheme");
         Sound nightmareTheme = Array.Find(sounds, sound => sound.name == "NightmareTheme");
-        if (nightmare == false)
+
+
+        if (inNightmare == false)
         {
-            while (timeElapsed < timeToFade)
-            {
-                if (dreamThemeIntro.source.isPlaying)
-                {
-                    nightmareThemeIntro.volume = 0.1f;
-                    dreamThemeIntro.volume = 0;
-                    nightmareThemeIntro.source.volume = Mathf.Lerp(0, 0.1f*masterVolume, timeElapsed / timeToFade);
-                    dreamThemeIntro.source.volume = Mathf.Lerp(0.1f*masterVolume, 0, timeElapsed / timeToFade);
-                }
-                nightmareTheme.volume = 0.1f;
-                dreamTheme.volume = 0;
-                nightmareTheme.source.volume = Mathf.Lerp(0, 0.1f*masterVolume, timeElapsed / timeToFade);
-                dreamTheme.source.volume = Mathf.Lerp(0.1f*masterVolume, 0, timeElapsed / timeToFade);
-                timeElapsed += Time.deltaTime;
-                yield return null;
-            }
+            currentlyPlayingIntro = nightmareThemeIntro;
+            currentlyPlaying = nightmareTheme;
+            currentlyNotPlayingIntro = dreamThemeIntro;
+            currentlyNotPlaying = dreamTheme;
         }
         else
         {
-            while (timeElapsed < timeToFade)
-            {
-                if (nightmareThemeIntro.source.isPlaying)
-                {
-                    nightmareThemeIntro.volume = 0;
-                    dreamThemeIntro.volume = .1f;
-                    dreamThemeIntro.source.volume = Mathf.Lerp(0, 0.1f*masterVolume, timeElapsed / timeToFade);
-                    nightmareThemeIntro.source.volume = Mathf.Lerp(0.1f*masterVolume, 0, timeElapsed / timeToFade);
-                }
-                nightmareTheme.volume = 0;
-                dreamTheme.volume = 0.1f;
-                dreamTheme.source.volume = Mathf.Lerp(0, 0.1f*masterVolume, timeElapsed / timeToFade);
-                nightmareTheme.source.volume = Mathf.Lerp(0.1f*masterVolume, 0, timeElapsed / timeToFade);
-                timeElapsed += Time.deltaTime;
-                yield return null;
-            }
+            currentlyPlayingIntro = dreamThemeIntro;
+            currentlyPlaying = dreamTheme;
+            currentlyNotPlayingIntro = nightmareThemeIntro;
+            currentlyNotPlaying = nightmareTheme;
         }
-        nightmare = !nightmare;
+       
+        while (timeElapsed < timeToFade)
+        {
+            if (currentlyPlayingIntro.source.isPlaying)
+            {
+                currentlyPlayingIntro.volume = backgroundVolume;
+                currentlyNotPlayingIntro.volume = 0;
+                currentlyPlayingIntro.source.volume = Mathf.Lerp(0, backgroundVolume*masterVolume, timeElapsed / timeToFade);
+                currentlyNotPlayingIntro.source.volume = Mathf.Lerp(backgroundVolume*masterVolume, 0, timeElapsed / timeToFade);
+            }
+            currentlyPlaying.volume = backgroundVolume;
+            currentlyNotPlaying.volume = 0;
+            currentlyPlaying.source.volume = Mathf.Lerp(0, backgroundVolume*masterVolume, timeElapsed / timeToFade);
+            currentlyNotPlaying.source.volume = Mathf.Lerp(backgroundVolume*masterVolume, 0, timeElapsed / timeToFade);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        inNightmare = !inNightmare;
     }
 
     void LoadVolume() //Volume saved in VolumeSettings.cs
     {
-        float masterVolume = PlayerPrefs.GetFloat(MASTER_KEY, 1f);
+        masterVolume = PlayerPrefs.GetFloat(MASTER_KEY, 1f);
         mixer.SetFloat(VolumeSettings.MIXER_MASTER, Mathf.Log10(masterVolume) * 20);
     }
 }

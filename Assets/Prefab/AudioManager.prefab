@@ -106,54 +106,6 @@ MonoBehaviour:
     minDistance: 1
     maxDistance: 500
     isPaused: 0
-  - name: MagicCircleDream
-    clip: {fileID: 8300000, guid: 46a0a65e79954be4b9d5f063e4e11243, type: 3}
-    outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
-    volume: 0.4
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-    spatialBlend: 1
-    dopplerLevel: 0.6
-    minDistance: 4
-    maxDistance: 12
-    isPaused: 0
-  - name: MagicCircleNightmare
-    clip: {fileID: 8300000, guid: 1a6b6c7aafdb7714ca75a0d81043c26e, type: 3}
-    outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
-    volume: 0.4
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-    spatialBlend: 1
-    dopplerLevel: 0.6
-    minDistance: 4
-    maxDistance: 12
-    isPaused: 0
-  - name: PressureSwitch
-    clip: {fileID: 8300000, guid: 05ca0a8def35e354c85055383eb04391, type: 3}
-    outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-    spatialBlend: 1
-    dopplerLevel: 0.6
-    minDistance: 4
-    maxDistance: 12
-    isPaused: 0
-  - name: Switch
-    clip: {fileID: 8300000, guid: 927a2fa4333502c46b1c7e0021471848, type: 3}
-    outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
-    volume: 0.1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-    spatialBlend: 1
-    dopplerLevel: 0.6
-    minDistance: 4
-    maxDistance: 12
-    isPaused: 0
   - name: MainMenuMusicIntro
     clip: {fileID: 8300000, guid: a0e2fcdba00ae234d93c6796a53bdd93, type: 3}
     outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
