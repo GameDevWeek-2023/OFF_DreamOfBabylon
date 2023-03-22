@@ -123,7 +123,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 24300002, guid: fdcbc2e93a130104f992f36f9ea01ee6, type: 2}
     volume: 0.4
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
     spatialBlend: 0
     dopplerLevel: 0
